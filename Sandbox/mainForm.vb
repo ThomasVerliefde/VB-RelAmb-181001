@@ -26,25 +26,30 @@
 
     Public Sub loadNext(sender As Object, e As EventArgs) Handles contButton.Click
         Select Case instructionCount
-            Case 0
+            Case 0 'Start of Experiment
                 instrText.Text = My.Resources.ResourceManager.GetString("_0_mainInstr")
 
-            Case 1
+            Case 1 'Collecting Names of 'Significant Others'
                 instrText.Text = My.Resources.ResourceManager.GetString("_1_otherInstr")
+                otherForm.ShowDialog()
 
-            Case 2
+            Case 2 'Practice Trials
                 instrText.Text = My.Resources.ResourceManager.GetString("_2_practice" & subjForm.keyAss)
+                practiceForm.ShowDialog()
 
-            Case 3
+            Case 3 'Experiment Proper
                 instrText.Text = My.Resources.ResourceManager.GetString("_3_experiment" & subjForm.keyAss)
+                expForm.ShowDialog()
 
-            Case 4
+            Case 4 'Explicit Measurements of Ambivalence
                 instrText.Text = My.Resources.ResourceManager.GetString("_4_explicitInstr")
+                explicitForm.ShowDialog()
 
-            Case 5
+            Case 5 'Demographic Information
                 instrText.Text = My.Resources.ResourceManager.GetString("_5_demoInstr")
+                demoForm.ShowDialog()
 
-            Case 6
+            Case 6 'End of Experiment
                 instrText.Text = My.Resources.ResourceManager.GetString("_6_endInstr")
                 instrText.Font = New Font("Microsoft Sans Serif", 40)
                 instrText.TextAlign = HorizontalAlignment.Center

@@ -66,4 +66,8 @@
             e.Handled = True
         End If
     End Sub
+
+    Protected Overrides Sub Finalize()
+        MyBase.Finalize()
+    End Sub
 End Class
