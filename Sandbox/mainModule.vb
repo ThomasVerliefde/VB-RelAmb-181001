@@ -28,8 +28,6 @@ Module mainModule
 
         End Sub
 
-
-
     End Class
 
     Public Class continueButton
@@ -123,7 +121,6 @@ Module mainModule
         Catch ex As Exception
             MessageBox.Show("Beim Speichern der Datei" + path + " ist ein Fehler aufgetreten: \n" + ex.ToString)
         End Try
-
 
     End Sub
 
