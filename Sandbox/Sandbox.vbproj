@@ -196,6 +196,16 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="My Project\BlockRandomisation.txt" />
+    <EmbeddedResource Include="Resources\Stimuli\Experiment\experimentPrime_Neg.txt" />
+    <EmbeddedResource Include="Resources\Stimuli\Experiment\experimentPrime_Pos.txt" />
+    <EmbeddedResource Include="Resources\Stimuli\Experiment\experimentPrime_Str.txt" />
+    <EmbeddedResource Include="Resources\Stimuli\Experiment\experimentTarget_Neg.txt" />
+    <EmbeddedResource Include="Resources\Stimuli\Experiment\experimentTarget_Pos.txt" />
+    <EmbeddedResource Include="Resources\Stimuli\Practice\practicePrime_Neg.txt" />
+    <EmbeddedResource Include="Resources\Stimuli\Practice\practicePrime_Pos.txt" />
+    <EmbeddedResource Include="Resources\Stimuli\Practice\practicePrime_Str.txt" />
+    <EmbeddedResource Include="Resources\Stimuli\Practice\practiceTarget_Neg.txt" />
+    <EmbeddedResource Include="Resources\Stimuli\Practice\practiceTarget_Pos.txt" />
     <EmbeddedResource Include="Resources\Instructions\0_mainInstr.txt" />
     <EmbeddedResource Include="Resources\Instructions\1_otherInstr.txt" />
     <EmbeddedResource Include="Resources\Instructions\2_practiceAneg.txt" />
@@ -219,5 +229,6 @@
       <Install>false</Install>
     </BootstrapperPackage>
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.VisualBasic.targets" />
 </Project>

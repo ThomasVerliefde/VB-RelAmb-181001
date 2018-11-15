@@ -28,9 +28,8 @@
 
     End Sub
 
-    Public condN As Integer
-    Public subjN As Integer
-    Public keyAss As String
+    Private condN As Integer
+    Private subjN As Integer
 
     Private Sub contButton_Click(sender As Object, e As EventArgs) Handles contButton.Click
 
@@ -42,12 +41,12 @@
             condN = setCond(subjN)
             Select Case condN
                 Case 0
-                    keyAss = "Apos"
+                    mainForm.keyAss = "Apos"
                 Case 1
-                    keyAss = "Aneg"
+                    mainForm.keyAss = "Aneg"
             End Select
             mainForm.dataFrame("Subject") = subjN.ToString
-            mainForm.dataFrame("Key") = keyAss
+            mainForm.dataFrame("Key") = mainForm.keyAss
         End If
 
         mainForm.contButton.PerformClick()

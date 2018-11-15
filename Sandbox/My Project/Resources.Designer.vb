@@ -169,9 +169,13 @@ Namespace My.Resources
         End Property
         
         '''<summary>
-        '''  Looks up a localized string similar to Das Experiment ist nun abgeschlossen.
+        '''  Looks up a localized string similar to 
         '''
-        '''Nochmals vielen Dank für Ihre Kooperation..
+        '''Das Experiment ist nun beendet.
+        '''
+        '''Nochmals vielen Dank für Ihre Teilnahme!
+        '''
+        '''Wenden Sie sich bitte an die Versuchsleitung..
         '''</summary>
         Friend ReadOnly Property _6_endInstr() As String
             Get
@@ -185,6 +189,96 @@ Namespace My.Resources
         Friend ReadOnly Property BlockRandomisation() As String
             Get
                 Return ResourceManager.GetString("BlockRandomisation", resourceCulture)
+            End Get
+        End Property
+        
+        '''<summary>
+        '''  Looks up a localized string similar to .
+        '''</summary>
+        Friend ReadOnly Property experimentPrime_Neg() As String
+            Get
+                Return ResourceManager.GetString("experimentPrime_Neg", resourceCulture)
+            End Get
+        End Property
+        
+        '''<summary>
+        '''  Looks up a localized string similar to .
+        '''</summary>
+        Friend ReadOnly Property experimentPrime_Pos() As String
+            Get
+                Return ResourceManager.GetString("experimentPrime_Pos", resourceCulture)
+            End Get
+        End Property
+        
+        '''<summary>
+        '''  Looks up a localized string similar to .
+        '''</summary>
+        Friend ReadOnly Property experimentPrime_Str() As String
+            Get
+                Return ResourceManager.GetString("experimentPrime_Str", resourceCulture)
+            End Get
+        End Property
+        
+        '''<summary>
+        '''  Looks up a localized string similar to .
+        '''</summary>
+        Friend ReadOnly Property experimentTarget_Neg() As String
+            Get
+                Return ResourceManager.GetString("experimentTarget_Neg", resourceCulture)
+            End Get
+        End Property
+        
+        '''<summary>
+        '''  Looks up a localized string similar to .
+        '''</summary>
+        Friend ReadOnly Property experimentTarget_Pos() As String
+            Get
+                Return ResourceManager.GetString("experimentTarget_Pos", resourceCulture)
+            End Get
+        End Property
+        
+        '''<summary>
+        '''  Looks up a localized string similar to .
+        '''</summary>
+        Friend ReadOnly Property practicePrime_Neg() As String
+            Get
+                Return ResourceManager.GetString("practicePrime_Neg", resourceCulture)
+            End Get
+        End Property
+        
+        '''<summary>
+        '''  Looks up a localized string similar to .
+        '''</summary>
+        Friend ReadOnly Property practicePrime_Pos() As String
+            Get
+                Return ResourceManager.GetString("practicePrime_Pos", resourceCulture)
+            End Get
+        End Property
+        
+        '''<summary>
+        '''  Looks up a localized string similar to .
+        '''</summary>
+        Friend ReadOnly Property practicePrime_Str() As String
+            Get
+                Return ResourceManager.GetString("practicePrime_Str", resourceCulture)
+            End Get
+        End Property
+        
+        '''<summary>
+        '''  Looks up a localized string similar to .
+        '''</summary>
+        Friend ReadOnly Property practiceTarget_Neg() As String
+            Get
+                Return ResourceManager.GetString("practiceTarget_Neg", resourceCulture)
+            End Get
+        End Property
+        
+        '''<summary>
+        '''  Looks up a localized string similar to .
+        '''</summary>
+        Friend ReadOnly Property practiceTarget_Pos() As String
+            Get
+                Return ResourceManager.GetString("practiceTarget_Pos", resourceCulture)
             End Get
         End Property
     End Module
