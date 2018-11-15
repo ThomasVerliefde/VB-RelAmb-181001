@@ -10,18 +10,23 @@ Public Class mainForm
     Private ReadOnly instrText As New instructionBox
 
     Private time As IClock = SystemClock.Instance
-    Private startT As Instant = time.GetCurrentInstant
-    Private endT As Instant
-    Private totalT As Duration
 
-    Private Sub Form_Load(sender As Object, e As EventArgs) Handles MyBase.Load
+    Public timeStart As Instant = time.GetCurrentInstant
+    Public timeOther As Duration
+    Public timePractice As Duration
+    Public timeExperiment As Duration
+    Public timeExplicit As Duration
+    Public timeDemographics As Duration
+    Public timeTotal As Duration
+
+    Private Sub formLoad(sender As Object, e As EventArgs) Handles MyBase.Load
 
         WindowState = FormWindowState.Maximized
         FormBorderStyle = FormBorderStyle.None
         BackColor = Color.White
 
         If Not dataFrame.ContainsKey("Subject") Then
-            subjForm.ShowDialog()
+            subjectForm.ShowDialog()
         End If
 
         Controls.Add(instrText)
@@ -42,11 +47,11 @@ Public Class mainForm
                 'otherForm.ShowDialog()
 
             Case 2 'Practice Trials
-                instrText.Text = My.Resources.ResourceManager.GetString("_2_practice" & subjForm.keyAss)
+                instrText.Text = My.Resources.ResourceManager.GetString("_2_practice" & subjectForm.keyAss)
                 'practiceForm.ShowDialog()
 
             Case 3 'Experiment Proper
-                instrText.Text = My.Resources.ResourceManager.GetString("_3_experiment" & subjForm.keyAss)
+                instrText.Text = My.Resources.ResourceManager.GetString("_3_experiment" & subjectForm.keyAss)
                 'expForm.ShowDialog()
 
             Case 4 'Explicit Measurements of Ambivalence
@@ -59,54 +64,46 @@ Public Class mainForm
 
             Case 6 'End of Experiment
 
-
-                endT = time.GetCurrentInstant
-                totalT = endT - startT
-
-                instrText.Text = totalT.TotalMinutes.ToString
-
-                'instrText.Text = My.Resources.ResourceManager.GetString("_6_endInstr")
+                instrText.Text = My.Resources.ResourceManager.GetString("_6_endInstr")
                 instrText.Font = New Font("Microsoft Sans Serif", 40)
                 instrText.TextAlign = HorizontalAlignment.Center
                 contButton.Text = "Abbrechen"
 
+                timeTotal = time.GetCurrentInstant - timeStart
+
+
+
+
+
+                dataFrame("timeOther") = timeOther.TotalMinutes.ToString
+                dataFrame("timePractice") = timePractice.TotalMinutes.ToString
+                dataFrame("timeExperiment") = timeExperiment.TotalMinutes.ToString
+                dataFrame("timeExplicit") = timeExplicit.TotalMinutes.ToString
+                dataFrame("timeDemographics") = timeDemographics.TotalMinutes.ToString
+                dataFrame("timeTotal") = timeTotal.TotalMinutes.ToString
+                dataFrame("hostName") = Net.Dns.GetHostName()
+
                 '' Copy of "Ende.vb"
 
-                'Dim strHostName As String
-                '' PC Name
-                'strHostName = System.Net.Dns.GetHostName()
-
-                '' Total Time
-
-                'Dim endT As New Instant
-                'Dim totT As New Duration
-
-                'totT = startT - endT
-                'totT.TotalMinutes
-
-
-                'VL.time2 = Format(Now, "Long Time")
-                'VL.difference = VL.time2 - VL.time1
-
                 '' Die Verweildauer auf den einzelnen Seiten und Overall abspeichern
-                'VL.data("timeAPDeliver") = VL.timeAPDeliver.ToString
-                'VL.data("timeAPBerger") = VL.timeAPBerger.ToString
-                'VL.data("timeExplicit") = Explicit_Berger.timeExplicit.ToString
-                'VL.data("timePRDeliver") = VL.timePRDeliver.ToString
-                'VL.data("timePRBerger") = VL.timePRBerger.ToString
-                'VL.data("timeOverall") = VL.difference.ToString
+                'dataFrame("timeAPDeliver") = timeAPDeliver.ToString
+                'dataFrame("timeAPBerger") = timeAPBerger.ToString
+                'dataFrame("timeExplicit") = timeExplicit.ToString
+                'dataFrame("timePRDeliver") = timePRDeliver.ToString
+                'dataFrame("timePRBerger") = timePRBerger.ToString
+                'dataFrame("timeOverall") = difference.ToString
 
                 '' Stimulus-Listen der Primingphasen im Datenfile ablegen
-                'VL.data("RF_practiceDL_primes") = VL.rf1
-                'VL.data("RF_practiceDL_targets") = VL.rf2
-                'VL.data("RF_practiceBH_primes") = VL.rf3
-                'VL.data("RF_practiceBH_targets") = VL.rf4
-                'VL.data("RF_primesDL") = VL.rf5
-                'VL.data("RF_targetsDL") = VL.rf6
-                'VL.data("RF_primesBH") = VL.rf7
-                'VL.data("RF_targetsBH") = VL.rf8
+                'dataFrame("RF_practiceDL_primes") = rf1
+                'dataFrame("RF_practiceDL_targets") = rf2
+                'dataFrame("RF_practiceBH_primes") = rf3
+                'dataFrame("RF_practiceBH_targets") = rf4
+                'dataFrame("RF_targetsBH") = rf8
+                'dataFrame("RF_primesDL") = rf5
+                'dataFrame("RF_targetsDL") = rf6
+                'dataFrame("RF_primesBH") = rf7
 
-                saveCSV(dataFrame)
+                saveCSV(dataFrame) 'Optionally, you can specify a specific path + filename as a second argument, otherwise it will automatically save it as rawData.csv in the main folder
 
             Case Else
                 Close()

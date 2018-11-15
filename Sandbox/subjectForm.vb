@@ -1,4 +1,4 @@
-﻿Public Class subjForm
+﻿Public Class subjectForm
     Inherits Form
 
     Private WithEvents contButton As New continueButton(Txt:="Bestätigen")
@@ -50,7 +50,6 @@
             mainForm.dataFrame("Key") = keyAss
         End If
 
-        saveCSV(mainForm.dataFrame) 'Optionally, you can specify a specific path + filename as a second argument, otherwise it will automatically save it as rawData.csv in the main folder
         mainForm.contButton.PerformClick()
         Close()
     End Sub
@@ -67,7 +66,4 @@
         End If
     End Sub
 
-    Protected Overrides Sub Finalize()
-        MyBase.Finalize()
-    End Sub
 End Class
