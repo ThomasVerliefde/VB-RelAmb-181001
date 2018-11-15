@@ -200,6 +200,16 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="My Project\BlockRandomisation.txt" />
+    <None Include="Resources\Stimuli\practiceTarget_Pos.txt" />
+    <None Include="Resources\Stimuli\practiceTarget_Neg.txt" />
+    <None Include="Resources\Stimuli\practicePrime_Str.txt" />
+    <None Include="Resources\Stimuli\practicePrime_Pos.txt" />
+    <None Include="Resources\Stimuli\practicePrime_Neg.txt" />
+    <None Include="Resources\Stimuli\experimentTarget_Pos.txt" />
+    <None Include="Resources\Stimuli\experimentTarget_Neg.txt" />
+    <None Include="Resources\Stimuli\experimentPrime_Str.txt" />
+    <None Include="Resources\Stimuli\experimentPrime_Pos.txt" />
+    <None Include="Resources\Stimuli\experimentPrime_Neg.txt" />
     <EmbeddedResource Include="Resources\Stimuli\Experiment\experimentPrime_Neg.txt" />
     <EmbeddedResource Include="Resources\Stimuli\Experiment\experimentPrime_Pos.txt" />
     <EmbeddedResource Include="Resources\Stimuli\Experiment\experimentPrime_Str.txt" />
