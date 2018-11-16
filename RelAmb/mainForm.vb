@@ -125,20 +125,30 @@ Public Class mainForm
                 instrText.Text = My.Resources.ResourceManager.GetString("_0_mainInstr")
                 startT = time.GetCurrentInstant()
 
-                Dim otherPrimes = New List(Of String)({"Jan", "Piet", "Jef", "Nonk"})
-                Dim posList = New List(Of String)({"3P", "4P", "5P", "6P"})
-                Dim negList = New List(Of String)({"3N", "4N", "5N", "6N"})
-                Dim strList = New List(Of String)({"AAA", "BBB", "CCC", "DDD", "AAAA", "BBBB", "CCCC", "DDDD", "AAAAA", "BBBBB", "CCCCC", "DDDDD", "AAAAAA", "BBBBBB", "CCCCCC", "DDDDDD"})
+
+                'Debug
+
+                Dim otherPrimes = New List(Of String)({"Jan", "Jef", "Dries", "Droes"})
+                'Dim posList = New List(Of String)({"3P", "4P", "5P", "6P"})
+                'Dim negList = New List(Of String)({"3N", "4N", "5N", "6N"})
+                'Dim strList = New List(Of String)({"AAA", "BBB", "CCC", "DDD", "AAAA", "BBBB", "CCCC", "DDDD", "AAAAA", "BBBBB", "CCCCC", "DDDDD", "AAAAAA", "BBBBBB", "CCCCCC", "DDDDDD"})
+
+
+                Dim posList = New List(Of String)(My.Resources.experimentPrime_Pos.Split(" "))
+                Dim negList = New List(Of String)(My.Resources.experimentPrime_Neg.Split(" "))
+                Dim strList = New List(Of String)(My.Resources.experimentPrime_Str.Split(" "))
 
                 Dim test = createPrimes(otherPrimes, posList, negList, strList)
                 For Each primegroup In test
                     For Each item In primegroup
                         Console.Write(item + " ")
                     Next
-                    Console.WriteLine(" >" & primegroup.ToString)
                 Next
 
-                'splitResources(My.Resources.practicePrime_Neg)
+                'End Debug
+
+
+
 
             Case 1 'Collecting Names of 'Significant Others'
                 instrText.Text = My.Resources.ResourceManager.GetString("_1_otherInstr")

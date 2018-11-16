@@ -86,22 +86,9 @@ Module mainModule
     End Function
 
 
-    Public Sub splitText(textFile As Object)
-        Dim FinishedList As New List(Of String)
-        Dim Lines = textFile.Split(" ")
-        Dim temp As String = ""
-        For Each line In Lines
-            temp = line.Replace(vbLf, "")
-            If Not String.IsNullOrWhiteSpace(temp) Then
-                FinishedList.Add(temp)
-            End If
-        Next
-        For Each item In FinishedList
-            Console.WriteLine(item)
-        Next
-    End Sub
 
-    Sub shuffleList(Of T)(list As IList(Of T))
+
+    Public Sub shuffleList(Of T)(list As IList(Of T)) 'Simple shuffle sub, switching around items without constraints
         Dim r As Random = New Random()
         For i = 0 To list.Count - 1
             Dim index As Integer = r.Next(i, list.Count)
@@ -117,56 +104,33 @@ Module mainModule
     Public Function createPrimes(otherPrimes As List(Of String), posList As List(Of String), negList As List(Of String), strList As List(Of String))
 
         'otherNames = List of 4 names of SOs (2 pos & 2 neg)
-        'posNouns = List of ALL positive noun primes (3L, 4L, ..., 10L)
-        'negNouns = List of ALL negative noun primes (3L, 4L, ..., 10L)
-        'neutStr = List of letter strings: repeats of 4 letters in 3L, 4L, ..., 10L (i.e. BBB, SSS, RRR, GGG, BBBB, SSSS, ..., GGGGGGGGGG)
+        'posList = List of ALL positive noun primes (3L, 4L, ..., 10L)
+        'negList = List of ALL negative noun primes (3L, 4L, ..., 10L)
+        'strList = List of letter strings: repeats of 4 letters in 3L, 4L, ..., 10L (i.e. BBB, SSS, RRR, GGG, BBBB, SSSS, ..., GGGGGGGGGG)
 
         Dim valList As New List(Of List(Of String))({posList, negList})
-        Dim Primes As New List(Of List(Of String))({New List(Of String)(4), New List(Of String)(4), New List(Of String)(4), New List(Of String)(4)})
-        Dim nameL As Integer
-        shuffleList(otherPrimes)
+        Dim Primes As New List(Of List(Of String))({New List(Of String)(2), New List(Of String)(2), New List(Of String)(4), New List(Of String)(4)})
+        'shuffleList(otherPrimes) 'I'm not really sure whether it's better to shuffle these names or not.
+        'Assuming the order is (Pos, Pos, Neg, Neg), length pairings will be crossed (posName + posPrime, posName + negPrime, negName + posPrime, negName + negPrime)
 
         For Each name In otherPrimes
             Dim index As Integer = otherPrimes.IndexOf(name)
             Dim index2 As Integer = index Mod 2
-            Select Case name.Length
-                Case <= 4
-                    nameL = 1
-                Case <= 6
-                    nameL = 3
-                Case <= 8
-                    nameL = 5
-                Case Else
-                    nameL = 7
-            End Select
-
+            Dim nameL As Integer = Math.Max(Math.Min(name.Length - 3 + name.Length Mod 2, 7), 1)
+            'Bins the length of otherName to 3-4, 5-6, 7-8, and 9-10, transcribed as 1, 3, 5, & 7
+            'Takes into account that names could be shorter than 3 or longer than 10, and makes sure the result is maximum 7 and minimum 1
             Primes(index2).Add(valList(index2)(nameL - 1 + Primes(index2).Count))
+            'Fills either Primes(0) or Primes(1), with valList(0) or valList(1) items (0 will be positive, 1 will be negative)
+            'The selected item in valList is matched to be similarly long as the otherName
+            'For the first positive and negative item, within bins the shorter word is chosen; opposite is true for the second items
+            'This should prevent words being used twice
+            ' Another way to tackle this, could be to set wordlists with 2 words for each length, and match exactly on length, but would require quite some recoding
             Primes(2).Add(strList(index + (4 * (nameL - (name.Length Mod 2)))))
+            'Adds a letter string, exactly matching the length of otherName
+            '4 different letters are used (B,S,G,R) and as such, 1 match for each otherName
             Primes(3).Add(name)
+            'Also adds the otherName
         Next
-
-
-        'For Each name In otherPrimes
-        '    Dim index As Integer = otherPrimes.IndexOf(name)
-        '    Select Case name.Length
-        '        Case <= 4
-        '            nameL = 0
-        '        Case <= 6
-        '            nameL = 2
-        '        Case <= 8
-        '            nameL = 4
-        '        Case Else
-        '            nameL = 6
-        '    End Select
-        '    If index Mod 2 = 0 Then
-        '        posPrimes.Add(valList(0)(nameL + posPrimes.Count))
-        '    Else
-        '        negPrimes.Add(valList(1)(nameL + negPrimes.Count))
-        '    End If
-        '    strPrimes.Add(strList(index + (4 * (nameL - 3))))
-        'Next
-
-        'Primes = New List(Of List(Of String))({otherPrimes, posPrimes, negPrimes, strPrimes})
         Return Primes
 
     End Function
