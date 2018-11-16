@@ -200,26 +200,16 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="My Project\BlockRandomisation.txt" />
-    <None Include="Resources\Stimuli\practiceTarget_Pos.txt" />
-    <None Include="Resources\Stimuli\practiceTarget_Neg.txt" />
-    <None Include="Resources\Stimuli\practicePrime_Str.txt" />
-    <None Include="Resources\Stimuli\practicePrime_Pos.txt" />
-    <None Include="Resources\Stimuli\practicePrime_Neg.txt" />
-    <None Include="Resources\Stimuli\experimentTarget_Pos.txt" />
-    <None Include="Resources\Stimuli\experimentTarget_Neg.txt" />
-    <None Include="Resources\Stimuli\experimentPrime_Str.txt" />
-    <None Include="Resources\Stimuli\experimentPrime_Pos.txt" />
-    <None Include="Resources\Stimuli\experimentPrime_Neg.txt" />
-    <EmbeddedResource Include="Resources\Stimuli\Experiment\experimentPrime_Neg.txt" />
-    <EmbeddedResource Include="Resources\Stimuli\Experiment\experimentPrime_Pos.txt" />
-    <EmbeddedResource Include="Resources\Stimuli\Experiment\experimentPrime_Str.txt" />
-    <EmbeddedResource Include="Resources\Stimuli\Experiment\experimentTarget_Neg.txt" />
-    <EmbeddedResource Include="Resources\Stimuli\Experiment\experimentTarget_Pos.txt" />
-    <EmbeddedResource Include="Resources\Stimuli\Practice\practicePrime_Neg.txt" />
-    <EmbeddedResource Include="Resources\Stimuli\Practice\practicePrime_Pos.txt" />
-    <EmbeddedResource Include="Resources\Stimuli\Practice\practicePrime_Str.txt" />
-    <EmbeddedResource Include="Resources\Stimuli\Practice\practiceTarget_Neg.txt" />
-    <EmbeddedResource Include="Resources\Stimuli\Practice\practiceTarget_Pos.txt" />
+    <EmbeddedResource Include="Resources\Stimuli\practiceTarget_Pos.txt" />
+    <EmbeddedResource Include="Resources\Stimuli\practiceTarget_Neg.txt" />
+    <EmbeddedResource Include="Resources\Stimuli\practicePrime_Str.txt" />
+    <EmbeddedResource Include="Resources\Stimuli\practicePrime_Pos.txt" />
+    <EmbeddedResource Include="Resources\Stimuli\practicePrime_Neg.txt" />
+    <EmbeddedResource Include="Resources\Stimuli\experimentTarget_Pos.txt" />
+    <EmbeddedResource Include="Resources\Stimuli\experimentTarget_Neg.txt" />
+    <EmbeddedResource Include="Resources\Stimuli\experimentPrime_Str.txt" />
+    <EmbeddedResource Include="Resources\Stimuli\experimentPrime_Pos.txt" />
+    <EmbeddedResource Include="Resources\Stimuli\experimentPrime_Neg.txt" />
     <EmbeddedResource Include="Resources\Instructions\0_mainInstr.txt" />
     <EmbeddedResource Include="Resources\Instructions\1_otherInstr.txt" />
     <EmbeddedResource Include="Resources\Instructions\2_practiceAneg.txt" />
