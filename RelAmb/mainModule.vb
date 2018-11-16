@@ -85,6 +85,129 @@ Module mainModule
         Return Val(My.Resources.BlockRandomisation((subjN - 1) * 2))
     End Function
 
+
+    Public Sub splitText(textFile As Object)
+        Dim FinishedList As New List(Of String)
+        Dim Lines = textFile.Split(" ")
+        Dim temp As String = ""
+        For Each line In Lines
+            temp = line.Replace(vbLf, "")
+            If Not String.IsNullOrWhiteSpace(temp) Then
+                FinishedList.Add(temp)
+            End If
+        Next
+        For Each item In FinishedList
+            Console.WriteLine(item)
+        Next
+    End Sub
+
+    Sub shuffleList(Of T)(list As IList(Of T))
+        Dim r As Random = New Random()
+        For i = 0 To list.Count - 1
+            Dim index As Integer = r.Next(i, list.Count)
+            If i <> index Then
+                ' swap list(i) and list(index)
+                Dim temp As T = list(i)
+                list(i) = list(index)
+                list(index) = temp
+            End If
+        Next
+    End Sub
+
+    Public Function createPrimes(otherPrimes As List(Of String), posList As List(Of String), negList As List(Of String), strList As List(Of String))
+
+        'otherNames = List of 4 names of SOs (2 pos & 2 neg)
+        'posNouns = List of ALL positive noun primes (3L, 4L, ..., 10L)
+        'negNouns = List of ALL negative noun primes (3L, 4L, ..., 10L)
+        'neutStr = List of letter strings: repeats of 4 letters in 3L, 4L, ..., 10L (i.e. BBB, SSS, RRR, GGG, BBBB, SSSS, ..., GGGGGGGGGG)
+
+        Dim valList As New List(Of List(Of String))({posList, negList})
+        Dim Primes As New List(Of List(Of String))({New List(Of String)(4), New List(Of String)(4), New List(Of String)(4), New List(Of String)(4)})
+        Dim nameL As Integer
+        shuffleList(otherPrimes)
+
+        For Each name In otherPrimes
+            Dim index As Integer = otherPrimes.IndexOf(name)
+            Dim index2 As Integer = index Mod 2
+            Select Case name.Length
+                Case <= 4
+                    nameL = 1
+                Case <= 6
+                    nameL = 3
+                Case <= 8
+                    nameL = 5
+                Case Else
+                    nameL = 7
+            End Select
+
+            Primes(index2).Add(valList(index2)(nameL - 1 + Primes(index2).Count))
+            Primes(2).Add(strList(index + (4 * (nameL - (name.Length Mod 2)))))
+            Primes(3).Add(name)
+        Next
+
+
+        'For Each name In otherPrimes
+        '    Dim index As Integer = otherPrimes.IndexOf(name)
+        '    Select Case name.Length
+        '        Case <= 4
+        '            nameL = 0
+        '        Case <= 6
+        '            nameL = 2
+        '        Case <= 8
+        '            nameL = 4
+        '        Case Else
+        '            nameL = 6
+        '    End Select
+        '    If index Mod 2 = 0 Then
+        '        posPrimes.Add(valList(0)(nameL + posPrimes.Count))
+        '    Else
+        '        negPrimes.Add(valList(1)(nameL + negPrimes.Count))
+        '    End If
+        '    strPrimes.Add(strList(index + (4 * (nameL - 3))))
+        'Next
+
+        'Primes = New List(Of List(Of String))({otherPrimes, posPrimes, negPrimes, strPrimes})
+        Return Primes
+
+    End Function
+
+    'Public Function createTargets()
+
+    '    'Select 2
+
+    '    Return
+    'End Function
+
+    Public Function randomSelect(resource As Object)
+
+
+        Return "Hello World"
+    End Function
+
+    Public Function createTrials(Primes As List(Of List(Of String)), Target As List(Of List(Of String)))
+
+        Dim numP As Integer = Primes.Count
+        Dim numT As Integer = Target.Count
+        Dim Trials = New List(Of List(Of String))
+
+        For i = 0 To numP - 1
+            For j = 0 To numT - 1
+                For Each itemP In Primes(i)
+                    For Each itemT In Target(j)
+                        Trials.Add(New List(Of String)({itemP, itemT, i.ToString, j.ToString}))
+                    Next
+                Next
+            Next
+        Next
+
+        Return Trials
+    End Function
+
+
+
+
+
+
     Public Sub saveCSV(ByVal dataFrame As Dictionary(Of String, String), Optional ByVal path As String = "rawData.csv")
 
         Dim fileOutput As New String("")
