@@ -33,7 +33,7 @@
 
     Private Sub contButton_Click(sender As Object, e As EventArgs) Handles contButton.Click
 
-        If subjBox.Text = "" OrElse Val(subjBox.Text) < 1 OrElse Val(subjBox.Text) > 500 Then
+        If subjBox.Text = "" OrElse Val(subjBox.Text) < 1 OrElse Val(subjBox.Text) > 500 Then 'Interestingly, Val("these are letters") returns 0, and results in error
             MsgBox("Bitte geben Sie eine korrekte VPNr ein!", MsgBoxStyle.Critical, Title:="Fehler!")
             Exit Sub
         Else
@@ -42,14 +42,24 @@
             Select Case condN
                 Case 0
                     mainForm.keyAss = "Apos"
+                    mainForm.firstNames = "Pos"
+
                 Case 1
+                    mainForm.keyAss = "Apos"
+                    mainForm.firstNames = "Neg"
+                Case 2
                     mainForm.keyAss = "Aneg"
+                    mainForm.firstNames = "Pos"
+                Case 3
+                    mainForm.keyAss = "Aneg"
+                    mainForm.firstNames = "Neg"
             End Select
             mainForm.dataFrame("Subject") = subjN.ToString
             mainForm.dataFrame("Key") = mainForm.keyAss
+            mainForm.dataFrame("FirstNames") = mainForm.firstNames
         End If
 
-        mainForm.contButton.PerformClick()
+        'mainForm.contButton.PerformClick()
         Close()
     End Sub
 

@@ -30,11 +30,11 @@ Public Class mainForm
 
     'Variable necessary for grabbing the correct instruction sheet, depending on whether the 'A' key is used to categorize positive adjectives, or for negative adjectives
     Friend keyAss As String
+    Friend firstNames As String
 
 
-
-
-
+    '####################################'
+    'Imported CODE - Not Yet Consolidated'
 
     'Variablen für die Übungsphasen
 
@@ -90,7 +90,7 @@ Public Class mainForm
     Public rf7 As String
     Public rf8 As String
 
-
+    '########################################################'
 
 
     Private Sub formLoad(sender As Object, e As EventArgs) Handles MyBase.Load
@@ -99,22 +99,16 @@ Public Class mainForm
         FormBorderStyle = FormBorderStyle.None
         BackColor = Color.White
 
-        If Not dataFrame.ContainsKey("Subject") Then
-            subjectForm.ShowDialog()
-        End If
+        'If Not dataFrame.ContainsKey("Subject") Then
+        subjectForm.ShowDialog()
+        'End If
 
         Controls.Add(instrText)
         xCenter(instrText, 0.4)
+        instrText.Text = My.Resources.ResourceManager.GetString("_0_mainInstr")
 
         Controls.Add(contButton)
         xCenter(contButton)
-
-
-
-
-
-
-
 
     End Sub
 
@@ -122,62 +116,50 @@ Public Class mainForm
         Select Case instructionCount
             Case 0 'Start of Experiment
                 subjectForm.Dispose()
-                instrText.Text = My.Resources.ResourceManager.GetString("_0_mainInstr")
                 startT = time.GetCurrentInstant()
+                instrText.Text = My.Resources.ResourceManager.GetString("_1_otherInstr")
 
-
-                'Debug
-
-                Dim otherPrimes = New List(Of String)({"Jan", "Jef", "Dries", "Droes"})
-                'Dim posList = New List(Of String)({"3P", "4P", "5P", "6P"})
-                'Dim negList = New List(Of String)({"3N", "4N", "5N", "6N"})
-                'Dim strList = New List(Of String)({"AAA", "BBB", "CCC", "DDD", "AAAA", "BBBB", "CCCC", "DDDD", "AAAAA", "BBBBB", "CCCCC", "DDDDD", "AAAAAA", "BBBBBB", "CCCCCC", "DDDDDD"})
-
-
-                Dim posList = New List(Of String)(My.Resources.experimentPrime_Pos.Split(" "))
-                Dim negList = New List(Of String)(My.Resources.experimentPrime_Neg.Split(" "))
-                Dim strList = New List(Of String)(My.Resources.experimentPrime_Str.Split(" "))
-
-                Dim test = createPrimes(otherPrimes, posList, negList, strList)
-                For Each primegroup In test
-                    For Each item In primegroup
-                        Console.Write(item + " ")
-                    Next
-                Next
-
+                ''Debug -> Check correct functioning "createPrimes" function
+                'Dim otherPrimes = New List(Of String)({"Jan", "Jef", "Dries", "Droes"})
+                ''Dim posList = New List(Of String)({"3P", "4P", "5P", "6P"})
+                ''Dim negList = New List(Of String)({"3N", "4N", "5N", "6N"})
+                ''Dim strList = New List(Of String)({"AAA", "BBB", "CCC", "DDD", "AAAA", "BBBB", "CCCC", "DDDD", "AAAAA", "BBBBB", "CCCCC", "DDDDD", "AAAAAA", "BBBBBB", "CCCCCC", "DDDDDD"})
+                'Dim posList = New List(Of String)(My.Resources.experimentPrime_Pos.Split(" "))
+                'Dim negList = New List(Of String)(My.Resources.experimentPrime_Neg.Split(" "))
+                'Dim strList = New List(Of String)(My.Resources.experimentPrime_Str.Split(" "))
+                'Dim test = createPrimes(otherPrimes, posList, negList, strList)
+                'For Each primegroup In test
+                '    For Each item In primegroup
+                '        Console.Write(item + " ")
+                '    Next
+                'Next
                 'End Debug
 
-
-
-
             Case 1 'Collecting Names of 'Significant Others'
-
-                instrText.Text = My.Resources.ResourceManager.GetString("_1_otherInstr")
                 otherT = time.GetCurrentInstant()
                 otherForm.ShowDialog()
 
-            Case 2 'Practice Trials
                 instrText.Text = My.Resources.ResourceManager.GetString("_2_practice" & keyAss)
+            Case 2 'Practice Trials
                 practiceT = time.GetCurrentInstant()
                 'practiceForm.ShowDialog()
 
-            Case 3 'Experiment Proper
                 instrText.Text = My.Resources.ResourceManager.GetString("_3_experiment" & keyAss)
+            Case 3 'Experiment Proper
                 experimentT = time.GetCurrentInstant()
                 'expForm.ShowDialog()
 
-            Case 4 'Explicit Measurements of Ambivalence
                 instrText.Text = My.Resources.ResourceManager.GetString("_4_explicitInstr")
+            Case 4 'Explicit Measurements of Ambivalence
                 explicitT = time.GetCurrentInstant()
                 'explicitForm.ShowDialog()
 
-            Case 5 'Demographic Information
                 instrText.Text = My.Resources.ResourceManager.GetString("_5_demoInstr")
+            Case 5 'Demographic Information
                 demographicsT = time.GetCurrentInstant()
                 'demoForm.ShowDialog()
 
             Case 6 'End of Experiment
-
                 instrText.Text = My.Resources.ResourceManager.GetString("_6_endInstr")
                 instrText.Font = New Font("Microsoft Sans Serif", 40)
                 instrText.TextAlign = HorizontalAlignment.Center
@@ -211,7 +193,7 @@ Public Class mainForm
                 'dataFrame("RF_targetsDL") = rf6
                 'dataFrame("RF_primesBH") = rf7
 
-                saveCSV(dataFrame) 'Optionally, you can specify a specific path + filename as a second argument, otherwise it will automatically save it as rawData.csv in the main folder
+                saveCSV(dataFrame, "Data_RelAmb_" & Net.Dns.GetHostName & ".csv")
 
             Case Else
                 Close()

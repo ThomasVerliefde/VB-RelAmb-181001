@@ -4,4 +4,8 @@ Public Class demographicsForm
 
 
 
+
+    'mainForm.contButton.PerformClick()
+
+
 End Class

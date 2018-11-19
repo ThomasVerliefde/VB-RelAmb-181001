@@ -2,27 +2,32 @@
 
 Module mainModule
 
+    Friend sansSerif24 = New Font("Microsoft Sans Serif", 24)
+    Friend sansSerif20 = New Font("Microsoft Sans Serif", 20)
+    Friend sansSerif14 = New Font("Microsoft Sans Serif", 14)
+
     Public Class labelledBox
         Inherits Panel
 
-        Public Sub New(subjBox As TextBox, Optional labelText As String = "VPNr:", Optional fieldWidth As Integer = 200, Optional fieldHeight As Integer = 50,
+        Public Sub New(subjBox As TextBox, Optional labelText As String = "VPNr:", Optional boxWidth As Integer = 100, Optional fieldHeight As Integer = 50,
                 Optional fieldLeft As Integer = 250, Optional fieldTop As Integer = 250)
 
             Dim subjLabel As New Label()
+            Dim labelWidth = TextRenderer.MeasureText(labelText, sansSerif20).Width
 
             Location = New Point(fieldLeft, fieldTop)
-            Size = New Size(fieldWidth, fieldHeight)
+            Size = New Size((labelWidth + boxWidth) * 1.1, fieldHeight)
             BorderStyle = BorderStyle.None
 
-            subjBox.Location = New Point(85, 5)
+            subjBox.Location = New Point(labelWidth + 10, fieldHeight * 0.1)
             subjBox.Text = ""
-            subjBox.Size = New Size(fieldWidth / 2, 40)
-            subjBox.Font = New Font("Microsoft Sans Serif", 20)
+            subjBox.Size = New Size(boxWidth, fieldHeight)
+            subjBox.Font = sansSerif20
 
-            subjLabel.Location = New Point(0, 5)
-            subjLabel.Size = New Size(fieldWidth / 2, 40)
+            subjLabel.Location = New Point(0, fieldHeight * 0.1)
+            subjLabel.Size = New Size(labelWidth, fieldHeight)
             subjLabel.Text = labelText
-            subjLabel.Font = New Font("Microsoft Sans Serif", 20)
+            subjLabel.Font = sansSerif20
 
             Controls.Add(subjBox)
             Controls.Add(subjLabel)
@@ -39,7 +44,7 @@ Module mainModule
             Height = buttonHeight
             Width = buttonWidth
             Text = Txt
-            Font = New Font("Microsoft Sans Serif", 14)
+            Font = sansSerif14
 
         End Sub
 
@@ -59,10 +64,9 @@ Module mainModule
             BackColor = Color.AliceBlue
             Multiline = True
             WordWrap = True
-            Font = New Font("Microsoft Sans Serif", 22)
+            Font = sansSerif24
             [ReadOnly] = True
             Enabled = False
-
 
         End Sub
 
@@ -176,11 +180,6 @@ Module mainModule
 
         Return Trials
     End Function
-
-
-
-
-
 
     Public Sub saveCSV(ByVal dataFrame As Dictionary(Of String, String), Optional ByVal path As String = "rawData.csv")
 
