@@ -32,6 +32,10 @@ Public Class mainForm
     Friend keyAss As String
     Friend firstNames As String
 
+    Friend otherPos As New List(Of String)
+    Friend otherNeg As New List(Of String)
+
+
 
     '####################################'
     'Imported CODE - Not Yet Consolidated'

@@ -9,8 +9,8 @@ Public Class otherForm
     Private otherPanel1 As New labelledBox(otherBox1, "Name der signifikanten anderen 1:", 180)
     Private otherPanel2 As New labelledBox(otherBox2, "Name der signifikanten anderen 2:", 180)
     Private WithEvents contButton As New continueButton
-    Private otherPos As New List(Of String)
-    Private otherNeg As New List(Of String)
+    'Friend mainForm.otherPos As New List(Of String)
+    'Friend mainForm.otherNeg As New List(Of String)
 
     Private Sub formLoad(sender As Object, e As EventArgs) Handles MyBase.Load
 
@@ -33,8 +33,6 @@ Public Class otherForm
 
         otherBox1.Select()
 
-
-
     End Sub
 
     Private Sub contButton_Click(sender As Object, e As EventArgs) Handles contButton.Click
@@ -46,13 +44,13 @@ Public Class otherForm
             MsgBox("Bitte geben Sie gültige Namen ein!", MsgBoxStyle.Critical, Title:="Fehler!")
             Exit Sub
 
-        ElseIf otherPos.Count = 0 AndAlso otherNeg.Count = 0 Then
+        ElseIf mainForm.otherPos.Count = 0 AndAlso mainForm.otherNeg.Count = 0 Then
             Select Case mainForm.firstNames
                 Case "Pos"
-                    otherPos.AddRange({otherBox1.Text, otherBox2.Text})
+                    mainForm.otherPos.AddRange({otherBox1.Text, otherBox2.Text})
                     otherInstr.Rtf = My.Resources.ResourceManager.GetString("_1_otherNeg")
                 Case "Neg"
-                    otherNeg.AddRange({otherBox1.Text, otherBox2.Text})
+                    mainForm.otherNeg.AddRange({otherBox1.Text, otherBox2.Text})
                     otherInstr.Rtf = My.Resources.ResourceManager.GetString("_1_otherPos")
             End Select
 
@@ -60,11 +58,11 @@ Public Class otherForm
             otherBox2.Text = ""
             otherBox1.Select()
 
-        ElseIf otherPos.Count = 2 Then
-            otherNeg.AddRange({otherBox1.Text, otherBox2.Text})
+        ElseIf mainForm.otherPos.Count = 2 Then
+            mainForm.otherNeg.AddRange({otherBox1.Text, otherBox2.Text})
             Close()
-        ElseIf otherNeg.Count = 2 Then
-            otherPos.AddRange({otherBox1.Text, otherBox2.Text})
+        ElseIf mainForm.otherNeg.Count = 2 Then
+            mainForm.otherPos.AddRange({otherBox1.Text, otherBox2.Text})
             Close()
         End If
 
