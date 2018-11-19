@@ -1,6 +1,7 @@
+{\rtf1\ansi \par \qc
+Please provide the name of a {\b liked} person. \par \par
 
-Please provide the name of a liked person.
-
-Think of one "significant person" that you like most.
-A person in your life you feel very good about,
-and hold positive feelings towards.
+Think of one "significant person" that you like {\b most}. \par
+A person in your life you {\b feel very good about}, \par
+and hold {\b positive} feelings towards.
+}

@@ -2,7 +2,7 @@
 
 Module mainModule
 
-    Friend sansSerif24 = New Font("Microsoft Sans Serif", 24)
+    Friend sansSerif22 = New Font("Microsoft Sans Serif", 22)
     Friend sansSerif20 = New Font("Microsoft Sans Serif", 20)
     Friend sansSerif14 = New Font("Microsoft Sans Serif", 14)
 
@@ -51,7 +51,7 @@ Module mainModule
     End Class
 
     Public Class instructionBox
-        Inherits TextBox
+        Inherits RichTextBox
 
         Public Sub New(Optional Txt As String = "", Optional horizontalDist As Double = 0.75, Optional verticalDist As Double = 0.67)
 
@@ -64,7 +64,7 @@ Module mainModule
             BackColor = Color.AliceBlue
             Multiline = True
             WordWrap = True
-            Font = sansSerif24
+            Font = sansSerif22
             [ReadOnly] = True
             Enabled = False
 

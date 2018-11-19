@@ -162,7 +162,7 @@ Public Class mainForm
             Case 6 'End of Experiment
                 instrText.Text = My.Resources.ResourceManager.GetString("_6_endInstr")
                 instrText.Font = New Font("Microsoft Sans Serif", 40)
-                instrText.TextAlign = HorizontalAlignment.Center
+                'instrText.TextAlign = HorizontalAlignment.Center
                 contButton.Text = "Abbrechen"
                 endT = time.GetCurrentInstant()
 

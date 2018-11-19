@@ -20,8 +20,8 @@ Public Class otherForm
 
         Controls.Add(otherInstr)
         xCenter(otherInstr, 0.25)
-        otherInstr.Text = My.Resources.ResourceManager.GetString("_1_other" & mainForm.firstNames) 'Server.HtmlDecode()  ??
-        otherInstr.TextAlign = HorizontalAlignment.Center
+        otherInstr.Rtf = My.Resources.ResourceManager.GetString("_1_other" & mainForm.firstNames)
+        'otherInstr.TextAlign = HorizontalAlignment.Center
 
         Controls.Add(contButton)
         xCenter(contButton, 0.8)
@@ -50,10 +50,10 @@ Public Class otherForm
             Select Case mainForm.firstNames
                 Case "Pos"
                     otherPos.AddRange({otherBox1.Text, otherBox2.Text})
-                    otherInstr.Text = My.Resources.ResourceManager.GetString("_1_otherNeg")
+                    otherInstr.Rtf = My.Resources.ResourceManager.GetString("_1_otherNeg")
                 Case "Neg"
                     otherNeg.AddRange({otherBox1.Text, otherBox2.Text})
-                    otherInstr.Text = My.Resources.ResourceManager.GetString("_1_otherPos")
+                    otherInstr.Rtf = My.Resources.ResourceManager.GetString("_1_otherPos")
             End Select
 
             otherBox1.Text = ""

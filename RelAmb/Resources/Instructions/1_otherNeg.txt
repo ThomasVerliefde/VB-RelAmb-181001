@@ -1,6 +1,7 @@
+{\rtf1\ansi  \par \qc
+Please provide the name of a {\b disliked} person. \par \par
 
-Please provide the name of a disliked person.
-
-Think of one "significant person" that you like least.
-A person in your life you do not feel very good about,
-and hold negative feelings towards.
+Think of one "significant person" that you like {\b least}. \par
+A person in your life you {\b do not feel very good about}, \par
+and hold {\b negative} feelings towards.
+}
