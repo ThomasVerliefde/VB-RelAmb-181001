@@ -200,6 +200,8 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="My Project\BlockRandomisation.txt" />
+    <EmbeddedResource Include="Resources\Instructions\1_otherNeg.txt" />
+    <EmbeddedResource Include="Resources\Instructions\1_otherPos.txt" />
     <EmbeddedResource Include="Resources\Stimuli\practiceTarget_Pos.txt" />
     <EmbeddedResource Include="Resources\Stimuli\practiceTarget_Neg.txt" />
     <EmbeddedResource Include="Resources\Stimuli\practicePrime_Str.txt" />

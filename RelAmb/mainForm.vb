@@ -151,9 +151,10 @@ Public Class mainForm
 
 
             Case 1 'Collecting Names of 'Significant Others'
+
                 instrText.Text = My.Resources.ResourceManager.GetString("_1_otherInstr")
                 otherT = time.GetCurrentInstant()
-                'otherForm.ShowDialog()
+                otherForm.ShowDialog()
 
             Case 2 'Practice Trials
                 instrText.Text = My.Resources.ResourceManager.GetString("_2_practice" & keyAss)

@@ -3,7 +3,7 @@
 
     Private WithEvents contButton As New continueButton(Txt:="Bestätigen")
     Private WithEvents subjBox As New TextBox
-    Private ReadOnly subjPanel As New subjectPanel(subjBox)
+    Private ReadOnly subjPanel As New labelledBox(subjBox)
 
     Private Sub formLoad(sender As Object, e As EventArgs) Handles MyBase.Load
 
@@ -60,7 +60,7 @@
     End Sub
 
     Private Sub suppressNonNumeric(sender As Object, e As KeyPressEventArgs) Handles subjBox.KeyPress
-        If Not IsNumeric(e.KeyChar) And e.KeyChar <> ControlChars.Back Then
+        If e.KeyChar <> ControlChars.Back AndAlso Not IsNumeric(e.KeyChar) Then
             e.Handled = True
         End If
     End Sub

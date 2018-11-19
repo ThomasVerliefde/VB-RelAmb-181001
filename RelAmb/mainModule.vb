@@ -2,25 +2,26 @@
 
 Module mainModule
 
-    Public Class subjectPanel
+    Public Class labelledBox
         Inherits Panel
 
-        Public Sub New(subjBox As TextBox, Optional fieldLeft As Integer = 250, Optional fieldTop As Integer = 250)
+        Public Sub New(subjBox As TextBox, Optional labelText As String = "VPNr:", Optional fieldWidth As Integer = 200, Optional fieldHeight As Integer = 50,
+                Optional fieldLeft As Integer = 250, Optional fieldTop As Integer = 250)
 
             Dim subjLabel As New Label()
 
             Location = New Point(fieldLeft, fieldTop)
-            Size = New Size(200, 50)
+            Size = New Size(fieldWidth, fieldHeight)
             BorderStyle = BorderStyle.None
 
             subjBox.Location = New Point(85, 5)
             subjBox.Text = ""
-            subjBox.Size = New Size(100, 40)
+            subjBox.Size = New Size(fieldWidth / 2, 40)
             subjBox.Font = New Font("Microsoft Sans Serif", 20)
 
             subjLabel.Location = New Point(0, 5)
-            subjLabel.Size = New Size(100, 40)
-            subjLabel.Text = "VPNr:"
+            subjLabel.Size = New Size(fieldWidth / 2, 40)
+            subjLabel.Text = labelText
             subjLabel.Font = New Font("Microsoft Sans Serif", 20)
 
             Controls.Add(subjBox)
@@ -85,7 +86,16 @@ Module mainModule
         Return Val(My.Resources.BlockRandomisation((subjN - 1) * 2))
     End Function
 
-
+#Disable Warning IDE1006 ' Naming Styles
+    Public Function IsAlpha(ByVal checkString As String)
+#Enable Warning IDE1006 ' Naming Styles
+        For i = 0 To checkString.Length - 1
+            If Not Char.IsLetter(checkString.Chars(i)) Then
+                Return False
+            End If
+        Next
+        Return True
+    End Function
 
 
     Public Sub shuffleList(Of T)(list As IList(Of T)) 'Simple shuffle sub, switching around items without constraints

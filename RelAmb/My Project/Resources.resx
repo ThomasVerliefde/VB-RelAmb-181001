@@ -121,33 +121,6 @@
   <data name="BlockRandomisation" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\BlockRandomisation.txt;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;Windows-1252</value>
   </data>
-  <data name="_0_mainInstr" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\Instructions\0_mainInstr.txt;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;utf-8</value>
-  </data>
-  <data name="_1_otherInstr" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\Instructions\1_otherInstr.txt;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;Windows-1252</value>
-  </data>
-  <data name="_2_practiceAneg" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\Instructions\2_practiceAneg.txt;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;utf-8</value>
-  </data>
-  <data name="_2_practiceApos" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\Instructions\2_practiceApos.txt;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;utf-8</value>
-  </data>
-  <data name="_3_experimentAneg" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\Instructions\3_experimentAneg.txt;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;utf-8</value>
-  </data>
-  <data name="_3_experimentApos" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\Instructions\3_experimentApos.txt;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;utf-8</value>
-  </data>
-  <data name="_4_explicitInstr" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\Instructions\4_explicitInstr.txt;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;utf-8</value>
-  </data>
-  <data name="_5_demoInstr" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\Instructions\5_demoInstr.txt;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;Windows-1252</value>
-  </data>
-  <data name="_6_endInstr" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\Instructions\6_endInstr.txt;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;Windows-1252</value>
-  </data>
   <data name="experimentPrime_Neg" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\Stimuli\experimentPrime_Neg.txt;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;Windows-1252</value>
   </data>
@@ -177,5 +150,38 @@
   </data>
   <data name="practiceTarget_Pos" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\Stimuli\practiceTarget_Pos.txt;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;Windows-1252</value>
+  </data>
+  <data name="_0_mainInstr" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Instructions\0_mainInstr.txt;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;utf-8</value>
+  </data>
+  <data name="_1_otherInstr" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Instructions\1_otherInstr.txt;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;Windows-1252</value>
+  </data>
+  <data name="_1_otherNeg" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Instructions\1_otherNeg.txt;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;Windows-1252</value>
+  </data>
+  <data name="_1_otherPos" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Instructions\1_otherPos.txt;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;Windows-1252</value>
+  </data>
+  <data name="_2_practiceAneg" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Instructions\2_practiceAneg.txt;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;utf-8</value>
+  </data>
+  <data name="_2_practiceApos" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Instructions\2_practiceApos.txt;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;utf-8</value>
+  </data>
+  <data name="_3_experimentAneg" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Instructions\3_experimentAneg.txt;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;utf-8</value>
+  </data>
+  <data name="_3_experimentApos" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Instructions\3_experimentApos.txt;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;utf-8</value>
+  </data>
+  <data name="_4_explicitInstr" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Instructions\4_explicitInstr.txt;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;utf-8</value>
+  </data>
+  <data name="_5_demoInstr" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Instructions\5_demoInstr.txt;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;Windows-1252</value>
+  </data>
+  <data name="_6_endInstr" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Instructions\6_endInstr.txt;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;Windows-1252</value>
   </data>
 </root>

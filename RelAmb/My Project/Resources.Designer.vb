@@ -88,6 +88,28 @@ Namespace My.Resources
         End Property
         
         '''<summary>
+        '''  Looks up a localized string similar to TEST THIS IS A TEST
+        '''
+        '''TEST.
+        '''</summary>
+        Friend ReadOnly Property _1_otherNeg() As String
+            Get
+                Return ResourceManager.GetString("_1_otherNeg", resourceCulture)
+            End Get
+        End Property
+        
+        '''<summary>
+        '''  Looks up a localized string similar to TEST THIS IS A TEST
+        '''
+        '''TEST.
+        '''</summary>
+        Friend ReadOnly Property _1_otherPos() As String
+            Get
+                Return ResourceManager.GetString("_1_otherPos", resourceCulture)
+            End Get
+        End Property
+        
+        '''<summary>
         '''  Looks up a localized string similar to In der folgenden Phase möchten wir untersuchen, wie schnell Menschen die Valenz von Wörtern feststellen können. Damit ist gemeint, wie schnell Menschen darin sind, ein präsentiertes Wort entweder als &quot;positiv&quot; oder als &quot;negativ&quot; zu klassifizieren.
         '''
         '''Im Zuge jeder einzelnen Klassifizierung werden Sie zwei Wörter sehen. Das erste Wort wird nur sehr kurz auf dem Bildschirm zu sehen sein, unter Umständen sogar so kurz, dass Sie nicht in der Lage sind, es zu identifizieren. Das zweite Wort wird so lange zu sehe [rest of string was truncated]&quot;;.
@@ -193,7 +215,8 @@ Namespace My.Resources
         End Property
         
         '''<summary>
-        '''  Looks up a localized string similar to .
+        '''  Looks up a localized string similar to not leid feind streit drohung abschied gefängnis verbrechen
+        '''.
         '''</summary>
         Friend ReadOnly Property experimentPrime_Neg() As String
             Get
@@ -202,7 +225,8 @@ Namespace My.Resources
         End Property
         
         '''<summary>
-        '''  Looks up a localized string similar to .
+        '''  Looks up a localized string similar to mut lust glück freude frieden hoffnung vertrauen wochenende
+        '''.
         '''</summary>
         Friend ReadOnly Property experimentPrime_Pos() As String
             Get
@@ -211,7 +235,8 @@ Namespace My.Resources
         End Property
         
         '''<summary>
-        '''  Looks up a localized string similar to .
+        '''  Looks up a localized string similar to BBB SSS GGG RRR BBBB SSSS GGGG RRRR BBBBB SSSSS GGGGG RRRRR BBBBBB SSSSSS GGGGGG RRRRRR BBBBBBB SSSSSSS GGGGGGG RRRRRRR BBBBBBBB SSSSSSSS GGGGGGGG RRRRRRRR BBBBBBBBB SSSSSSSSS GGGGGGGGG RRRRRRRRR BBBBBBBBBB SSSSSSSSSS GGGGGGGGGG RRRRRRRRRR
+        '''.
         '''</summary>
         Friend ReadOnly Property experimentPrime_Str() As String
             Get
@@ -220,7 +245,8 @@ Namespace My.Resources
         End Property
         
         '''<summary>
-        '''  Looks up a localized string similar to .
+        '''  Looks up a localized string similar to BRUTAL EINSAM ELEND GRAUSAM ILLEGAL KRANK TRAGISCH TRAURIG
+        '''.
         '''</summary>
         Friend ReadOnly Property experimentTarget_Neg() As String
             Get
@@ -229,7 +255,8 @@ Namespace My.Resources
         End Property
         
         '''<summary>
-        '''  Looks up a localized string similar to .
+        '''  Looks up a localized string similar to BELIEBT GENIAL GESUND LEBENDIG OPTIMAL PERFEKT SONNIG SUPER
+        '''.
         '''</summary>
         Friend ReadOnly Property experimentTarget_Pos() As String
             Get
@@ -238,7 +265,8 @@ Namespace My.Resources
         End Property
         
         '''<summary>
-        '''  Looks up a localized string similar to .
+        '''  Looks up a localized string similar to mord angst sklave
+        '''.
         '''</summary>
         Friend ReadOnly Property practicePrime_Neg() As String
             Get
@@ -247,7 +275,8 @@ Namespace My.Resources
         End Property
         
         '''<summary>
-        '''  Looks up a localized string similar to .
+        '''  Looks up a localized string similar to kuss idee chance
+        '''.
         '''</summary>
         Friend ReadOnly Property practicePrime_Pos() As String
             Get
@@ -256,7 +285,8 @@ Namespace My.Resources
         End Property
         
         '''<summary>
-        '''  Looks up a localized string similar to .
+        '''  Looks up a localized string similar to QQQQQQQ CCCC
+        '''.
         '''</summary>
         Friend ReadOnly Property practicePrime_Str() As String
             Get
@@ -265,7 +295,8 @@ Namespace My.Resources
         End Property
         
         '''<summary>
-        '''  Looks up a localized string similar to .
+        '''  Looks up a localized string similar to boshaft korrupt ungerecht gehässig
+        '''.
         '''</summary>
         Friend ReadOnly Property practiceTarget_Neg() As String
             Get
@@ -274,7 +305,8 @@ Namespace My.Resources
         End Property
         
         '''<summary>
-        '''  Looks up a localized string similar to .
+        '''  Looks up a localized string similar to geduldig zärtlich humorvoll fleissig
+        '''.
         '''</summary>
         Friend ReadOnly Property practiceTarget_Pos() As String
             Get
