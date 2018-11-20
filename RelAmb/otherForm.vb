@@ -2,7 +2,6 @@
 Public Class otherForm
 	Inherits Form
 
-
 	Private otherInstr As New instructionBox(horizontalDist:=0.5, verticalDist:=0.25)
 	Private WithEvents otherBox1 As New TextBox
 	Private WithEvents otherBox2 As New TextBox
@@ -30,6 +29,10 @@ Public Class otherForm
 		Me.Controls.Add(Me.otherPanel2)
 		xCenter(Me.otherPanel2, 0.6, 0.45)
 
+
+		Me.otherBox1.MaxLength = 14
+		Me.otherBox2.MaxLength = 14
+
 		Me.otherBox1.Select()
 
 	End Sub
@@ -39,10 +42,11 @@ Public Class otherForm
 		If Me.otherBox1.Text = "" OrElse Me.otherBox2.Text = "" OrElse
 			Not IsName(Me.otherBox1.Text) OrElse Not IsName(Me.otherBox2.Text) OrElse
 				Me.otherBox1.Text.Length < 2 OrElse Me.otherBox2.Text.Length < 2 OrElse
-				Me.otherBox1.Text.Length > 14 OrElse Me.otherBox2.Text.Length > 14 OrElse
-				otherPos.Contains(Me.otherBox1.Text) OrElse otherNeg.Contains(Me.otherBox1.Text) OrElse
+			otherPos.Contains(Me.otherBox1.Text) OrElse otherNeg.Contains(Me.otherBox1.Text) OrElse
 				otherPos.Contains(Me.otherBox2.Text) OrElse otherNeg.Contains(Me.otherBox2.Text) OrElse
 				Me.otherBox1.Text = Me.otherBox2.Text Then
+			'Me.otherBox1.Text.Length > 14 OrElse Me.otherBox2.Text.Length > 14 OrElse
+			' this should be dealth with by the 'MaxLength' property
 
 			MsgBox("Bitte geben Sie gültige Namen ein!" & vbCrLf &
 					"[Namen sollten zwischen 2 und 14 Buchstaben lang sein," & vbCrLf &

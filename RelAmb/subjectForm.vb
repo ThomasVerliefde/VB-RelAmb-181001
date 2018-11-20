@@ -3,7 +3,7 @@
 
     Private WithEvents contButton As New continueButton(Txt:="Bestätigen")
     Private WithEvents subjBox As New TextBox
-	Private ReadOnly subjPanel As New labelledBox(Me.subjBox)
+	Private ReadOnly subjPanel As New labelledBox(Me.subjBox, "VPNr:")
 
 	Private Sub formLoad(sender As Object, e As EventArgs) Handles MyBase.Load
 
@@ -24,6 +24,7 @@
 		Me.Controls.Add(Me.subjPanel)
 		xCenter(Me.subjPanel, 0.4)
 
+		Me.subjBox.MaxLength = 3
 		Me.subjBox.Select()
 
 	End Sub

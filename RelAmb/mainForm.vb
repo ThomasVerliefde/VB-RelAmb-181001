@@ -133,10 +133,12 @@ Public Class mainForm
 				Dim negList = New List(Of String)(My.Resources.experimentPrime_Neg.Split(" "))
 				Dim strList = New List(Of String)(My.Resources.experimentPrime_Str.Split(" "))
 				Dim test = createPrimes(otherPos, otherNeg, posList, negList, strList)
-				For Each primegroup In test
-					For Each item In primegroup
-						Console.Write(item + " ")
+
+				For Each a In test
+					For Each b In a
+						Console.Write(b + " ")
 					Next
+					Console.WriteLine("$")
 				Next
 				'End Debug
 

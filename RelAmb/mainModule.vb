@@ -7,14 +7,57 @@ Module mainModule
     Friend sansSerif20 = New Font("Microsoft Sans Serif", 20)
     Friend sansSerif14 = New Font("Microsoft Sans Serif", 14)
 
-    Public Class labelledBox
+	'Public Class selectionList
+	'	Inherits ListBox
+
+	'	Public Sub New(labelText As String, )
+
+	'	End Sub
+
+	'	Public Function isFilled()
+	'		Return If(, True, False)
+	'	End Function
+
+	'End Class
+
+	Public Class labelledList
+		Inherits Panel
+
+		Public Sub New(subjBox As ListBox, labelText As String, Optional boxWidth As Integer = 100, Optional fieldHeight As Integer = 50,
+				Optional fieldLeft As Integer = 250, Optional fieldTop As Integer = 250)
+
+			Dim subjLabel As New Label()
+			Dim labelWidth = TextRenderer.MeasureText(labelText, sansSerif20).Width
+
+			Me.Location = New Point(fieldLeft, fieldTop)
+			Me.Size = New Size((labelWidth + boxWidth) * 1.1, fieldHeight)
+			Me.BorderStyle = BorderStyle.None
+
+			subjBox.Location = New Point(labelWidth + 10, fieldHeight * 0.1)
+			subjBox.Text = ""
+			subjBox.Size = New Size(boxWidth, fieldHeight)
+			subjBox.Font = sansSerif20
+
+			subjLabel.Location = New Point(0, fieldHeight * 0.1)
+			subjLabel.Size = New Size(labelWidth, fieldHeight)
+			subjLabel.Text = labelText
+			subjLabel.Font = sansSerif20
+
+			Me.Controls.Add(subjBox)
+			Me.Controls.Add(subjLabel)
+
+		End Sub
+
+	End Class
+
+	Public Class labelledBox
         Inherits Panel
 
-        Public Sub New(subjBox As TextBox, Optional labelText As String = "VPNr:", Optional boxWidth As Integer = 100, Optional fieldHeight As Integer = 50,
-                Optional fieldLeft As Integer = 250, Optional fieldTop As Integer = 250)
+		Public Sub New(subjBox As TextBox, labelText As String, Optional boxWidth As Integer = 100, Optional fieldHeight As Integer = 50,
+				Optional fieldLeft As Integer = 250, Optional fieldTop As Integer = 250)
 
-            Dim subjLabel As New Label()
-            Dim labelWidth = TextRenderer.MeasureText(labelText, sansSerif20).Width
+			Dim subjLabel As New Label()
+			Dim labelWidth = TextRenderer.MeasureText(labelText, sansSerif20).Width
 
 			Me.Location = New Point(fieldLeft, fieldTop)
 			Me.Size = New Size((labelWidth + boxWidth) * 1.1, fieldHeight)
@@ -95,14 +138,11 @@ Module mainModule
 	Public Function IsName(ByVal checkString As String)
 #Enable Warning IDE1006 ' Naming Styles
 
-		' Old Code, does basically the same as the first Regex function
-		'For i = 0 To checkString.Length - 1
-		'          If Not Char.IsLetter(checkString.Chars(i)) Then
-		'              Return False
-		'          End If
-		'      Next
-
-		Return If(Regex.IsMatch(checkString, "^([a-zA-ZÀ-ÿ])*$") OrElse Regex.IsMatch(checkString, "^(([a-zA-ZÀ-ÿ]){1,}(-){0,1}([a-zA-ZÀ-ÿ])*){0,}$"),
+		'This Regex monstrosity checks whether the string is:
+		' a) just letters, including weird ones
+		' b) (weird)letters, separated by at most 1 dash ("-"), but this pattern (e.g. a-a) could can show up multiple times (to allow for weird Marie-Louise-Antoinnette)
+		Return If(Regex.IsMatch(checkString, "^([a-zA-ZÀ-ÿ])*$") OrElse
+			Regex.IsMatch(checkString, "^(([a-zA-ZÀ-ÿ]){1,}(-){0,1}([a-zA-ZÀ-ÿ])*){0,}$"),
 			True,
 			False)
 	End Function
@@ -128,33 +168,35 @@ Module mainModule
 		'negList = List of ALL negative noun primes (3L, 4L, ..., 10L)
 		'strList = List of letter strings: repeats of 4 letters in 3L, 4L, ..., 10L (i.e. BBB, SSS, RRR, GGG, BBBB, SSSS, ..., GGGGGGGGGG)
 
-		Dim otherPrimes As New List(Of String)({otherPos.Concat(otherNeg).ToString()})
+		Dim otherPrimes As New List(Of String)(otherPos.Concat(otherNeg))
 		Dim valList As New List(Of List(Of String))({posList, negList})
-        Dim Primes As New List(Of List(Of String))({New List(Of String)(2), New List(Of String)(2), New List(Of String)(4), New List(Of String)(4)})
-        'shuffleList(otherPrimes) 'I'm not really sure whether it's better to shuffle these names or not.
-        'Assuming the order is (Pos, Pos, Neg, Neg), length pairings will be crossed (posName + posPrime, posName + negPrime, negName + posPrime, negName + negPrime)
+		Dim Primes As New List(Of List(Of String))({New List(Of String)(2), New List(Of String)(2), New List(Of String)(2), New List(Of String)(2), New List(Of String)(4)})
+		'shuffleList(otherPrimes) 'I'm not really sure whether it's better to shuffle these names or not.
+		'Assuming the order is (Pos, Pos, Neg, Neg), length pairings will be crossed (posName + posPrime, posName + negPrime, negName + posPrime, negName + negPrime)
 
-        For Each name In otherPrimes
-            Dim index As Integer = otherPrimes.IndexOf(name)
-            Dim index2 As Integer = index Mod 2
-            Dim nameL As Integer = Math.Max(Math.Min(name.Length - 3 + name.Length Mod 2, 7), 1)
-            'Bins the length of otherName to 3-4, 5-6, 7-8, and 9-10, transcribed as 1, 3, 5, & 7
-            'Takes into account that names could be shorter than 3 or longer than 10, and makes sure the result is maximum 7 and minimum 1
-            Primes(index2).Add(valList(index2)(nameL - 1 + Primes(index2).Count))
-            'Fills either Primes(0) or Primes(1), with valList(0) or valList(1) items (0 will be positive, 1 will be negative)
-            'The selected item in valList is matched to be similarly long as the otherName
-            'For the first positive and negative item, within bins the shorter word is chosen; opposite is true for the second items
-            'This should prevent words being used twice
-            ' Another way to tackle this, could be to set wordlists with 2 words for each length, and match exactly on length, but would require quite some recoding
-            Primes(2).Add(strList(index + (4 * (nameL - (name.Length Mod 2)))))
-            'Adds a letter string, exactly matching the length of otherName
-            '4 different letters are used (B,S,G,R) and as such, 1 match for each otherName
-            Primes(3).Add(name)
-            'Also adds the otherName
-        Next
-        Return Primes
+		For Each name In otherPrimes
+			Dim index As Integer = otherPrimes.IndexOf(name)
+			Dim index2 As Integer = index Mod 2
+			Dim nameL As Integer = Math.Max(Math.Min(name.Length - 3 + name.Length Mod 2, 7), 1)
+			'Bins the length of otherName to 3-4, 5-6, 7-8, and 9-10, transcribed as 1, 3, 5, & 7
+			'Takes into account that names could be shorter than 3 or longer than 10, and makes sure the result is maximum 7 and minimum 1
+			Primes(index2).Add(valList(index2)(nameL - 1 + Primes(index2).Count))
+			'Fills either Primes(0) or Primes(1), with valList(0) or valList(1) items (0 will be positive, 1 will be negative)
+			'The selected item in valList is matched to be similarly long as the otherName
+			'For the first positive and negative item, within bins the shorter word is chosen; opposite is true for the second items
+			'This should prevent words being used twice
+			' Another way to tackle this, could be to set wordlists with 2 words for each length, and match exactly on length, but would require quite some recoding
+			Primes(4).Add(strList(index + (4 * (nameL - (name.Length Mod 2)))))
+			'Adds a letter string, exactly matching the length of otherName
+			'4 different letters are used (B,S,G,R) and as such, 1 match for each otherName
+			If Primes(2).Count < 2 Then
+				Primes(2).Add(name)
+			Else Primes(3).Add(name)
+			End If 'Also adds the otherPrime name
+		Next
+		Return Primes 'Primes is a List of Lists of Strings -> 5 lists: PositiveNounPrimes(2), NegativeNounPrimes(2), PositiveOthers(2), NegativeOthers(2), MatchingLetterStrings(4)
 
-    End Function
+	End Function
 
     'Public Function createTargets()
 
