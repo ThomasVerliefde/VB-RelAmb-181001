@@ -99,113 +99,113 @@ Public Class mainForm
 
     Private Sub formLoad(sender As Object, e As EventArgs) Handles MyBase.Load
 
-        WindowState = FormWindowState.Maximized
-        FormBorderStyle = FormBorderStyle.None
-        BackColor = Color.White
+		Me.WindowState = FormWindowState.Maximized
+		Me.FormBorderStyle = FormBorderStyle.None
+		Me.BackColor = Color.White
 
-        'If Not dataFrame.ContainsKey("Subject") Then
-        subjectForm.ShowDialog()
-        'End If
+		'If Not dataFrame.ContainsKey("Subject") Then
+		subjectForm.ShowDialog()
+		'End If
 
-        Controls.Add(instrText)
-        xCenter(instrText, 0.4)
-        instrText.Text = My.Resources.ResourceManager.GetString("_0_mainInstr")
+		Me.Controls.Add(Me.instrText)
+		xCenter(Me.instrText, 0.4)
+		Me.instrText.Text = My.Resources.ResourceManager.GetString("_0_mainInstr")
 
-        Controls.Add(contButton)
-        xCenter(contButton)
+		Me.Controls.Add(Me.contButton)
+		xCenter(Me.contButton)
 
-    End Sub
+	End Sub
 
-    Public Sub loadNext(sender As Object, e As EventArgs) Handles contButton.Click
-        Select Case instructionCount
-            Case 0 'Start of Experiment
-                subjectForm.Dispose()
-                startT = time.GetCurrentInstant()
-                instrText.Text = My.Resources.ResourceManager.GetString("_1_otherInstr")
+	Public Sub loadNext(sender As Object, e As EventArgs) Handles contButton.Click
+		Select Case Me.instructionCount
+			Case 0 'Start of Experiment
+				subjectForm.Dispose()
+				Me.startT = Me.time.GetCurrentInstant()
+				Me.instrText.Text = My.Resources.ResourceManager.GetString("_1_otherInstr")
 
-                'Debug -> Check correct functioning "createPrimes" function
-                Dim otherPos = New List(Of String)({"Pos", "Pösitiv"})
+				'Debug -> Check correct functioning "createPrimes" function
+				Dim otherPos = New List(Of String)({"Pos", "Pösitiv"})
 				Dim otherNeg = New List(Of String)({"Negatiev", "Nega"})
-                'Dim posList = New List(Of String)({"3P", "4P", "5P", "6P"})
-                'Dim negList = New List(Of String)({"3N", "4N", "5N", "6N"})
-                'Dim strList = New List(Of String)({"AAA", "BBB", "CCC", "DDD", "AAAA", "BBBB", "CCCC", "DDDD", "AAAAA", "BBBBB", "CCCCC", "DDDDD", "AAAAAA", "BBBBBB", "CCCCCC", "DDDDDD"})
-                Dim posList = New List(Of String)(My.Resources.experimentPrime_Pos.Split(" "))
-                Dim negList = New List(Of String)(My.Resources.experimentPrime_Neg.Split(" "))
-                Dim strList = New List(Of String)(My.Resources.experimentPrime_Str.Split(" "))
-                Dim test = createPrimes(otherPos, otherNeg, posList, negList, strList)
-                For Each primegroup In test
-                    For Each item In primegroup
-                        Console.Write(item + " ")
-                    Next
-                Next
+				'Dim posList = New List(Of String)({"3P", "4P", "5P", "6P"})
+				'Dim negList = New List(Of String)({"3N", "4N", "5N", "6N"})
+				'Dim strList = New List(Of String)({"AAA", "BBB", "CCC", "DDD", "AAAA", "BBBB", "CCCC", "DDDD", "AAAAA", "BBBBB", "CCCCC", "DDDDD", "AAAAAA", "BBBBBB", "CCCCCC", "DDDDDD"})
+				Dim posList = New List(Of String)(My.Resources.experimentPrime_Pos.Split(" "))
+				Dim negList = New List(Of String)(My.Resources.experimentPrime_Neg.Split(" "))
+				Dim strList = New List(Of String)(My.Resources.experimentPrime_Str.Split(" "))
+				Dim test = createPrimes(otherPos, otherNeg, posList, negList, strList)
+				For Each primegroup In test
+					For Each item In primegroup
+						Console.Write(item + " ")
+					Next
+				Next
 				'End Debug
-                
 
-            Case 1 'Collecting Names of 'Significant Others'
-                otherT = time.GetCurrentInstant()
-                otherForm.ShowDialog()
 
-                instrText.Text = My.Resources.ResourceManager.GetString("_2_practice" & keyAss)
-            Case 2 'Practice Trials
-                practiceT = time.GetCurrentInstant()
-                'practiceForm.ShowDialog()
+			Case 1 'Collecting Names of 'Significant Others'
+				Me.otherT = Me.time.GetCurrentInstant()
+				otherForm.ShowDialog()
 
-                instrText.Text = My.Resources.ResourceManager.GetString("_3_experiment" & keyAss)
-            Case 3 'Experiment Proper
-                experimentT = time.GetCurrentInstant()
-                'expForm.ShowDialog()
+				Me.instrText.Text = My.Resources.ResourceManager.GetString("_2_practice" & Me.keyAss)
+			Case 2 'Practice Trials
+				Me.practiceT = Me.time.GetCurrentInstant()
+				'practiceForm.ShowDialog()
 
-                instrText.Text = My.Resources.ResourceManager.GetString("_4_explicitInstr")
-            Case 4 'Explicit Measurements of Ambivalence
-                explicitT = time.GetCurrentInstant()
-                'explicitForm.ShowDialog()
+				Me.instrText.Text = My.Resources.ResourceManager.GetString("_3_experiment" & Me.keyAss)
+			Case 3 'Experiment Proper
+				Me.experimentT = Me.time.GetCurrentInstant()
+				'expForm.ShowDialog()
 
-                instrText.Text = My.Resources.ResourceManager.GetString("_5_demoInstr")
-            Case 5 'Demographic Information
-                demographicsT = time.GetCurrentInstant()
-                'demoForm.ShowDialog()
+				Me.instrText.Text = My.Resources.ResourceManager.GetString("_4_explicitInstr")
+			Case 4 'Explicit Measurements of Ambivalence
+				Me.explicitT = Me.time.GetCurrentInstant()
+				'explicitForm.ShowDialog()
 
-            Case 6 'End of Experiment
-                instrText.Text = My.Resources.ResourceManager.GetString("_6_endInstr")
-                instrText.Font = New Font("Microsoft Sans Serif", 40)
-                'instrText.TextAlign = HorizontalAlignment.Center
-                contButton.Text = "Abbrechen"
-                endT = time.GetCurrentInstant()
+				Me.instrText.Text = My.Resources.ResourceManager.GetString("_5_demoInstr")
+			Case 5 'Demographic Information
+				Me.demographicsT = Me.time.GetCurrentInstant()
+				'demoForm.ShowDialog()
 
-                timeOther = practiceT - otherT
-                timePractice = experimentT - practiceT
-                timeExperiment = explicitT - experimentT
-                timeExplicit = demographicsT - explicitT
-                timeDemographics = endT - demographicsT
-                timeTotal = endT - startT
+			Case 6 'End of Experiment
+				Me.instrText.Text = My.Resources.ResourceManager.GetString("_6_endInstr")
+				Me.instrText.Font = New Font("Microsoft Sans Serif", 40)
+				'instrText.TextAlign = HorizontalAlignment.Center
+				Me.contButton.Text = "Abbrechen"
+				Me.endT = Me.time.GetCurrentInstant()
 
-                dataFrame("timeOther") = timeOther.TotalMinutes.ToString
-                dataFrame("timePractice") = timePractice.TotalMinutes.ToString
-                dataFrame("timeExperiment") = timeExperiment.TotalMinutes.ToString
-                dataFrame("timeExplicit") = timeExplicit.TotalMinutes.ToString
-                dataFrame("timeDemographics") = timeDemographics.TotalMinutes.ToString
-                dataFrame("timeTotal") = timeTotal.TotalMinutes.ToString
-                dataFrame("hostName") = Net.Dns.GetHostName()
+				Me.timeOther = Me.practiceT - Me.otherT
+				Me.timePractice = Me.experimentT - Me.practiceT
+				Me.timeExperiment = Me.explicitT - Me.experimentT
+				Me.timeExplicit = Me.demographicsT - Me.explicitT
+				Me.timeDemographics = Me.endT - Me.demographicsT
+				Me.timeTotal = Me.endT - Me.startT
 
-                '' Copy of "Ende.vb"
+				Me.dataFrame("timeOther") = Me.timeOther.TotalMinutes.ToString
+				Me.dataFrame("timePractice") = Me.timePractice.TotalMinutes.ToString
+				Me.dataFrame("timeExperiment") = Me.timeExperiment.TotalMinutes.ToString
+				Me.dataFrame("timeExplicit") = Me.timeExplicit.TotalMinutes.ToString
+				Me.dataFrame("timeDemographics") = Me.timeDemographics.TotalMinutes.ToString
+				Me.dataFrame("timeTotal") = Me.timeTotal.TotalMinutes.ToString
+				Me.dataFrame("hostName") = Net.Dns.GetHostName()
 
-                '' Stimulus-Listen der Primingphasen im Datenfile ablegen
-                'dataFrame("RF_practiceDL_primes") = rf1
-                'dataFrame("RF_practiceDL_targets") = rf2
-                'dataFrame("RF_practiceBH_primes") = rf3
-                'dataFrame("RF_practiceBH_targets") = rf4
-                'dataFrame("RF_targetsBH") = rf8
-                'dataFrame("RF_primesDL") = rf5
-                'dataFrame("RF_targetsDL") = rf6
-                'dataFrame("RF_primesBH") = rf7
+				'' Copy of "Ende.vb"
 
-                saveCSV(dataFrame, "Data_RelAmb_" & Net.Dns.GetHostName & ".csv")
+				'' Stimulus-Listen der Primingphasen im Datenfile ablegen
+				'dataFrame("RF_practiceDL_primes") = rf1
+				'dataFrame("RF_practiceDL_targets") = rf2
+				'dataFrame("RF_practiceBH_primes") = rf3
+				'dataFrame("RF_practiceBH_targets") = rf4
+				'dataFrame("RF_targetsBH") = rf8
+				'dataFrame("RF_primesDL") = rf5
+				'dataFrame("RF_targetsDL") = rf6
+				'dataFrame("RF_primesBH") = rf7
 
-            Case Else
-                Close()
-        End Select
-        instructionCount += 1
-    End Sub
+				saveCSV(Me.dataFrame, "Data_RelAmb_" & Net.Dns.GetHostName & ".csv")
+
+			Case Else
+				Me.Close()
+		End Select
+		Me.instructionCount += 1
+	End Sub
 
 
 

@@ -16,60 +16,60 @@ Module mainModule
             Dim subjLabel As New Label()
             Dim labelWidth = TextRenderer.MeasureText(labelText, sansSerif20).Width
 
-            Location = New Point(fieldLeft, fieldTop)
-            Size = New Size((labelWidth + boxWidth) * 1.1, fieldHeight)
-            BorderStyle = BorderStyle.None
+			Me.Location = New Point(fieldLeft, fieldTop)
+			Me.Size = New Size((labelWidth + boxWidth) * 1.1, fieldHeight)
+			Me.BorderStyle = BorderStyle.None
 
-            subjBox.Location = New Point(labelWidth + 10, fieldHeight * 0.1)
-            subjBox.Text = ""
-            subjBox.Size = New Size(boxWidth, fieldHeight)
-            subjBox.Font = sansSerif20
+			subjBox.Location = New Point(labelWidth + 10, fieldHeight * 0.1)
+			subjBox.Text = ""
+			subjBox.Size = New Size(boxWidth, fieldHeight)
+			subjBox.Font = sansSerif20
 
 			subjLabel.Location = New Point(0, fieldHeight * 0.1)
 			subjLabel.Size = New Size(labelWidth, fieldHeight)
 			subjLabel.Text = labelText
 			subjLabel.Font = sansSerif20
 
-			Controls.Add(subjBox)
-            Controls.Add(subjLabel)
+			Me.Controls.Add(subjBox)
+			Me.Controls.Add(subjLabel)
 
-        End Sub
+		End Sub
 
-    End Class
+	End Class
 
-    Public Class continueButton
-        Inherits Button
+	Public Class continueButton
+		Inherits Button
 
-        Public Sub New(Optional Txt As String = "Weiter", Optional buttonHeight As Integer = 40, Optional buttonWidth As Integer = 150)
+		Public Sub New(Optional Txt As String = "Weiter", Optional buttonHeight As Integer = 40, Optional buttonWidth As Integer = 150)
 
-            Height = buttonHeight
-            Width = buttonWidth
-            Text = Txt
-            Font = sansSerif14
+			Me.Height = buttonHeight
+			Me.Width = buttonWidth
+			Me.Text = Txt
+			Me.Font = sansSerif14
 
-        End Sub
+		End Sub
 
-    End Class
+	End Class
 
-    Public Class instructionBox
-        Inherits RichTextBox
+	Public Class instructionBox
+		Inherits RichTextBox
 
-        Public Sub New(Optional Txt As String = "", Optional horizontalDist As Double = 0.75, Optional verticalDist As Double = 0.67)
+		Public Sub New(Optional Txt As String = "", Optional horizontalDist As Double = 0.75, Optional verticalDist As Double = 0.67)
 
-            Dim screenWidth As Integer = Screen.PrimaryScreen.Bounds.Width
-            Dim screenHeight As Integer = Screen.PrimaryScreen.Bounds.Height
+			Dim screenWidth As Integer = Screen.PrimaryScreen.Bounds.Width
+			Dim screenHeight As Integer = Screen.PrimaryScreen.Bounds.Height
 
-            Height = verticalDist * screenHeight
-            Width = horizontalDist * screenWidth
-            Text = Txt
-            BackColor = Color.AliceBlue
-            Multiline = True
-            WordWrap = True
-            Font = sansSerif22
-            [ReadOnly] = True
-            Enabled = False
+			Me.Height = verticalDist * screenHeight
+			Me.Width = horizontalDist * screenWidth
+			Me.Text = Txt
+			Me.BackColor = Color.AliceBlue
+			Me.Multiline = True
+			Me.WordWrap = True
+			Me.Font = sansSerif22
+			Me.[ReadOnly] = True
+			Me.Enabled = False
 
-        End Sub
+		End Sub
 
     End Class
 
