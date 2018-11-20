@@ -1,4 +1,5 @@
 ﻿Imports System.IO
+Imports System.Text.RegularExpressions
 
 Module mainModule
 
@@ -24,12 +25,12 @@ Module mainModule
             subjBox.Size = New Size(boxWidth, fieldHeight)
             subjBox.Font = sansSerif20
 
-            subjLabel.Location = New Point(0, fieldHeight * 0.1)
-            subjLabel.Size = New Size(labelWidth, fieldHeight)
-            subjLabel.Text = labelText
-            subjLabel.Font = sansSerif20
+			subjLabel.Location = New Point(0, fieldHeight * 0.1)
+			subjLabel.Size = New Size(labelWidth, fieldHeight)
+			subjLabel.Text = labelText
+			subjLabel.Font = sansSerif20
 
-            Controls.Add(subjBox)
+			Controls.Add(subjBox)
             Controls.Add(subjLabel)
 
         End Sub
@@ -91,18 +92,23 @@ Module mainModule
     End Function
 
 #Disable Warning IDE1006 ' Naming Styles
-    Public Function IsAlpha(ByVal checkString As String)
+	Public Function IsName(ByVal checkString As String)
 #Enable Warning IDE1006 ' Naming Styles
-        For i = 0 To checkString.Length - 1
-            If Not Char.IsLetter(checkString.Chars(i)) Then
-                Return False
-            End If
-        Next
-        Return True
-    End Function
+
+		' Old Code, does basically the same as the first Regex function
+		'For i = 0 To checkString.Length - 1
+		'          If Not Char.IsLetter(checkString.Chars(i)) Then
+		'              Return False
+		'          End If
+		'      Next
+
+		Return If(Regex.IsMatch(checkString, "^([a-zA-ZÀ-ÿ])*$") OrElse Regex.IsMatch(checkString, "^(([a-zA-ZÀ-ÿ]){1,}(-){0,1}([a-zA-ZÀ-ÿ])*){0,}$"),
+			True,
+			False)
+	End Function
 
 
-    Public Sub shuffleList(Of T)(list As IList(Of T)) 'Simple shuffle sub, switching around items without constraints
+	Public Sub shuffleList(Of T)(list As IList(Of T)) 'Simple shuffle sub, switching around items without constraints
         Dim r As Random = New Random()
         For i = 0 To list.Count - 1
             Dim index As Integer = r.Next(i, list.Count)
@@ -115,14 +121,15 @@ Module mainModule
         Next
     End Sub
 
-    Public Function createPrimes(otherPrimes As List(Of String), posList As List(Of String), negList As List(Of String), strList As List(Of String))
+    Public Function createPrimes(otherPos As List(Of String), otherNeg As List(Of String), posList As List(Of String), negList As List(Of String), strList As List(Of String))
 
-        'otherNames = List of 4 names of SOs (2 pos & 2 neg)
-        'posList = List of ALL positive noun primes (3L, 4L, ..., 10L)
-        'negList = List of ALL negative noun primes (3L, 4L, ..., 10L)
-        'strList = List of letter strings: repeats of 4 letters in 3L, 4L, ..., 10L (i.e. BBB, SSS, RRR, GGG, BBBB, SSSS, ..., GGGGGGGGGG)
+		'otherNames = List of 4 names of SOs (2 pos & 2 neg)
+		'posList = List of ALL positive noun primes (3L, 4L, ..., 10L)
+		'negList = List of ALL negative noun primes (3L, 4L, ..., 10L)
+		'strList = List of letter strings: repeats of 4 letters in 3L, 4L, ..., 10L (i.e. BBB, SSS, RRR, GGG, BBBB, SSSS, ..., GGGGGGGGGG)
 
-        Dim valList As New List(Of List(Of String))({posList, negList})
+		Dim otherPrimes As New List(Of String)({otherPos.Concat(otherNeg).ToString()})
+		Dim valList As New List(Of List(Of String))({posList, negList})
         Dim Primes As New List(Of List(Of String))({New List(Of String)(2), New List(Of String)(2), New List(Of String)(4), New List(Of String)(4)})
         'shuffleList(otherPrimes) 'I'm not really sure whether it's better to shuffle these names or not.
         'Assuming the order is (Pos, Pos, Neg, Neg), length pairings will be crossed (posName + posPrime, posName + negPrime, negName + posPrime, negName + negPrime)
@@ -162,7 +169,9 @@ Module mainModule
         Return "Hello World"
     End Function
 
-    Public Function createTrials(Primes As List(Of List(Of String)), Target As List(Of List(Of String)))
+	'Does createTrials one work? 
+
+	Public Function createTrials(Primes As List(Of List(Of String)), Target As List(Of List(Of String)))
 
         Dim numP As Integer = Primes.Count
         Dim numT As Integer = Target.Count
