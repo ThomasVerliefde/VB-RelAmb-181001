@@ -9,7 +9,7 @@ Public Class demographicsForm
 	Private genderBox As New labelledList({"weiblich", "männlich", "X"}, "Bitte geben Sie Ihr Geschlecht an:", setBox:=500)
 	Private languageBox As New labelledList({"Deutsch", "Sonstiges"}, "Bitte geben Sie Ihre Muttersprache an:", setBox:=500)
 	Private handBox As New labelledList({"rechts", "links", "beide"}, "Bitte geben Sie Ihre Händigkeit an:", setBox:=500)
-	Private studyText As New TextBox
+	Private WithEvents studyText As New TextBox
 	Private studyBox As New labelledBox(Me.studyText, "Bitte geben Sie Ihr Studienfach an:", boxWidth:=500, setBox:=500)
 
 	Private Sub formLoad(sender As Object, e As EventArgs) Handles MyBase.Load
@@ -28,7 +28,6 @@ Public Class demographicsForm
 
 		Me.Controls.Add(Me.contButton)
 		xCenter(Me.contButton)
-
 
 		Me.instrLabel.Text = "Bitte machen Sie zum Abschluss noch die folgenden Angaben"
 		Me.instrLabel.Size = New Size(1000, 40)
@@ -57,23 +56,32 @@ Public Class demographicsForm
 			MsgBox("Bitte geben Sie Ihr Studienfach an!", MsgBoxStyle.Critical, Title:="Fehler!")
 			Exit Sub
 		Else
-			mainForm.dataFrame("Age") = ageText.Text.ToString
-			mainForm.dataFrame("Gender") = genderBox.optionBox.Text.ToString
-			mainForm.dataFrame("Language") = languageBox.optionBox.Text.ToString
-			mainForm.dataFrame("Handedness") = handBox.optionBox.Text.ToString
-			mainForm.dataFrame("Study") = studyText.Text.ToString
+			mainForm.dataFrame("Age") = Me.ageText.Text.ToString
+			mainForm.dataFrame("Gender") = Me.genderBox.optionBox.Text.ToString
+			mainForm.dataFrame("Language") = Me.languageBox.optionBox.Text.ToString
+			mainForm.dataFrame("Handedness") = Me.handBox.optionBox.Text.ToString
+			mainForm.dataFrame("Study") = Me.studyText.Text.ToString
 
 			mainForm.instructionCount += 1
 			mainForm.contButton.PerformClick()
 			Me.Close()
 		End If
 
-
 	End Sub
 
 	Private Sub suppressNonNumeric(sender As Object, e As KeyPressEventArgs) Handles ageText.KeyPress
 		If e.KeyChar <> ControlChars.Back AndAlso Not IsNumeric(e.KeyChar) Then
 			e.Handled = True
+		End If
+	End Sub
+
+	Private Sub pressEnter(sender As Object, e As KeyEventArgs) Handles ageText.KeyDown, studyText.KeyDown
+		If e.KeyCode = Keys.Enter Then
+			If Not Me.ageText.Text = "" AndAlso Me.ageText.ContainsFocus Then
+				Me.genderBox.Select()
+			ElseIf Not Me.studyText.Text = "" Then
+				Me.contButton.PerformClick()
+			End If
 		End If
 	End Sub
 

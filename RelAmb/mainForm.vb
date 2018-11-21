@@ -98,21 +98,27 @@ Public Class mainForm
 
 
 
+
 	Private Sub formLoad(sender As Object, e As EventArgs) Handles MyBase.Load
 
 		Me.WindowState = FormWindowState.Maximized
 		Me.FormBorderStyle = FormBorderStyle.None
 		Me.BackColor = Color.White
 
-		subjectForm.ShowDialog()
+		explicitForm.ShowDialog()
 
 
-		Me.Controls.Add(Me.instrText)
-		xCenter(Me.instrText, 0.4)
-		Me.instrText.Text = My.Resources.ResourceManager.GetString("_0_mainInstr")
 
-		Me.Controls.Add(Me.contButton)
-		xCenter(Me.contButton)
+
+
+		'subjectForm.ShowDialog()
+
+		'Me.Controls.Add(Me.instrText)
+		'xCenter(Me.instrText, 0.4)
+		'Me.instrText.Text = My.Resources.ResourceManager.GetString("_0_mainInstr")
+
+		'Me.Controls.Add(Me.contButton)
+		'xCenter(Me.contButton)
 
 
 

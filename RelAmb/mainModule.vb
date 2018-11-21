@@ -7,6 +7,85 @@ Module mainModule
     Friend sansSerif20 = New Font("Microsoft Sans Serif", 20)
     Friend sansSerif14 = New Font("Microsoft Sans Serif", 14)
 
+	Public Class labelledTrackbar
+		Inherits Panel
+
+		Public barLabel As New Label
+
+		Private ReadOnly barWidth = 800
+		Private ReadOnly barHeight = 20
+		Private ReadOnly setLeft = 150
+		Private ReadOnly setTop = 75
+
+		Public Sub New(trackbar As TrackBar, Optional barText As String = "", Optional minLab As String = "", Optional maxLab As String = "", Optional minInt As Integer = 1, Optional maxInt As Integer = 6)
+
+			With Me.barLabel
+				.Text = barText
+				.Font = sansSerif20
+				.Width = TextRenderer.MeasureText(barText, sansSerif20).Width
+				.Height = 50
+				.Left = Me.setLeft + (Me.barWidth - .Width) / 2
+				.Top = Me.setTop - 60
+			End With
+
+			Dim minLabel As New Label With {
+				.Text = minLab,
+				.Font = sansSerif14,
+				.Width = TextRenderer.MeasureText(minLab, sansSerif14).Width,
+				.Height = 25,
+				.Left = Me.setLeft - .Width / 2,
+				.Top = Me.setTop - 25
+			}
+
+			Dim maxLabel As New Label With {
+				.Text = maxLab,
+				.Font = sansSerif14,
+				.Width = TextRenderer.MeasureText(maxLab, sansSerif14).Width,
+				.Height = 25,
+				.Left = Me.setLeft + Me.barWidth - .Width / 2,
+				.Top = Me.setTop - 25
+			}
+
+			trackbar.Minimum = minInt
+			trackbar.Maximum = maxInt
+			trackbar.Value = minInt
+			trackbar.Size = New Size(Me.barWidth, Me.barHeight)
+			trackbar.LargeChange = 1
+			trackbar.SmallChange = 1
+			trackbar.TickFrequency = 1
+			trackbar.Orientation = Orientation.Horizontal
+			trackbar.Location = New Point(Me.setLeft, Me.setTop)
+
+			Me.Size = New Size(1100, 120)
+			Me.BorderStyle = BorderStyle.Fixed3D
+
+			Me.Controls.Add(trackbar)
+			Me.Controls.Add(Me.barLabel)
+			Me.Controls.Add(minLabel)
+			Me.Controls.Add(maxLabel)
+
+		End Sub
+
+		Public Sub reLabel(newLabel As String)
+
+			With Me.barLabel
+				.Text = newLabel
+				.Width = TextRenderer.MeasureText(.Text, sansSerif20).Width
+				.Left = Me.setLeft + (Me.barWidth - .Width) / 2
+			End With
+
+
+		End Sub
+
+
+
+
+
+	End Class
+
+
+
+
 	Public Class labelledList
 		Inherits Panel
 
@@ -31,9 +110,9 @@ Module mainModule
 			Me.BorderStyle = BorderStyle.None
 
 			If setBox = 0 Then
-				optionBox.Location = New Point(labelWidth + 10, fieldTop * 0.025)
+				Me.optionBox.Location = New Point(labelWidth + 10, fieldTop * 0.025)
 			Else
-				optionBox.Location = New Point(setBox, fieldTop * 0.025)
+				Me.optionBox.Location = New Point(setBox, fieldTop * 0.025)
 			End If
 			Me.optionBox.Size = New Size(listWidth * 1.2, fieldHeight)
 			Me.optionBox.Font = sansSerif20
@@ -50,12 +129,11 @@ Module mainModule
 		End Sub
 
 		Public Function madeSelection()
-			If optionBox.Text = "" Then
+			If Me.optionBox.Text = "" Then
 				Return False
 			End If
 			Return True
 		End Function
-
 
 	End Class
 
