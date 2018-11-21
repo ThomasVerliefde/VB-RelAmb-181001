@@ -44,21 +44,21 @@
 			Select Case Me.condN
 				Case 0
 					mainForm.keyAss = "Apos"
-					mainForm.firstNames = "Pos"
+					mainForm.firstOthers = "Pos"
 
 				Case 1
 					mainForm.keyAss = "Apos"
-					mainForm.firstNames = "Neg"
+					mainForm.firstOthers = "Neg"
 				Case 2
 					mainForm.keyAss = "Aneg"
-					mainForm.firstNames = "Pos"
+					mainForm.firstOthers = "Pos"
 				Case 3
 					mainForm.keyAss = "Aneg"
-					mainForm.firstNames = "Neg"
+					mainForm.firstOthers = "Neg"
 			End Select
-			mainForm.dataFrame("Subject") = Me.subjN.ToString
-			mainForm.dataFrame("Key") = mainForm.keyAss
-			mainForm.dataFrame("FirstNames") = mainForm.firstNames
+			dataFrame("Subject") = Me.subjN.ToString
+			dataFrame("Key") = mainForm.keyAss
+			dataFrame("FirstOthers") = mainForm.firstOthers
 		End If
 
 		Me.Close()

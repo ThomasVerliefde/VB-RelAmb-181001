@@ -1,23 +1,30 @@
 ﻿Imports System.IO
 Imports System.Text.RegularExpressions
+Imports NodaTime
 
 Module mainModule
 
-    Friend sansSerif22 = New Font("Microsoft Sans Serif", 22)
-    Friend sansSerif20 = New Font("Microsoft Sans Serif", 20)
-    Friend sansSerif14 = New Font("Microsoft Sans Serif", 14)
+	Friend dataFrame As New Dictionary(Of String, String) 'main dataframe to save all our data, gets written out at the end of the experiment
+	Friend time As IClock = SystemClock.Instance 'NodaTime clock instance, which keeps time, at the start of every part, gets saved in a variable (see under)
+
+	Friend sansSerif25B = New Font("Microsoft Sans Serif", 25, FontStyle.Bold)
+	Friend sansSerif22 = New Font("Microsoft Sans Serif", 22)
+	Friend sansSerif20 = New Font("Microsoft Sans Serif", 20)
+	Friend sansSerif14 = New Font("Microsoft Sans Serif", 14)
 
 	Public Class labelledTrackbar
 		Inherits Panel
 
 		Public barLabel As New Label
+		Public minLabel As New Label
+		Public maxLabel As New Label
 
 		Private ReadOnly barWidth = 800
 		Private ReadOnly barHeight = 20
 		Private ReadOnly setLeft = 150
-		Private ReadOnly setTop = 75
+		Private ReadOnly setTop = 150
 
-		Public Sub New(trackbar As TrackBar, Optional barText As String = "", Optional minLab As String = "", Optional maxLab As String = "", Optional minInt As Integer = 1, Optional maxInt As Integer = 6)
+		Public Sub New(trackbar As TrackBar, Optional barText As String = "", Optional minLab As String = "überhaupt nicht", Optional maxLab As String = "sehr", Optional minInt As Integer = 1, Optional maxInt As Integer = 6)
 
 			With Me.barLabel
 				.Text = barText
@@ -25,26 +32,27 @@ Module mainModule
 				.Width = TextRenderer.MeasureText(barText, sansSerif20).Width
 				.Height = 50
 				.Left = Me.setLeft + (Me.barWidth - .Width) / 2
-				.Top = Me.setTop - 60
+				.Top = Me.setTop - 75
+				.TextAlign = ContentAlignment.MiddleCenter
 			End With
 
-			Dim minLabel As New Label With {
-				.Text = minLab,
-				.Font = sansSerif14,
-				.Width = TextRenderer.MeasureText(minLab, sansSerif14).Width,
-				.Height = 25,
-				.Left = Me.setLeft - .Width / 2,
-				.Top = Me.setTop - 25
-			}
+			With Me.minLabel
+				.Text = minLab
+				.Font = sansSerif14
+				.Width = TextRenderer.MeasureText(minLab, sansSerif14).Width
+				.Height = 25
+				.Left = Me.setLeft - .Width / 2
+				.Top = Me.setTop - 30
+			End With
 
-			Dim maxLabel As New Label With {
-				.Text = maxLab,
-				.Font = sansSerif14,
-				.Width = TextRenderer.MeasureText(maxLab, sansSerif14).Width,
-				.Height = 25,
-				.Left = Me.setLeft + Me.barWidth - .Width / 2,
-				.Top = Me.setTop - 25
-			}
+			With Me.maxLabel
+				.Text = maxLab
+				.Font = sansSerif14
+				.Width = TextRenderer.MeasureText(maxLab, sansSerif14).Width
+				.Height = 25
+				.Left = Me.setLeft + Me.barWidth - .Width / 2
+				.Top = Me.setTop - 30
+			End With
 
 			trackbar.Minimum = minInt
 			trackbar.Maximum = maxInt
@@ -56,8 +64,8 @@ Module mainModule
 			trackbar.Orientation = Orientation.Horizontal
 			trackbar.Location = New Point(Me.setLeft, Me.setTop)
 
-			Me.Size = New Size(1100, 120)
-			Me.BorderStyle = BorderStyle.Fixed3D
+			Me.Size = New Size(1100, 200)
+			Me.BorderStyle = BorderStyle.None
 
 			Me.Controls.Add(trackbar)
 			Me.Controls.Add(Me.barLabel)
@@ -66,14 +74,27 @@ Module mainModule
 
 		End Sub
 
-		Public Sub reLabel(newLabel As String)
+		Public Sub reInit(newLabel As String, Optional labelTop As Integer = 1, Optional minLab As String = "überhaupt nicht", Optional maxLab As String = "sehr")
 
 			With Me.barLabel
 				.Text = newLabel
 				.Width = TextRenderer.MeasureText(.Text, sansSerif20).Width
+				.Height = TextRenderer.MeasureText(.Text, sansSerif20).Height
 				.Left = Me.setLeft + (Me.barWidth - .Width) / 2
+				.Top = (setTop - 75) * labelTop
 			End With
 
+			With Me.minLabel
+				.Text = minLab
+				.Width = TextRenderer.MeasureText(minLab, sansSerif14).Width
+				.Left = Me.setLeft - .Width / 2
+			End With
+
+			With Me.maxLabel
+				.Text = maxLab
+				.Width = TextRenderer.MeasureText(maxLab, sansSerif14).Width
+				.Left = Me.setLeft + Me.barWidth - .Width / 2
+			End With
 
 		End Sub
 
@@ -138,7 +159,7 @@ Module mainModule
 	End Class
 
 	Public Class labelledBox
-        Inherits Panel
+		Inherits Panel
 
 		Public Sub New(textBox As TextBox, labelText As String, Optional boxWidth As Integer = 100, Optional fieldHeight As Integer = 50,
 				Optional fieldLeft As Integer = 250, Optional fieldTop As Integer = 250, Optional setBox As Integer = 0)
@@ -205,7 +226,7 @@ Module mainModule
 
 		End Sub
 
-    End Class
+	End Class
 
 
 	Public Sub xCenter(any As Object, Optional verticalDist As Double = 0.85, Optional horizontalDist As Double = 0.5, Optional setLeft As Integer = 0, Optional setTop As Integer = 0)
@@ -231,8 +252,8 @@ Module mainModule
 	End Sub
 
 	Public Function setCond(subjN As Integer)
-        Return Val(My.Resources.BlockRandomisation((subjN - 1) * 2))
-    End Function
+		Return Val(My.Resources.BlockRandomisation((subjN - 1) * 2))
+	End Function
 
 #Disable Warning IDE1006 ' Naming Styles
 	Public Function IsName(ByVal checkString As String)
@@ -249,19 +270,19 @@ Module mainModule
 
 
 	Public Sub shuffleList(Of T)(list As IList(Of T)) 'Simple shuffle sub, switching around items without constraints
-        Dim r As Random = New Random()
-        For i = 0 To list.Count - 1
-            Dim index As Integer = r.Next(i, list.Count)
-            If i <> index Then
-                ' swap list(i) and list(index)
-                Dim temp As T = list(i)
-                list(i) = list(index)
-                list(index) = temp
-            End If
-        Next
-    End Sub
+		Dim r As Random = New Random()
+		For i = 0 To list.Count - 1
+			Dim index As Integer = r.Next(i, list.Count)
+			If i <> index Then
+				' swap list(i) and list(index)
+				Dim temp As T = list(i)
+				list(i) = list(index)
+				list(index) = temp
+			End If
+		Next
+	End Sub
 
-    Public Function createPrimes(otherPos As List(Of String), otherNeg As List(Of String), posList As List(Of String), negList As List(Of String), strList As List(Of String))
+	Public Function createPrimes(otherPos As List(Of String), otherNeg As List(Of String), posList As List(Of String), negList As List(Of String), strList As List(Of String))
 
 		'otherNames = List of 4 names of SOs (2 pos & 2 neg)
 		'posList = List of ALL positive noun primes (3L, 4L, ..., 10L)
@@ -298,77 +319,77 @@ Module mainModule
 
 	End Function
 
-    'Public Function createTargets()
+	'Public Function createTargets()
 
-    '    'Select 2
+	'    'Select 2
 
-    '    Return
-    'End Function
+	'    Return
+	'End Function
 
-    Public Function randomSelect(resource As Object)
+	Public Function randomSelect(resource As Object)
 
 
-        Return "Hello World"
-    End Function
+		Return "Hello World"
+	End Function
 
 	'Does createTrials one work? 
 
 	Public Function createTrials(Primes As List(Of List(Of String)), Target As List(Of List(Of String)))
 
-        Dim numP As Integer = Primes.Count
-        Dim numT As Integer = Target.Count
-        Dim Trials = New List(Of List(Of String))
+		Dim numP As Integer = Primes.Count
+		Dim numT As Integer = Target.Count
+		Dim Trials = New List(Of List(Of String))
 
-        For i = 0 To numP - 1
-            For j = 0 To numT - 1
-                For Each itemP In Primes(i)
-                    For Each itemT In Target(j)
-                        Trials.Add(New List(Of String)({itemP, itemT, i.ToString, j.ToString}))
-                    Next
-                Next
-            Next
-        Next
+		For i = 0 To numP - 1
+			For j = 0 To numT - 1
+				For Each itemP In Primes(i)
+					For Each itemT In Target(j)
+						Trials.Add(New List(Of String)({itemP, itemT, i.ToString, j.ToString}))
+					Next
+				Next
+			Next
+		Next
 
-        Return Trials
-    End Function
+		Return Trials
+	End Function
 
-    Public Sub saveCSV(ByVal dataFrame As Dictionary(Of String, String), Optional ByVal path As String = "rawData.csv")
+	Public Sub saveCSV(ByVal dataFrame As Dictionary(Of String, String), Optional ByVal path As String = "rawData.csv")
 
-        Dim fileOutput As New String("")
+		Dim fileOutput As New String("")
 
-        If Not My.Computer.FileSystem.FileExists(path) Then
+		If Not My.Computer.FileSystem.FileExists(path) Then
 
-            Dim colNames As New String("")
+			Dim colNames As New String("")
 
-            Try
-                'When there is no dataframe yet, first create a headers row
-                For Each key In dataFrame.Keys
-                    colNames += key + ","
-                Next
-                colNames = colNames.Substring(0, colNames.Length - 1) + Environment.NewLine
+			Try
+				'When there is no dataframe yet, first create a headers row
+				For Each key In dataFrame.Keys
+					colNames += key + ","
+				Next
+				colNames = colNames.Substring(0, colNames.Length - 1) + Environment.NewLine
 
-                File.Create(path).Dispose()
-                My.Computer.FileSystem.WriteAllText(path, colNames, True)
+				File.Create(path).Dispose()
+				My.Computer.FileSystem.WriteAllText(path, colNames, True)
 
-            Catch ex As Exception
-                MessageBox.Show("Beim Erstellen der Datei " + path + " ist ein Fehler aufgetreten: \n" + ex.ToString)
-            End Try
-        End If
+			Catch ex As Exception
+				MessageBox.Show("Beim Erstellen der Datei " + path + " ist ein Fehler aufgetreten: \n" + ex.ToString)
+			End Try
+		End If
 
-        'Putting the dictionary data in the CSV format
-        For Each value In dataFrame.Values
-            fileOutput += value + ","
-        Next
-        fileOutput = fileOutput.Substring(0, fileOutput.Length - 1) + Environment.NewLine
+		'Putting the dictionary data in the CSV format
+		For Each value In dataFrame.Values
+			fileOutput += value + ","
+		Next
+		fileOutput = fileOutput.Substring(0, fileOutput.Length - 1) + Environment.NewLine
 
-        'Saving the data
-        Try
-            My.Computer.FileSystem.WriteAllText(path, fileOutput, True)
+		'Saving the data
+		Try
+			My.Computer.FileSystem.WriteAllText(path, fileOutput, True)
 
-        Catch ex As Exception
-            MessageBox.Show("Beim Speichern der Datei" + path + " ist ein Fehler aufgetreten: \n" + ex.ToString)
-        End Try
+		Catch ex As Exception
+			MessageBox.Show("Beim Speichern der Datei" + path + " ist ein Fehler aufgetreten: \n" + ex.ToString)
+		End Try
 
-    End Sub
+	End Sub
 
 End Module

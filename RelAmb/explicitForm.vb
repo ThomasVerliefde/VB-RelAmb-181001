@@ -18,23 +18,17 @@ Public Class explicitForm
 	'Label8.Text = "überhaupt nicht"
 	'Label9.Text = "sehr"
 
-	Private barPos1 As New TrackBar
-	Private posSRI1 As New labelledTrackbar(Me.barPos1, "", "überhaupt nicht", "sehr")
+	Private trackB1 As New TrackBar
+	Private labB1 As New labelledTrackbar(Me.trackB1)
 
-	Private barPos2 As New TrackBar
-	Private posSRI2 As New labelledTrackbar(Me.barPos2, "", "überhaupt nicht", "sehr")
+	Private trackB2 As New TrackBar
+	Private labB2 As New labelledTrackbar(Me.trackB2)
 
-	Private barPos3 As New TrackBar
-	Private posSRI3 As New labelledTrackbar(Me.barPos3, "", "überhaupt nicht", "sehr")
+	Private trackB3 As New TrackBar
+	Private labB3 As New labelledTrackbar(Me.trackB3)
 
-	Private barNeg1 As New TrackBar
-	Private negSRI1 As New labelledTrackbar(Me.barNeg1, "", "überhaupt nicht", "sehr")
-
-	Private barNeg2 As New TrackBar
-	Private negSRI2 As New labelledTrackbar(Me.barNeg2, "", "überhaupt nicht", "sehr")
-
-	Private barNeg3 As New TrackBar
-	Private negSRI3 As New labelledTrackbar(Me.barNeg3, "", "überhaupt nicht", "sehr")
+	Private labIntro As New Label
+	Private labName As New Label
 
 	Private WithEvents contButton As New continueButton
 
@@ -44,9 +38,27 @@ Public Class explicitForm
 		Me.FormBorderStyle = FormBorderStyle.None
 		Me.BackColor = Color.White
 
+		With Me.labIntro
+			.Text = "Please answer these questions about:"
+			.Font = sansSerif22
+			.Width = TextRenderer.MeasureText(.Text, sansSerif22).Width
+			.Height = TextRenderer.MeasureText(.Text, sansSerif22).Height
+		End With
 
-		Me.Controls.Add(Me.posSRI1)
-		xCenter(Me.posSRI1, verticalDist:=0.4)
+
+
+		Me.Controls.Add(Me.labIntro)
+		xCenter(Me.labIntro, verticalDist:=0.1, setLeft:=50)
+
+		Me.Controls.Add(Me.labName)
+		xCenter(Me.labName, verticalDist:=0.1)
+
+		Me.Controls.Add(Me.labB1)
+		xCenter(Me.labB1, verticalDist:=0.3)
+		Me.Controls.Add(Me.labB2)
+		xCenter(Me.labB2, verticalDist:=0.5)
+		Me.Controls.Add(Me.labB3)
+		xCenter(Me.labB3, verticalDist:=0.7)
 
 		Me.Controls.Add(contButton)
 		xCenter(contButton)
@@ -56,16 +68,35 @@ Public Class explicitForm
 
 	Private Sub contButton_Click(sender As Object, e As EventArgs) Handles contButton.Click
 
+		Dim otherName As String = "Frederick"
 		Me.contButton.Enabled = False
 
-		Me.posSRI1.reLabel("How helpful is  " & "NAME" & "  when you need advice?")
-		Me.posSRI2.reLabel("How helpful is  " & "NAME" & "  when you need understanding?")
-		Me.posSRI3.reLabel("How helpful is  " & "NAME" & "  when you need a favor?")
+		'For Each dataFrame()
 
+		With Me.labName
+			.Text = otherName
+			.Font = sansSerif25B
+			.Width = TextRenderer.MeasureText(.Text, sansSerif25B).Width
+			.Height = TextRenderer.MeasureText(.Text, sansSerif25B).Height
+		End With
 
-		Me.negSRI1.reLabel("How upsetting is  " & "NAME" & "  when you need advice?")
-		Me.negSRI2.reLabel("How upsetting is  " & "NAME" & "  when you need understanding?")
-		Me.negSRI3.reLabel("How upsetting is  " & "NAME" & "  when you need a favor?")
+		' Positive SRI
+
+		Me.labB1.reInit("How helpful is  " & otherName & "  when you need advice?")
+		Me.labB2.reInit("How helpful is  " & otherName & "  when you need understanding?")
+		Me.labB3.reInit("How helpful is  " & otherName & "  when you need a favor?")
+
+		' Negative SRI
+
+		Me.labB1.reInit("How upsetting is  " & otherName & "  when you need advice?")
+		Me.labB2.reInit("How upsetting is  " & otherName & "  when you need understanding?")
+		Me.labB3.reInit("How upsetting is  " & otherName & "  when you need a favor?")
+
+		' Other
+
+		Me.labB1.reInit("Wie positiv finden Sie " & otherName & "?" & vbCrLf & " Konzentrieren Sie sich für Ihr Urteil bitte nur auf die positiven Aspekte" & vbCrLf & "und ignorieren Sie mögliche negative Aspekte.", 0.5, "neutral", "sehr positiv")
+		Me.labB2.reInit("Wie negativ finden Sie " & otherName & "?" & vbCrLf & " Konzentrieren Sie sich für Ihr Urteil bitte nur auf die negativen Aspekte" & vbCrLf & "und ignorieren Sie mögliche positive Aspekte.", 0.5, "neutral", "sehr negativ")
+		Me.labB3.reInit("Wie hin- und hergerissen fühlen Sie sich angesichts " & otherName,, "überhaupt nicht", "sehr")
 
 
 	End Sub

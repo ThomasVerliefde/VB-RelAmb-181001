@@ -19,7 +19,7 @@ Public Class otherForm
 
 		Me.Controls.Add(Me.otherInstr)
 		xCenter(Me.otherInstr, 0.25)
-		Me.otherInstr.Rtf = My.Resources.ResourceManager.GetString("_1_other" & mainForm.firstNames)
+		Me.otherInstr.Rtf = My.Resources.ResourceManager.GetString("_1_other" & mainForm.firstOthers)
 
 		Me.Controls.Add(Me.contButton)
 		xCenter(Me.contButton, 0.8)
@@ -56,7 +56,7 @@ Public Class otherForm
 
 
 		ElseIf Me.otherPos.Count = 0 AndAlso Me.otherNeg.Count = 0 Then
-			Select Case mainForm.firstNames
+			Select Case mainForm.firstOthers
 				Case "Pos"
 					Me.otherPos.AddRange({Me.otherBox1.Text, Me.otherBox2.Text})
 					Me.otherInstr.Rtf = My.Resources.ResourceManager.GetString("_1_otherNeg")

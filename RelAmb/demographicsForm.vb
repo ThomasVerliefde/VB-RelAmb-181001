@@ -56,11 +56,11 @@ Public Class demographicsForm
 			MsgBox("Bitte geben Sie Ihr Studienfach an!", MsgBoxStyle.Critical, Title:="Fehler!")
 			Exit Sub
 		Else
-			mainForm.dataFrame("Age") = Me.ageText.Text.ToString
-			mainForm.dataFrame("Gender") = Me.genderBox.optionBox.Text.ToString
-			mainForm.dataFrame("Language") = Me.languageBox.optionBox.Text.ToString
-			mainForm.dataFrame("Handedness") = Me.handBox.optionBox.Text.ToString
-			mainForm.dataFrame("Study") = Me.studyText.Text.ToString
+			dataFrame("Age") = Me.ageText.Text.ToString
+			dataFrame("Gender") = Me.genderBox.optionBox.Text.ToString
+			dataFrame("Language") = Me.languageBox.optionBox.Text.ToString
+			dataFrame("Handedness") = Me.handBox.optionBox.Text.ToString
+			dataFrame("Study") = Me.studyText.Text.ToString
 
 			mainForm.instructionCount += 1
 			mainForm.contButton.PerformClick()

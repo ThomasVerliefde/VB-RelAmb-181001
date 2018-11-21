@@ -3,16 +3,13 @@
 Public Class mainForm
     Inherits Form
 
-    Public dataFrame As New Dictionary(Of String, String) 'main dataframe to save all our data, gets written out at the end of the experiment
-    Public instructionCount As New Integer 'main counter, to control the flow of the experiment; increases after each continuebutton press in this form
+	Public instructionCount As New Integer 'main counter, to control the flow of the experiment; increases after each continuebutton press in this form
 
     Friend WithEvents contButton As New continueButton 'main button, to advance the flow of the experiment
     Private ReadOnly instrText As New instructionBox 'main method of displaying the instructions to participants; disabled & readonly
 
-    Friend time As IClock = SystemClock.Instance 'NodaTime clock instance, which keeps time, at the start of every part, gets saved in a variable (see under)
-
-    'All NodaTime.Instant variables, to check starting points of each part
-    Private startT As Instant
+	'All NodaTime.Instant variables, to check starting points of each part
+	Private startT As Instant
     Private otherT As Instant
     Private practiceT As Instant
     Private experimentT As Instant
@@ -30,7 +27,7 @@ Public Class mainForm
 
     'Variable necessary for grabbing the correct instruction sheet, depending on whether the 'A' key is used to categorize positive adjectives, or for negative adjectives
     Friend keyAss As String
-    Friend firstNames As String
+    Friend firstOthers As String
 
     Friend otherPos As New List(Of String)
     Friend otherNeg As New List(Of String)
@@ -105,20 +102,20 @@ Public Class mainForm
 		Me.FormBorderStyle = FormBorderStyle.None
 		Me.BackColor = Color.White
 
-		explicitForm.ShowDialog()
+		'explicitForm.ShowDialog()
 
 
 
 
 
-		'subjectForm.ShowDialog()
+		subjectForm.ShowDialog()
 
-		'Me.Controls.Add(Me.instrText)
-		'xCenter(Me.instrText, 0.4)
-		'Me.instrText.Text = My.Resources.ResourceManager.GetString("_0_mainInstr")
+		Me.Controls.Add(Me.instrText)
+		xCenter(Me.instrText, 0.4)
+		Me.instrText.Text = My.Resources.ResourceManager.GetString("_0_mainInstr")
 
-		'Me.Controls.Add(Me.contButton)
-		'xCenter(Me.contButton)
+		Me.Controls.Add(Me.contButton)
+		xCenter(Me.contButton)
 
 
 
@@ -128,7 +125,7 @@ Public Class mainForm
 		Select Case Me.instructionCount
 			Case 0 'Start of Experiment
 				subjectForm.Dispose()
-				Me.startT = Me.time.GetCurrentInstant()
+				Me.startT = time.GetCurrentInstant()
 				Me.instrText.Text = My.Resources.ResourceManager.GetString("_1_otherInstr")
 
 				'Debug -> Check correct functioning "createPrimes" function
@@ -152,27 +149,27 @@ Public Class mainForm
 
 
 			Case 1 'Collecting Names of 'Significant Others'
-				Me.otherT = Me.time.GetCurrentInstant()
+				Me.otherT = time.GetCurrentInstant()
 				otherForm.ShowDialog()
 
 				Me.instrText.Text = My.Resources.ResourceManager.GetString("_2_practice" & Me.keyAss)
 			Case 2 'Practice Trials
-				Me.practiceT = Me.time.GetCurrentInstant()
+				Me.practiceT = time.GetCurrentInstant()
 				'practiceForm.ShowDialog()
 
 				Me.instrText.Text = My.Resources.ResourceManager.GetString("_3_experiment" & Me.keyAss)
 			Case 3 'Experiment Proper
-				Me.experimentT = Me.time.GetCurrentInstant()
+				Me.experimentT = time.GetCurrentInstant()
 				'expForm.ShowDialog()
 
 				Me.instrText.Text = My.Resources.ResourceManager.GetString("_4_explicitInstr")
 			Case 4 'Explicit Measurements of Ambivalence
-				Me.explicitT = Me.time.GetCurrentInstant()
+				Me.explicitT = time.GetCurrentInstant()
 				'explicitForm.ShowDialog()
 
 				Me.instrText.Text = My.Resources.ResourceManager.GetString("_5_demoInstr")
 			Case 5 'Demographic Information
-				Me.demographicsT = Me.time.GetCurrentInstant()
+				Me.demographicsT = time.GetCurrentInstant()
 				demographicsForm.ShowDialog()
 
 			Case 6 'End of Experiment
@@ -182,7 +179,7 @@ Public Class mainForm
 				Me.instrText.Font = New Font("Microsoft Sans Serif", 40)
 				'instrText.TextAlign = HorizontalAlignment.Center
 				Me.contButton.Text = "Abbrechen"
-				Me.endT = Me.time.GetCurrentInstant()
+				Me.endT = time.GetCurrentInstant()
 
 				Me.timeOther = Me.practiceT - Me.otherT
 				Me.timePractice = Me.experimentT - Me.practiceT
@@ -191,13 +188,13 @@ Public Class mainForm
 				Me.timeDemographics = Me.endT - Me.demographicsT
 				Me.timeTotal = Me.endT - Me.startT
 
-				Me.dataFrame("timeOther") = Me.timeOther.TotalMinutes.ToString
-				Me.dataFrame("timePractice") = Me.timePractice.TotalMinutes.ToString
-				Me.dataFrame("timeExperiment") = Me.timeExperiment.TotalMinutes.ToString
-				Me.dataFrame("timeExplicit") = Me.timeExplicit.TotalMinutes.ToString
-				Me.dataFrame("timeDemographics") = Me.timeDemographics.TotalMinutes.ToString
-				Me.dataFrame("timeTotal") = Me.timeTotal.TotalMinutes.ToString
-				Me.dataFrame("hostName") = Net.Dns.GetHostName()
+				dataFrame("timeOther") = Me.timeOther.TotalMinutes.ToString
+				dataFrame("timePractice") = Me.timePractice.TotalMinutes.ToString
+				dataFrame("timeExperiment") = Me.timeExperiment.TotalMinutes.ToString
+				dataFrame("timeExplicit") = Me.timeExplicit.TotalMinutes.ToString
+				dataFrame("timeDemographics") = Me.timeDemographics.TotalMinutes.ToString
+				dataFrame("timeTotal") = Me.timeTotal.TotalMinutes.ToString
+				dataFrame("hostName") = Net.Dns.GetHostName()
 
 				'' Copy of "Ende.vb"
 
@@ -211,7 +208,7 @@ Public Class mainForm
 				'dataFrame("RF_targetsDL") = rf6
 				'dataFrame("RF_primesBH") = rf7
 
-				saveCSV(Me.dataFrame, "Data_RelAmb_" & Net.Dns.GetHostName & ".csv")
+				saveCSV(dataFrame, "Data_RelAmb_" & Net.Dns.GetHostName & ".csv")
 
 			Case Else
 				Me.Close()
