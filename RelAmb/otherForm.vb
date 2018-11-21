@@ -5,8 +5,8 @@ Public Class otherForm
 	Private otherInstr As New instructionBox(horizontalDist:=0.5, verticalDist:=0.25)
 	Private WithEvents otherBox1 As New TextBox
 	Private WithEvents otherBox2 As New TextBox
-	Private otherPanel1 As New labelledBox(Me.otherBox1, "Name der signifikanten anderen 1:", 180)
-	Private otherPanel2 As New labelledBox(Me.otherBox2, "Name der signifikanten anderen 2:", 180)
+	Private otherPanel1 As New labelledBox(Me.otherBox1, "Name der signifikanten anderen 1:", boxWidth:=180)
+	Private otherPanel2 As New labelledBox(Me.otherBox2, "Name der signifikanten anderen 2:", boxWidth:=180)
 	Private WithEvents contButton As New continueButton
 	Private otherPos As New List(Of String)
 	Private otherNeg As New List(Of String)
@@ -42,8 +42,8 @@ Public Class otherForm
 		If Me.otherBox1.Text = "" OrElse Me.otherBox2.Text = "" OrElse
 			Not IsName(Me.otherBox1.Text) OrElse Not IsName(Me.otherBox2.Text) OrElse
 				Me.otherBox1.Text.Length < 2 OrElse Me.otherBox2.Text.Length < 2 OrElse
-			otherPos.Contains(Me.otherBox1.Text) OrElse otherNeg.Contains(Me.otherBox1.Text) OrElse
-				otherPos.Contains(Me.otherBox2.Text) OrElse otherNeg.Contains(Me.otherBox2.Text) OrElse
+			Me.otherPos.Contains(Me.otherBox1.Text) OrElse Me.otherNeg.Contains(Me.otherBox1.Text) OrElse
+				Me.otherPos.Contains(Me.otherBox2.Text) OrElse Me.otherNeg.Contains(Me.otherBox2.Text) OrElse
 				Me.otherBox1.Text = Me.otherBox2.Text Then
 			'Me.otherBox1.Text.Length > 14 OrElse Me.otherBox2.Text.Length > 14 OrElse
 			' this should be dealth with by the 'MaxLength' property
@@ -55,13 +55,13 @@ Public Class otherForm
 			Exit Sub
 
 
-		ElseIf otherPos.Count = 0 AndAlso otherNeg.Count = 0 Then
+		ElseIf Me.otherPos.Count = 0 AndAlso Me.otherNeg.Count = 0 Then
 			Select Case mainForm.firstNames
 				Case "Pos"
-					otherPos.AddRange({Me.otherBox1.Text, Me.otherBox2.Text})
+					Me.otherPos.AddRange({Me.otherBox1.Text, Me.otherBox2.Text})
 					Me.otherInstr.Rtf = My.Resources.ResourceManager.GetString("_1_otherNeg")
 				Case "Neg"
-					otherNeg.AddRange({Me.otherBox1.Text, Me.otherBox2.Text})
+					Me.otherNeg.AddRange({Me.otherBox1.Text, Me.otherBox2.Text})
 					Me.otherInstr.Rtf = My.Resources.ResourceManager.GetString("_1_otherPos")
 			End Select
 
@@ -69,13 +69,13 @@ Public Class otherForm
 			Me.otherBox2.Text = ""
 			Me.otherBox1.Select()
 
-		ElseIf otherPos.Count = 2 Then
+		ElseIf Me.otherPos.Count = 2 Then
 			mainForm.otherNeg.AddRange({Me.otherBox1.Text, Me.otherBox2.Text})
-			mainForm.otherPos.Concat(otherPos)
+			mainForm.otherPos.Concat(Me.otherPos)
 			Me.Close()
-		ElseIf otherNeg.Count = 2 Then
+		ElseIf Me.otherNeg.Count = 2 Then
 			mainForm.otherPos.AddRange({Me.otherBox1.Text, Me.otherBox2.Text})
-			mainForm.otherNeg.Concat(otherNeg)
+			mainForm.otherNeg.Concat(Me.otherNeg)
 			Me.Close()
 		End If
 

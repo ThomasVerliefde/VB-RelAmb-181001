@@ -7,73 +7,86 @@ Module mainModule
     Friend sansSerif20 = New Font("Microsoft Sans Serif", 20)
     Friend sansSerif14 = New Font("Microsoft Sans Serif", 14)
 
-	'Public Class selectionList
-	'	Inherits ListBox
-
-	'	Public Sub New(labelText As String, )
-
-	'	End Sub
-
-	'	Public Function isFilled()
-	'		Return If(, True, False)
-	'	End Function
-
-	'End Class
-
 	Public Class labelledList
 		Inherits Panel
 
-		Public Sub New(subjBox As ListBox, labelText As String, Optional boxWidth As Integer = 100, Optional fieldHeight As Integer = 50,
-				Optional fieldLeft As Integer = 250, Optional fieldTop As Integer = 250)
+		Public optionBox As New ComboBox()
 
-			Dim subjLabel As New Label()
+		Public Sub New(optionList As String(), labelText As String, Optional listWidth As Integer = 0, Optional fieldHeight As Integer = 50,
+				Optional fieldLeft As Integer = 250, Optional fieldTop As Integer = 250, Optional setBox As Integer = 0)
+
+			Dim optionLabel As New Label()
 			Dim labelWidth = TextRenderer.MeasureText(labelText, sansSerif20).Width
 
+			For Each item In optionList
+				Me.optionBox.Items.Add(item)
+				Dim itemWidth = TextRenderer.MeasureText(item, sansSerif20).Width
+				If (listWidth < itemWidth) Then
+					listWidth = itemWidth
+				End If
+			Next
+
 			Me.Location = New Point(fieldLeft, fieldTop)
-			Me.Size = New Size((labelWidth + boxWidth) * 1.1, fieldHeight)
+			Me.Size = New Size((labelWidth + listWidth + setBox) * 1.1, fieldHeight)
 			Me.BorderStyle = BorderStyle.None
 
-			subjBox.Location = New Point(labelWidth + 10, fieldHeight * 0.1)
-			subjBox.Text = ""
-			subjBox.Size = New Size(boxWidth, fieldHeight)
-			subjBox.Font = sansSerif20
+			If setBox = 0 Then
+				optionBox.Location = New Point(labelWidth + 10, fieldTop * 0.025)
+			Else
+				optionBox.Location = New Point(setBox, fieldTop * 0.025)
+			End If
+			Me.optionBox.Size = New Size(listWidth * 1.2, fieldHeight)
+			Me.optionBox.Font = sansSerif20
+			Me.optionBox.DropDownStyle = ComboBoxStyle.DropDownList
 
-			subjLabel.Location = New Point(0, fieldHeight * 0.1)
-			subjLabel.Size = New Size(labelWidth, fieldHeight)
-			subjLabel.Text = labelText
-			subjLabel.Font = sansSerif20
+			optionLabel.Location = New Point(0, fieldTop * 0.025)
+			optionLabel.Size = New Size(labelWidth, fieldHeight)
+			optionLabel.Text = labelText
+			optionLabel.Font = sansSerif20
 
-			Me.Controls.Add(subjBox)
-			Me.Controls.Add(subjLabel)
+			Me.Controls.Add(Me.optionBox)
+			Me.Controls.Add(optionLabel)
 
 		End Sub
+
+		Public Function madeSelection()
+			If optionBox.Text = "" Then
+				Return False
+			End If
+			Return True
+		End Function
+
 
 	End Class
 
 	Public Class labelledBox
         Inherits Panel
 
-		Public Sub New(subjBox As TextBox, labelText As String, Optional boxWidth As Integer = 100, Optional fieldHeight As Integer = 50,
-				Optional fieldLeft As Integer = 250, Optional fieldTop As Integer = 250)
+		Public Sub New(textBox As TextBox, labelText As String, Optional boxWidth As Integer = 100, Optional fieldHeight As Integer = 50,
+				Optional fieldLeft As Integer = 250, Optional fieldTop As Integer = 250, Optional setBox As Integer = 0)
 
 			Dim subjLabel As New Label()
 			Dim labelWidth = TextRenderer.MeasureText(labelText, sansSerif20).Width
 
 			Me.Location = New Point(fieldLeft, fieldTop)
-			Me.Size = New Size((labelWidth + boxWidth) * 1.1, fieldHeight)
+			Me.Size = New Size((labelWidth + boxWidth + setBox) * 1.1, fieldHeight)
 			Me.BorderStyle = BorderStyle.None
 
-			subjBox.Location = New Point(labelWidth + 10, fieldHeight * 0.1)
-			subjBox.Text = ""
-			subjBox.Size = New Size(boxWidth, fieldHeight)
-			subjBox.Font = sansSerif20
+			If setBox = 0 Then
+				textBox.Location = New Point(labelWidth + 10, fieldTop * 0.025)
+			Else
+				textBox.Location = New Point(setBox, fieldTop * 0.025)
+			End If
+			textBox.Text = ""
+			textBox.Size = New Size(boxWidth, fieldHeight)
+			textBox.Font = sansSerif20
 
-			subjLabel.Location = New Point(0, fieldHeight * 0.1)
+			subjLabel.Location = New Point(0, fieldTop * 0.025)
 			subjLabel.Size = New Size(labelWidth, fieldHeight)
 			subjLabel.Text = labelText
 			subjLabel.Font = sansSerif20
 
-			Me.Controls.Add(subjBox)
+			Me.Controls.Add(textBox)
 			Me.Controls.Add(subjLabel)
 
 		End Sub
@@ -117,20 +130,29 @@ Module mainModule
     End Class
 
 
-    Public Sub xCenter(any As Object, Optional verticalDist As Double = 0.85, Optional horizontalDist As Double = 0.5, Optional nudgeLeft As Integer = 0, Optional nudgeTop As Integer = 0)
+	Public Sub xCenter(any As Object, Optional verticalDist As Double = 0.85, Optional horizontalDist As Double = 0.5, Optional setLeft As Integer = 0, Optional setTop As Integer = 0)
 
-        Dim formWidth As Integer = Form.ActiveForm.DesktopBounds.Width
-        Dim formHeight As Integer = Form.ActiveForm.DesktopBounds.Height
+		Dim formWidth As Integer = Form.ActiveForm.DesktopBounds.Width
+		Dim formHeight As Integer = Form.ActiveForm.DesktopBounds.Height
 
-        Try
-            any.Left = (horizontalDist * formWidth) - (any.Width / 2) - nudgeLeft
-            any.Top = (verticalDist * formHeight) - (any.Height / 2) - nudgeTop
-        Catch ex As Exception
-        End Try
+		Try
+			If setLeft = 0 Then
+				any.Left = (horizontalDist * formWidth) - (any.Width / 2)
+			Else
+				any.Left = setLeft
+			End If
+			If setTop = 0 Then
+				any.Top = (verticalDist * formHeight) - (any.Height / 2)
+			Else
+				any.Top = setTop
+			End If
 
-    End Sub
+		Catch ex As Exception
+		End Try
 
-    Public Function setCond(subjN As Integer)
+	End Sub
+
+	Public Function setCond(subjN As Integer)
         Return Val(My.Resources.BlockRandomisation((subjN - 1) * 2))
     End Function
 

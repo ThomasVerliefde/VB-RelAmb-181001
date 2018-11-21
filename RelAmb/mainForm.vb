@@ -94,18 +94,18 @@ Public Class mainForm
     Public rf7 As String
     Public rf8 As String
 
-    '########################################################'
+	'########################################################'
 
 
-    Private Sub formLoad(sender As Object, e As EventArgs) Handles MyBase.Load
+
+	Private Sub formLoad(sender As Object, e As EventArgs) Handles MyBase.Load
 
 		Me.WindowState = FormWindowState.Maximized
 		Me.FormBorderStyle = FormBorderStyle.None
 		Me.BackColor = Color.White
 
-		'If Not dataFrame.ContainsKey("Subject") Then
 		subjectForm.ShowDialog()
-		'End If
+
 
 		Me.Controls.Add(Me.instrText)
 		xCenter(Me.instrText, 0.4)
@@ -113,6 +113,8 @@ Public Class mainForm
 
 		Me.Controls.Add(Me.contButton)
 		xCenter(Me.contButton)
+
+
 
 	End Sub
 
@@ -165,9 +167,11 @@ Public Class mainForm
 				Me.instrText.Text = My.Resources.ResourceManager.GetString("_5_demoInstr")
 			Case 5 'Demographic Information
 				Me.demographicsT = Me.time.GetCurrentInstant()
-				'demoForm.ShowDialog()
+				demographicsForm.ShowDialog()
 
 			Case 6 'End of Experiment
+				demographicsForm.Dispose()
+
 				Me.instrText.Text = My.Resources.ResourceManager.GetString("_6_endInstr")
 				Me.instrText.Font = New Font("Microsoft Sans Serif", 40)
 				'instrText.TextAlign = HorizontalAlignment.Center

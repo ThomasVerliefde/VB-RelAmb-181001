@@ -1,9 +1,9 @@
 ﻿Public Class subjectForm
     Inherits Form
 
-    Private WithEvents contButton As New continueButton(Txt:="Bestätigen")
-    Private WithEvents subjBox As New TextBox
-	Private ReadOnly subjPanel As New labelledBox(Me.subjBox, "VPNr:")
+	Private WithEvents contButton As New continueButton(Txt:="Bestätigen")
+	Private WithEvents textBox As New TextBox
+	Private subjPanel As New labelledBox(textBox, "VPNr:")
 
 	Private Sub formLoad(sender As Object, e As EventArgs) Handles MyBase.Load
 
@@ -24,8 +24,8 @@
 		Me.Controls.Add(Me.subjPanel)
 		xCenter(Me.subjPanel, 0.4)
 
-		Me.subjBox.MaxLength = 3
-		Me.subjBox.Select()
+		Me.textBox.MaxLength = 3
+		Me.textBox.Select()
 
 	End Sub
 
@@ -34,11 +34,12 @@
 
 	Private Sub contButton_Click(sender As Object, e As EventArgs) Handles contButton.Click
 
-		If Me.subjBox.Text = "" OrElse Val(Me.subjBox.Text) < 1 OrElse Val(Me.subjBox.Text) > 500 Then 'Interestingly, Val("these are letters") returns 0, and results in error
+		If Me.textBox.Text = "" OrElse Val(Me.textBox.Text) < 1 OrElse Val(Me.textBox.Text) > 500 Then
+			'Interestingly, Val("these are letters") returns 0, and results in error
 			MsgBox("Bitte geben Sie eine korrekte VPNr ein!", MsgBoxStyle.Critical, Title:="Fehler!")
 			Exit Sub
 		Else
-			Me.subjN = CInt(Me.subjBox.Text)
+			Me.subjN = CInt(Me.textBox.Text)
 			Me.condN = setCond(Me.subjN)
 			Select Case Me.condN
 				Case 0
@@ -60,20 +61,19 @@
 			mainForm.dataFrame("FirstNames") = mainForm.firstNames
 		End If
 
-		'mainForm.contButton.PerformClick()
 		Me.Close()
 	End Sub
 
-	Private Sub confirmEnter(sender As Object, e As KeyEventArgs) Handles subjBox.KeyDown
+	Private Sub confirmEnter(sender As Object, e As KeyEventArgs) Handles textBox.KeyDown
 		If e.KeyCode = Keys.Enter Then
 			Me.contButton.PerformClick()
 		End If
-    End Sub
+	End Sub
 
-    Private Sub suppressNonNumeric(sender As Object, e As KeyPressEventArgs) Handles subjBox.KeyPress
-        If e.KeyChar <> ControlChars.Back AndAlso Not IsNumeric(e.KeyChar) Then
-            e.Handled = True
-        End If
-    End Sub
+	Private Sub suppressNonNumeric(sender As Object, e As KeyPressEventArgs) Handles textBox.KeyPress
+		If e.KeyChar <> ControlChars.Back AndAlso Not IsNumeric(e.KeyChar) Then
+			e.Handled = True
+		End If
+	End Sub
 
 End Class
