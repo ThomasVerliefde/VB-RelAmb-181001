@@ -74,7 +74,7 @@ Module mainModule
 
 		End Sub
 
-		Public Sub reInit(newLabel As String, Optional labelTop As Integer = 1, Optional minLab As String = "überhaupt nicht", Optional maxLab As String = "sehr")
+		Public Sub reInit(newLabel As String, Optional trackBar As TrackBar = Nothing, Optional labelTop As Integer = 1, Optional minLab As String = "überhaupt nicht", Optional maxLab As String = "sehr")
 
 			With Me.barLabel
 				.Text = newLabel
@@ -95,6 +95,11 @@ Module mainModule
 				.Width = TextRenderer.MeasureText(maxLab, sansSerif14).Width
 				.Left = Me.setLeft + Me.barWidth - .Width / 2
 			End With
+
+			Try
+				trackBar.Value = trackBar.Minimum
+			Catch ex As Exception
+			End Try
 
 		End Sub
 
