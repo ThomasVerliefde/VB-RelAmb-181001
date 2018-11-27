@@ -134,19 +134,14 @@ Public Class explicitForm
 			Me.B3 = False
 			Me.contButton.Enabled = False
 
-			Me.labB1.Visible = True
-			Me.labB2.Visible = True
-			Me.labB3.Visible = True
-			Me.numBox.Visible = False
-
 			Select Case Me.questionCount Mod 4
 
 				Case 0
 
-					'Me.Controls.Remove(Me.numBox)
-					'Me.Controls.Add(Me.labB1)
-					'Me.Controls.Add(Me.labB2)
-					'Me.Controls.Add(Me.labB3)
+					Me.labB1.Visible = True
+					Me.labB2.Visible = True
+					Me.labB3.Visible = True
+					Me.numBox.Visible = False
 
 					' Positive SRI
 
@@ -172,23 +167,17 @@ Public Class explicitForm
 
 				Case 3 ' How many do you know?
 
-					'Me.Controls.Remove(Me.labB1)
-					'Me.Controls.Remove(Me.labB2)
-					'Me.Controls.Remove(Me.labB3)
-
 					Me.labB1.Visible = False
 					Me.labB2.Visible = False
 					Me.labB3.Visible = False
 					Me.numBox.Visible = True
-					'Me.Controls.Add(Me.numBox)
+
 					Me.numText.Text = ""
 					Me.numText.Focus()
 
 					Me.otherCount += 1
 
 			End Select
-
-
 
 			Me.questionCount += 1
 
@@ -204,11 +193,7 @@ Public Class explicitForm
 
 		Select Case DirectCast(sender, TrackBar).Name
 			Case "B1"
-				'If Me.initB1 Then
 				Me.B1 = True
-				'Else
-				'	Me.initB1 = True
-				'End If
 
 			Case "B2"
 				Me.B2 = True

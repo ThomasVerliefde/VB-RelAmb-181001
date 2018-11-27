@@ -24,6 +24,8 @@ Module mainModule
 		Private ReadOnly setLeft = 150
 		Private ReadOnly setTop = 150
 
+		Private ReadOnly defaultVal = 3
+
 		Public Sub New(trackbar As TrackBar, Optional barText As String = "", Optional minLab As String = "überhaupt nicht", Optional maxLab As String = "sehr", Optional minInt As Integer = 1, Optional maxInt As Integer = 6)
 
 			With Me.barLabel
@@ -56,7 +58,7 @@ Module mainModule
 
 			trackbar.Minimum = minInt
 			trackbar.Maximum = maxInt
-			trackbar.Value = minInt
+			trackbar.Value = defaultVal
 			trackbar.Size = New Size(Me.barWidth, Me.barHeight)
 			trackbar.LargeChange = 1
 			trackbar.SmallChange = 1
@@ -97,7 +99,7 @@ Module mainModule
 			End With
 
 			Try
-				trackBar.Value = trackBar.Minimum
+				trackBar.Value = defaultVal
 			Catch ex As Exception
 			End Try
 
