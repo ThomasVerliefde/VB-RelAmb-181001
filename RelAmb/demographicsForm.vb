@@ -20,7 +20,7 @@ Public Class demographicsForm
 		Me.ageText.MaxLength = 2
 
 		Dim i As Double = 0.25
-		For Each item In {ageBox, genderBox, languageBox, handBox, studyBox}
+		For Each item In {Me.ageBox, Me.genderBox, Me.languageBox, Me.handBox, Me.studyBox}
 			Me.Controls.Add(item)
 			xCenter(item, verticalDist:=i, horizontalDist:=0, setLeft:=300)
 			i += 0.1
@@ -52,7 +52,7 @@ Public Class demographicsForm
 		ElseIf Not Me.handBox.madeSelection Then
 			MsgBox("Bitte geben Sie Ihre Händigkeit an!", MsgBoxStyle.Critical, Title:="Fehler!")
 			Exit Sub
-		ElseIf studyText.Text = "" Then
+		ElseIf Me.studyText.Text = "" Then
 			MsgBox("Bitte geben Sie Ihr Studienfach an!", MsgBoxStyle.Critical, Title:="Fehler!")
 			Exit Sub
 		Else

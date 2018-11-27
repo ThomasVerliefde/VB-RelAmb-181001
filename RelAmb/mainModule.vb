@@ -69,8 +69,8 @@ Module mainModule
 
 			Me.Controls.Add(trackbar)
 			Me.Controls.Add(Me.barLabel)
-			Me.Controls.Add(minLabel)
-			Me.Controls.Add(maxLabel)
+			Me.Controls.Add(Me.minLabel)
+			Me.Controls.Add(Me.maxLabel)
 
 		End Sub
 
@@ -81,7 +81,7 @@ Module mainModule
 				.Width = TextRenderer.MeasureText(.Text, sansSerif20).Width
 				.Height = TextRenderer.MeasureText(.Text, sansSerif20).Height
 				.Left = Me.setLeft + (Me.barWidth - .Width) / 2
-				.Top = (setTop - 75) * labelTop
+				.Top = (Me.setTop - 75) * labelTop
 			End With
 
 			With Me.minLabel
@@ -98,14 +98,7 @@ Module mainModule
 
 		End Sub
 
-
-
-
-
 	End Class
-
-
-
 
 	Public Class labelledList
 		Inherits Panel
@@ -161,10 +154,12 @@ Module mainModule
 	Public Class labelledBox
 		Inherits Panel
 
+		Public subjLabel As New Label()
+
 		Public Sub New(textBox As TextBox, labelText As String, Optional boxWidth As Integer = 100, Optional fieldHeight As Integer = 50,
 				Optional fieldLeft As Integer = 250, Optional fieldTop As Integer = 250, Optional setBox As Integer = 0)
 
-			Dim subjLabel As New Label()
+			'Dim subjLabel As New Label()
 			Dim labelWidth = TextRenderer.MeasureText(labelText, sansSerif20).Width
 
 			Me.Location = New Point(fieldLeft, fieldTop)
@@ -180,13 +175,13 @@ Module mainModule
 			textBox.Size = New Size(boxWidth, fieldHeight)
 			textBox.Font = sansSerif20
 
-			subjLabel.Location = New Point(0, fieldTop * 0.025)
-			subjLabel.Size = New Size(labelWidth, fieldHeight)
-			subjLabel.Text = labelText
-			subjLabel.Font = sansSerif20
+			Me.subjLabel.Location = New Point(0, fieldTop * 0.025)
+			Me.subjLabel.Size = New Size(labelWidth, fieldHeight)
+			Me.subjLabel.Text = labelText
+			Me.subjLabel.Font = sansSerif20
 
 			Me.Controls.Add(textBox)
-			Me.Controls.Add(subjLabel)
+			Me.Controls.Add(Me.subjLabel)
 
 		End Sub
 

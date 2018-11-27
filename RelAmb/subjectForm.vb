@@ -3,7 +3,9 @@
 
 	Private WithEvents contButton As New continueButton(Txt:="Bestätigen")
 	Private WithEvents textBox As New TextBox
-	Private subjPanel As New labelledBox(textBox, "VPNr:")
+	Private subjPanel As New labelledBox(Me.textBox, "VPNr:")
+	Private condN As Integer
+	Private subjN As Integer
 
 	Private Sub formLoad(sender As Object, e As EventArgs) Handles MyBase.Load
 
@@ -28,9 +30,6 @@
 		Me.textBox.Select()
 
 	End Sub
-
-	Private condN As Integer
-	Private subjN As Integer
 
 	Private Sub contButton_Click(sender As Object, e As EventArgs) Handles contButton.Click
 
@@ -59,9 +58,8 @@
 			dataFrame("Subject") = Me.subjN.ToString
 			dataFrame("Key") = mainForm.keyAss
 			dataFrame("FirstOthers") = mainForm.firstOthers
+			Me.Close()
 		End If
-
-		Me.Close()
 	End Sub
 
 	Private Sub confirmEnter(sender As Object, e As KeyEventArgs) Handles textBox.KeyDown

@@ -5,8 +5,8 @@ Public Class otherForm
 	Private otherInstr As New instructionBox(horizontalDist:=0.5, verticalDist:=0.25)
 	Private WithEvents otherBox1 As New TextBox
 	Private WithEvents otherBox2 As New TextBox
-	Private otherPanel1 As New labelledBox(Me.otherBox1, "Name der signifikanten anderen 1:", boxWidth:=180)
-	Private otherPanel2 As New labelledBox(Me.otherBox2, "Name der signifikanten anderen 2:", boxWidth:=180)
+	Private otherPanel1 As New labelledBox(Me.otherBox1, "Name des 1. signifikanten anderen :", boxWidth:=180)
+	Private otherPanel2 As New labelledBox(Me.otherBox2, "Name des 2. signifikanten anderen :", boxWidth:=180)
 	Private WithEvents contButton As New continueButton
 	Private otherPos As New List(Of String)
 	Private otherNeg As New List(Of String)
@@ -50,8 +50,7 @@ Public Class otherForm
 
 			MsgBox("Bitte geben Sie gültige Namen ein!" & vbCrLf &
 					"[Namen sollten zwischen 2 und 14 Buchstaben lang sein," & vbCrLf &
-					"nur Buchstaben enthalten (Umlaute und Bindestriche sind erlaubt), und unverwechselbar sein.]" _
-					& vbCrLf, MsgBoxStyle.Critical, Title:="Fehler!")
+					"nur Buchstaben enthalten (Umlaute und Bindestriche sind erlaubt), und unverwechselbar sein.]", MsgBoxStyle.Critical, Title:="Fehler!")
 			Exit Sub
 
 
@@ -69,14 +68,31 @@ Public Class otherForm
 			Me.otherBox2.Text = ""
 			Me.otherBox1.Select()
 
-		ElseIf Me.otherPos.Count = 2 Then
-			mainForm.otherNeg.AddRange({Me.otherBox1.Text, Me.otherBox2.Text})
-			mainForm.otherPos.Concat(Me.otherPos)
+		ElseIf Me.otherPos.Count = 2 OrElse Me.otherNeg.Count = 2 Then
+			Select Case mainForm.firstOthers
+				Case "Pos"
+					mainForm.otherNeg.AddRange({Me.otherBox1.Text, Me.otherBox2.Text})
+					mainForm.otherPos = Me.otherPos
+				Case "Neg"
+					mainForm.otherPos.AddRange({Me.otherBox1.Text, Me.otherBox2.Text})
+					mainForm.otherNeg = Me.otherNeg
+			End Select
+
+			For Each item In mainForm.otherPos
+				Console.WriteLine(item & " Pos")
+			Next
+
+			For Each item In mainForm.otherNeg
+				Console.WriteLine(item & " Neg")
+			Next
+
+			dataFrame("otherPos1") = mainForm.otherPos(0).ToString
+			dataFrame("otherPos2") = mainForm.otherPos(1).ToString
+			dataFrame("otherNeg1") = mainForm.otherNeg(0).ToString
+			dataFrame("otherNeg2") = mainForm.otherNeg(1).ToString
+
 			Me.Close()
-		ElseIf Me.otherNeg.Count = 2 Then
-			mainForm.otherPos.AddRange({Me.otherBox1.Text, Me.otherBox2.Text})
-			mainForm.otherNeg.Concat(Me.otherNeg)
-			Me.Close()
+
 		End If
 
 	End Sub

@@ -34,64 +34,64 @@ Public Class mainForm
 
 
 
-    '####################################'
-    'Imported CODE - Not Yet Consolidated'
+	'   '####################################'
+	'   'Imported CODE - Not Yet Consolidated'
 
-    'Variablen für die Übungsphasen
+	'   'Variablen für die Übungsphasen
 
-    Public practiceBH = New String(7, 3) {} ' Berger & Hütter Paradigma
+	'   Public practiceBH = New String(7, 3) {} ' Berger & Hütter Paradigma
 
-    ' Aufgespaltete RF für Datenspeicherung
+	'   ' Aufgespaltete RF für Datenspeicherung
 
-    Public practiceBHprimes = New String(7) {}
-    Public practiceBHtargets = New String(7) {}
+	'   Public practiceBHprimes = New String(7) {}
+	'   Public practiceBHtargets = New String(7) {}
 
-    Public practiceposadj = New String() {"geduldig", "zärtlich", "humorvoll", "fleissig"}
-    Public practicenegadj = New String() {"boshaft", "korrupt", "ungerecht", "gehässig"}
+	'   Public practiceposadj = New String() {"geduldig", "zärtlich", "humorvoll", "fleissig"}
+	'   Public practicenegadj = New String() {"boshaft", "korrupt", "ungerecht", "gehässig"}
 
-    Public practiceposnoun = New String() {"Kuss", "Idee", "Chance"}
-    Public practicenegnoun = New String() {"Mord", "Angst", "Sklave"}
-    Public practiceambnoun = New String() {"Arbeit", "Macht", "Diät"}
-
-
-    ' Variablen für affektives Priming deLiver/ Berger & Hütter
-
-    ' Wortmaterial Nomen
-    Public nounspos = New String() {"Mut", "Lust", "Glück", "Freude"}
-    Public nounsneg = New String() {"Leid", "Ärger", "Furcht", "Trauer"}
-    Public nounsnonwords = New String() {"hdreeh", "izmcsg", "tdkesu", "unerit", "ilbuel", "rdnslb", "ursdcu", "nsedni"}
-    Public nounsamb = New String() {"Karriere", "Regulierung", "Arztbesuch", "Protest", "Alkohol", "Feuer", "Smartphone", "Stolz"}
-
-    ' Wortmaterial Adjektive
-    Public adjpos = New String() {"frei", "klug", "treu", "gesund", "beliebt", "ehrlich", "herzlich", "friedlich"}
-    Public adjneg = New String() {"blöd", "dumm", "fies", "brutal", "grausam", "neidisch", "peinlich", "widerlich"}
-    Public adjnonwords = New String() {"takatg", "ineifk", "aahrte", "ndwrow", "rurtum", "worenl", "iasweg", "enoers"}
-
-    ' Liste mit allen Nomen für die expliziten Ratings
-    ' Keine Nonwords!
-    Public nouns = New String(15, 1) {}
+	'   Public practiceposnoun = New String() {"Kuss", "Idee", "Chance"}
+	'   Public practicenegnoun = New String() {"Mord", "Angst", "Sklave"}
+	'   Public practiceambnoun = New String() {"Arbeit", "Macht", "Diät"}
 
 
+	'   ' Variablen für affektives Priming deLiver/ Berger & Hütter
+
+	'   ' Wortmaterial Nomen
+	'   Public nounspos = New String() {"Mut", "Lust", "Glück", "Freude"}
+	'   Public nounsneg = New String() {"Leid", "Ärger", "Furcht", "Trauer"}
+	'   Public nounsnonwords = New String() {"hdreeh", "izmcsg", "tdkesu", "unerit", "ilbuel", "rdnslb", "ursdcu", "nsedni"}
+	'   Public nounsamb = New String() {"Karriere", "Regulierung", "Arztbesuch", "Protest", "Alkohol", "Feuer", "Smartphone", "Stolz"}
+
+	'   ' Wortmaterial Adjektive
+	'   Public adjpos = New String() {"frei", "klug", "treu", "gesund", "beliebt", "ehrlich", "herzlich", "friedlich"}
+	'   Public adjneg = New String() {"blöd", "dumm", "fies", "brutal", "grausam", "neidisch", "peinlich", "widerlich"}
+	'   Public adjnonwords = New String() {"takatg", "ineifk", "aahrte", "ndwrow", "rurtum", "worenl", "iasweg", "enoers"}
+
+	'   ' Liste mit allen Nomen für die expliziten Ratings
+	'   ' Keine Nonwords!
+	'   Public nouns = New String(15, 1) {}
 
 
-    ' Material Berger & Hütter (96 Trials)
-    ' PRIMES = NOUNS: amb (8), neutral (8), pos (4), neg (4)
-    ' TARGETS = ADJECTIVES: pos (8), neg (8)
-    ' 24 Primes * 2 Target-Types = 48 Trials * 2 (höhere Reliabilität)
-    Public trialsBH = New String(95, 3) {}
-    Public primesBH = New String(95) {}
-    Public targetsBH = New String(95) {}
 
-    Public rf1 As String ' Practice trials primes
-    Public rf2 As String ' Practice trials targets
-    Public rf3 As String ' Test trials primes
-    Public rf4 As String ' Test trials targets
-    Public rf5 As String ' ...
-    Public rf6 As String
-    Public rf7 As String
-    Public rf8 As String
 
-	'########################################################'
+	'   ' Material Berger & Hütter (96 Trials)
+	'   ' PRIMES = NOUNS: amb (8), neutral (8), pos (4), neg (4)
+	'   ' TARGETS = ADJECTIVES: pos (8), neg (8)
+	'   ' 24 Primes * 2 Target-Types = 48 Trials * 2 (höhere Reliabilität)
+	'   Public trialsBH = New String(95, 3) {}
+	'   Public primesBH = New String(95) {}
+	'   Public targetsBH = New String(95) {}
+
+	'   Public rf1 As String ' Practice trials primes
+	'   Public rf2 As String ' Practice trials targets
+	'   Public rf3 As String ' Test trials primes
+	'   Public rf4 As String ' Test trials targets
+	'   Public rf5 As String ' ...
+	'   Public rf6 As String
+	'   Public rf7 As String
+	'   Public rf8 As String
+
+	''########################################################'
 
 
 
@@ -128,32 +128,49 @@ Public Class mainForm
 				Me.startT = time.GetCurrentInstant()
 				Me.instrText.Text = My.Resources.ResourceManager.GetString("_1_otherInstr")
 
-				'Debug -> Check correct functioning "createPrimes" function
-				Dim otherPos = New List(Of String)({"Pos", "Pösitiv"})
-				Dim otherNeg = New List(Of String)({"Negatiev", "Nega"})
-				'Dim posList = New List(Of String)({"3P", "4P", "5P", "6P"})
-				'Dim negList = New List(Of String)({"3N", "4N", "5N", "6N"})
-				'Dim strList = New List(Of String)({"AAA", "BBB", "CCC", "DDD", "AAAA", "BBBB", "CCCC", "DDDD", "AAAAA", "BBBBB", "CCCCC", "DDDDD", "AAAAAA", "BBBBBB", "CCCCCC", "DDDDDD"})
-				Dim posList = New List(Of String)(My.Resources.experimentPrime_Pos.Split(" "))
-				Dim negList = New List(Of String)(My.Resources.experimentPrime_Neg.Split(" "))
-				Dim strList = New List(Of String)(My.Resources.experimentPrime_Str.Split(" "))
-				Dim test = createPrimes(otherPos, otherNeg, posList, negList, strList)
+				''Debug -> Check correct functioning "createPrimes" function
+				'Dim otherPos = New List(Of String)({"Pos", "Pösitiv"})
+				'Dim otherNeg = New List(Of String)({"Negatiev", "Nega"})
+				''Dim posList = New List(Of String)({"3P", "4P", "5P", "6P"})
+				''Dim negList = New List(Of String)({"3N", "4N", "5N", "6N"})
+				''Dim strList = New List(Of String)({"AAA", "BBB", "CCC", "DDD", "AAAA", "BBBB", "CCCC", "DDDD", "AAAAA", "BBBBB", "CCCCC", "DDDDD", "AAAAAA", "BBBBBB", "CCCCCC", "DDDDDD"})
+				'Dim posList = New List(Of String)(My.Resources.experimentPrime_Pos.Split(" "))
+				'Dim negList = New List(Of String)(My.Resources.experimentPrime_Neg.Split(" "))
+				'Dim strList = New List(Of String)(My.Resources.experimentPrime_Str.Split(" "))
+				'Dim test = createPrimes(otherPos, otherNeg, posList, negList, strList)
 
-				For Each a In test
-					For Each b In a
-						Console.Write(b + " ")
-					Next
-					Console.WriteLine("$")
-				Next
-				'End Debug
+				'For Each a In test
+				'	For Each b In a
+				'		Console.Write(b + " ")
+				'	Next
+				'	Console.WriteLine("$")
+				'Next
+				''End Debug
 
 
 			Case 1 'Collecting Names of 'Significant Others'
 				Me.otherT = time.GetCurrentInstant()
 				otherForm.ShowDialog()
+				otherForm.Dispose()
+
+				' Create All Practice & Experiment Trials
+				' For the Practice trials, get a set of X*2 othernames (removing othernames already suggested by the participant, then randomly choosing)
+
+
+
+
+
+
 
 				Me.instrText.Text = My.Resources.ResourceManager.GetString("_2_practice" & Me.keyAss)
 			Case 2 'Practice Trials
+
+				explicitForm.ShowDialog()
+
+
+
+
+
 				Me.practiceT = time.GetCurrentInstant()
 				'practiceForm.ShowDialog()
 
