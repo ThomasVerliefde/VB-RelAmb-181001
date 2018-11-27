@@ -148,8 +148,6 @@ Public Class explicitForm
 					'Me.Controls.Add(Me.labB2)
 					'Me.Controls.Add(Me.labB3)
 
-					'Shit's still inconsistent. Need to rework the checking whether everything has been touched...
-
 					' Positive SRI
 
 					Me.labB1.reInit("How helpful is " & Me.otherName & " when you need advice?", Me.trackB1)
@@ -198,7 +196,7 @@ Public Class explicitForm
 
 	End Sub
 
-	Private Sub enableTrack(sender As Object, e As EventArgs) Handles trackB1.GotFocus, trackB2.GotFocus, trackB3.GotFocus
+	Private Sub enableTrack(sender As Object, e As EventArgs) Handles trackB1.MouseDown, trackB2.MouseDown, trackB3.MouseDown
 
 		Console.WriteLine(sender)
 
