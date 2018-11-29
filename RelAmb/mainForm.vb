@@ -102,12 +102,6 @@ Public Class mainForm
 		Me.FormBorderStyle = FormBorderStyle.None
 		Me.BackColor = Color.White
 
-		'explicitForm.ShowDialog()
-
-
-
-
-
 		subjectForm.ShowDialog()
 
 		Me.Controls.Add(Me.instrText)
@@ -116,8 +110,6 @@ Public Class mainForm
 
 		Me.Controls.Add(Me.contButton)
 		xCenter(Me.contButton)
-
-
 
 	End Sub
 
@@ -128,24 +120,7 @@ Public Class mainForm
 				Me.startT = time.GetCurrentInstant()
 				Me.instrText.Text = My.Resources.ResourceManager.GetString("_1_otherInstr")
 
-				''Debug -> Check correct functioning "createPrimes" function
-				'Dim otherPos = New List(Of String)({"Pos", "Pösitiv"})
-				'Dim otherNeg = New List(Of String)({"Negatiev", "Nega"})
-				''Dim posList = New List(Of String)({"3P", "4P", "5P", "6P"})
-				''Dim negList = New List(Of String)({"3N", "4N", "5N", "6N"})
-				''Dim strList = New List(Of String)({"AAA", "BBB", "CCC", "DDD", "AAAA", "BBBB", "CCCC", "DDDD", "AAAAA", "BBBBB", "CCCCC", "DDDDD", "AAAAAA", "BBBBBB", "CCCCCC", "DDDDDD"})
-				'Dim posList = New List(Of String)(My.Resources.experimentPrime_Pos.Split(" "))
-				'Dim negList = New List(Of String)(My.Resources.experimentPrime_Neg.Split(" "))
-				'Dim strList = New List(Of String)(My.Resources.experimentPrime_Str.Split(" "))
-				'Dim test = createPrimes(otherPos, otherNeg, posList, negList, strList)
 
-				'For Each a In test
-				'	For Each b In a
-				'		Console.Write(b + " ")
-				'	Next
-				'	Console.WriteLine("$")
-				'Next
-				''End Debug
 
 
 			Case 1 'Collecting Names of 'Significant Others'
@@ -157,15 +132,45 @@ Public Class mainForm
 				' For the Practice trials, get a set of X*2 othernames (removing othernames already suggested by the participant, then randomly choosing)
 
 
+				''Debug -> Check correct functioning "createPrimes" function
+				'Dim otherPos = New List(Of String)({"Pos", "Pösitiv"})
+				'Dim otherNeg = New List(Of String)({"Negatiev", "Nega"})
 
+				Dim posList = New List(Of String)(My.Resources.experimentPrime_Pos.Split(" "))
+				Dim negList = New List(Of String)(My.Resources.experimentPrime_Neg.Split(" "))
+				Dim strList = New List(Of String)(My.Resources.experimentPrime_Str.Split(" "))
+				Dim primesList = createPrimes(Me.otherPos, Me.otherNeg, posList, negList, strList)
 
+				Console.WriteLine("")
 
+				Console.WriteLine("---------------------")
 
+				For Each a In primesList
+					For Each b In a
+						Console.Write(" $ " + b)
+					Next
+					Console.WriteLine("")
+				Next
+
+				Dim posTargets = New List(Of String)({"targetPos1", "targetPos2", "targetPos3", "targetPos4"})
+				Dim negTargets = New List(Of String)({"targetNeg1", "targetNeg2", "targetNeg3", "targetNeg4"})
+				Dim targetsList = New List(Of List(Of String))({posTargets, negTargets})
+				Dim expPairs = createTrials(primesList, targetsList, 1)
+				Console.WriteLine("---------------------")
+				Dim amount As Integer
+				For Each c In expPairs
+					For Each d In c
+						Console.Write(" * " + d)
+					Next
+					amount += c.Count
+					Console.WriteLine("")
+				Next
+				Console.WriteLine("")
+
+				'End Debug
 
 				Me.instrText.Text = My.Resources.ResourceManager.GetString("_2_practice" & Me.keyAss)
 			Case 2 'Practice Trials
-
-				explicitForm.ShowDialog()
 
 
 
@@ -182,10 +187,11 @@ Public Class mainForm
 				Me.instrText.Text = My.Resources.ResourceManager.GetString("_4_explicitInstr")
 			Case 4 'Explicit Measurements of Ambivalence
 				Me.explicitT = time.GetCurrentInstant()
-				'explicitForm.ShowDialog()
+				explicitForm.ShowDialog()
 
 				Me.instrText.Text = My.Resources.ResourceManager.GetString("_5_demoInstr")
 			Case 5 'Demographic Information
+				explicitForm.Dispose()
 				Me.demographicsT = time.GetCurrentInstant()
 				demographicsForm.ShowDialog()
 

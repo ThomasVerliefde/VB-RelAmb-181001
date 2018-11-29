@@ -14,6 +14,10 @@ Public Class explicitForm
 	Private labIntro As New Label
 	Private labName As New Label
 
+	Private WithEvents relText As New TextBox
+	Private relBox As New labelledBox(Me.relText, "Was ist deine soziale Beziehung zu dieser Person?" & vbCrLf &
+		"[z.B. Mutter, Vater, Geschwister, Freund*in, Mitarbeiter*in, (Ex-)Partner*in, ...]       ", boxWidth:=600, fieldHeight:=100)
+
 	Private WithEvents numText As New TextBox
 	Private numBox As New labelledBox(Me.numText, "Wie viele Leute kennen Sie mit diesem Vornamen?")
 
@@ -27,7 +31,6 @@ Public Class explicitForm
 
 	Private tempFrame As New SortedDictionary(Of String, String)
 
-	Private initB1 As Boolean
 	Private B1 As Boolean
 	Private B2 As Boolean
 	Private B3 As Boolean
@@ -61,13 +64,21 @@ Public Class explicitForm
 		Me.Controls.Add(Me.labB2)
 		Me.Controls.Add(Me.labB3)
 		Me.Controls.Add(Me.numBox)
+		Me.Controls.Add(Me.relBox)
 		xCenter(Me.labB1, verticalDist:=0.3)
 		xCenter(Me.labB2, verticalDist:=0.5)
 		xCenter(Me.labB3, verticalDist:=0.7)
 		xCenter(Me.numBox, 0.45, 0.4)
+		xCenter(Me.relBox, 0.5, setLeft:=100)
 
 		Me.Controls.Add(Me.contButton)
 		xCenter(Me.contButton)
+
+		Me.labB1.Visible = False
+		Me.labB2.Visible = False
+		Me.labB3.Visible = False
+		Me.numBox.Visible = False
+		Me.relBox.Visible = True
 
 		Me.contButton.PerformClick()
 
@@ -88,30 +99,32 @@ Public Class explicitForm
 		Else
 
 			If Me.questionCount <> 0 Then 'Saving all the data (except the initial time); utilises the previous iterations of otherKey
-				Select Case (Me.questionCount - 1) Mod 4 'Because this triggers at the start of a new buttonpush, events are lagged by 1
+				Select Case (Me.questionCount - 1) Mod 5 'Because this triggers at the start of a new buttonpush, events are lagged by 1
 
-					Case 0 ' Positive SRI
+					Case 0 ' Relation towards SO
+
+						Me.tempFrame(Me.otherKey & "_Rel") = Me.relBox.Text.ToString
+
+					Case 1 ' Positive SRI
 
 						Me.tempFrame(Me.otherKey & "_SRI_Pos1_Adv") = Me.trackB1.Value.ToString
 						Me.tempFrame(Me.otherKey & "_SRI_Pos2_Und") = Me.trackB2.Value.ToString
 						Me.tempFrame(Me.otherKey & "_SRI_Pos3_Fav") = Me.trackB3.Value.ToString
 
-					Case 1 ' Negative SRI		
+					Case 2 ' Negative SRI		
 
 						Me.tempFrame(Me.otherKey & "_SRI_Neg1_Adv") = Me.trackB1.Value.ToString
 						Me.tempFrame(Me.otherKey & "_SRI_Neg2_Und") = Me.trackB2.Value.ToString
 						Me.tempFrame(Me.otherKey & "_SRI_Neg3_Fav") = Me.trackB3.Value.ToString
 
-					Case 2
-						' Other
+					Case 3 ' Other
 
 						Me.tempFrame(Me.otherKey & "_Dir_Pos") = Me.trackB1.Value.ToString
 						Me.tempFrame(Me.otherKey & "_Dir_Neg") = Me.trackB2.Value.ToString
 						Me.tempFrame(Me.otherKey & "_Dir_Amb") = Me.trackB3.Value.ToString
 
-					Case 3
-						' How many?
-						Me.tempFrame(Me.otherKey & "_Num") = Me.numText.Text
+					Case 4 ' How many?
+						Me.tempFrame(Me.otherKey & "_Num") = Me.numText.Text.ToString
 
 				End Select
 
@@ -128,20 +141,31 @@ Public Class explicitForm
 			End With
 
 			'Resetting the checks whether the trackbars have received attention
-			Me.initB1 = False
 			Me.B1 = False
 			Me.B2 = False
 			Me.B3 = False
 			Me.contButton.Enabled = False
 
-			Select Case Me.questionCount Mod 4
+			Select Case Me.questionCount Mod 5
 
 				Case 0
+
+					'Me.labB1.Visible = False
+					'Me.labB2.Visible = False
+					'Me.labB3.Visible = False
+					Me.numBox.Visible = False
+					Me.relBox.Visible = True
+
+					Me.relText.ResetText()
+					Me.relText.Select()
+
+				Case 1
 
 					Me.labB1.Visible = True
 					Me.labB2.Visible = True
 					Me.labB3.Visible = True
-					Me.numBox.Visible = False
+					'Me.numBox.Visible = False
+					Me.relBox.Visible = False
 
 					' Positive SRI
 					' How helpful is XXX when you need advice/understanding/a favour? | willing to help, or useful
@@ -150,7 +174,7 @@ Public Class explicitForm
 					Me.labB2.reInit("Wie hilfreich ist " & Me.otherName & ", wenn Sie Verständnis brauchen?", Me.trackB2)
 					Me.labB3.reInit("Wie hilfreich ist " & Me.otherName & ", wenn Sie einen Gefallen brauchen?", Me.trackB3)
 
-				Case 1
+				Case 2
 
 					' Negative SRI
 					' How upsetting is XXX when you need advice/understanding/a favour | upsetting: making someone feel worried, unhappy, or angry (cambridge dictionary)
@@ -158,12 +182,13 @@ Public Class explicitForm
 					' Kathis suggestion: "in Aufregung versetzen"
 					' Max' suggestion: "erschütternd"
 					' Other interesting ideas: "ärgerlich", "umständlich", "beunruhigend", "erschwerend", "vesrchlimmernd", "agitierend", "verwirrend"
+					' Currently a big fan of "umständlich", although "schwierig" could also be pretty nice
 
 					Me.labB1.reInit("Wie umständlich ist " & Me.otherName & ", wenn Sie Rat brauchen?", Me.trackB1)
 					Me.labB2.reInit("Wie umständlich ist " & Me.otherName & ", wenn Sie Verständnis brauchen?", Me.trackB2)
 					Me.labB3.reInit("Wie umständlich ist " & Me.otherName & ", wenn Sie einen Gefallen brauchen?", Me.trackB3)
 
-				Case 2 ' Explicit positive, negative, and ambivalent
+				Case 3 ' Explicit positive, negative, and ambivalent
 
 					Me.labB1.reInit("Wie positiv finden Sie " & Me.otherName & "?" & vbCrLf &
 									" Konzentrieren Sie sich für Ihr Urteil bitte nur auf die positiven Aspekte" & vbCrLf &
@@ -173,14 +198,15 @@ Public Class explicitForm
 									"und ignorieren Sie mögliche positive Aspekte.", Me.trackB2, 0.5, "neutral", "sehr negativ")
 					Me.labB3.reInit("Wie hin- und hergerissen fühlen Sie sich angesichts " & Me.otherName, Me.trackB3,, "überhaupt nicht", "sehr")
 
-				Case 3 ' How many do you know?
+				Case 4 ' What is your relation towards this significant other, & How many do you know?
 
 					Me.labB1.Visible = False
 					Me.labB2.Visible = False
 					Me.labB3.Visible = False
 					Me.numBox.Visible = True
+					'Me.relBox.Visible = False
 
-					Me.numText.Text = ""
+					Me.numText.ResetText()
 					Me.numText.Focus()
 
 					Me.otherCount += 1
@@ -225,7 +251,15 @@ Public Class explicitForm
 		End If
 	End Sub
 
-	Private Sub confirmEnter(sender As Object, e As KeyEventArgs) Handles numText.KeyDown
+	Private Sub enableRel(sender As Object, e As EventArgs) Handles relText.TextChanged
+		If Me.relText.Text.Length > 1 Then
+			Me.contButton.Enabled = True
+		ElseIf Me.relText.Text.Length <= 1 Then
+			Me.contButton.Enabled = False
+		End If
+	End Sub
+
+	Private Sub confirmEnter(sender As Object, e As KeyEventArgs) Handles numText.KeyDown, relText.KeyDown
 		If e.KeyCode = Keys.Enter Then
 			Me.contButton.PerformClick()
 		End If
@@ -237,5 +271,10 @@ Public Class explicitForm
 		End If
 	End Sub
 
+	' It might be interesting to show a warning if they type a number that is too large, but this is not a priority
+	'Private Sub test(sender As Object, e As KeyPressEventArgs) Handles numText.TextChanged
+	'	If numText.Text > 25 Then	
+	'	End If
+	'End Sub
 
 End Class

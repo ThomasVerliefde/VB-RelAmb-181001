@@ -286,7 +286,8 @@ Module mainModule
 
 	Public Function createPrimes(otherPos As List(Of String), otherNeg As List(Of String), posList As List(Of String), negList As List(Of String), strList As List(Of String))
 
-		'otherNames = List of 4 names of SOs (2 pos & 2 neg)
+		'otherPos = List of 2 positive names of SOs
+		'otherPos = List of 2 negative names of SOs
 		'posList = List of ALL positive noun primes (3L, 4L, ..., 10L)
 		'negList = List of ALL negative noun primes (3L, 4L, ..., 10L)
 		'strList = List of letter strings: repeats of 4 letters in 3L, 4L, ..., 10L (i.e. BBB, SSS, RRR, GGG, BBBB, SSSS, ..., GGGGGGGGGG)
@@ -323,9 +324,9 @@ Module mainModule
 
 	'Public Function createTargets()
 
-	'    'Select 2
+	'	'Select 2
 
-	'    Return
+	'	Return
 	'End Function
 
 	Public Function randomSelect(resource As Object)
@@ -334,19 +335,25 @@ Module mainModule
 		Return "Hello World"
 	End Function
 
-	'Does createTrials one work? 
+	Public Function createTrials(Primes As List(Of List(Of String)), Target As List(Of List(Of String)), Optional timesPrimes As Integer = 2)
 
-	Public Function createTrials(Primes As List(Of List(Of String)), Target As List(Of List(Of String)))
-
-		Dim numP As Integer = Primes.Count
-		Dim numT As Integer = Target.Count
 		Dim Trials = New List(Of List(Of String))
+		Dim j As Integer
 
-		For i = 0 To numP - 1
-			For j = 0 To numT - 1
+		For i = 0 To Primes.Count - 1
+			For Each targetList In Target
+				'shuffleList(targetList)
 				For Each itemP In Primes(i)
-					For Each itemT In Target(j)
-						Trials.Add(New List(Of String)({itemP, itemT, i.ToString, j.ToString}))
+					For x = 0 To timesPrimes - 1
+						Trials.Add(New List(Of String)({itemP, targetList(j), i.ToString, Target.IndexOf(targetList)}))
+						j += 1
+						If j >= targetList.Count Then
+							'shuffleList(targetList)
+							Console.WriteLine("-----")
+							Console.WriteLine(targetList.Count)
+							Console.WriteLine("-----")
+							j = 0
+						End If
 					Next
 				Next
 			Next
