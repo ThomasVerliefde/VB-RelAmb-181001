@@ -15,7 +15,7 @@ Public Class explicitForm
 	Private labName As New Label
 
 	Private WithEvents numText As New TextBox
-	Private numBox As New labelledBox(Me.numText, "How many people do you know with this first name?")
+	Private numBox As New labelledBox(Me.numText, "Wie viele Leute kennen Sie mit diesem Vornamen?")
 
 	Private WithEvents contButton As New continueButton
 	Private otherKeys As New List(Of String)({"otherPos1", "otherPos2", "otherNeg1", "otherNeg2"})
@@ -45,7 +45,7 @@ Public Class explicitForm
 		shuffleList(Me.otherKeys)
 
 		With Me.labIntro
-			.Text = "Please answer the following questions about:"
+			.Text = "Bitte beantworten Sie die folgenden Fragen zu:"
 			.Font = sansSerif22
 			.Width = TextRenderer.MeasureText(.Text, sansSerif22).Width
 			.Height = TextRenderer.MeasureText(.Text, sansSerif22).Height
@@ -144,16 +144,24 @@ Public Class explicitForm
 					Me.numBox.Visible = False
 
 					' Positive SRI
+					' How helpful is XXX when you need advice/understanding/a favour? | willing to help, or useful
 
-					Me.labB1.reInit("How helpful is " & Me.otherName & " when you need advice?", Me.trackB1)
-					Me.labB2.reInit("How helpful is " & Me.otherName & " when you need understanding?", Me.trackB2)
-					Me.labB3.reInit("How helpful is " & Me.otherName & " when you need a favor?", Me.trackB3)
+					Me.labB1.reInit("Wie hilfreich ist " & Me.otherName & ", wenn Sie Rat brauchen?", Me.trackB1)
+					Me.labB2.reInit("Wie hilfreich ist " & Me.otherName & ", wenn Sie Verständnis brauchen?", Me.trackB2)
+					Me.labB3.reInit("Wie hilfreich ist " & Me.otherName & ", wenn Sie einen Gefallen brauchen?", Me.trackB3)
 
-				Case 1  ' Negative SRI
+				Case 1
 
-					Me.labB1.reInit("How upsetting is " & Me.otherName & " when you need advice?", Me.trackB1)
-					Me.labB2.reInit("How upsetting is " & Me.otherName & " when you need understanding?", Me.trackB2)
-					Me.labB3.reInit("How upsetting is " & Me.otherName & " when you need a favor?", Me.trackB3)
+					' Negative SRI
+					' How upsetting is XXX when you need advice/understanding/a favour | upsetting: making someone feel worried, unhappy, or angry (cambridge dictionary)
+					' Should come up with a better word still
+					' Kathis suggestion: "in Aufregung versetzen"
+					' Max' suggestion: "erschütternd"
+					' Other interesting ideas: "ärgerlich", "umständlich", "beunruhigend", "erschwerend", "vesrchlimmernd", "agitierend", "verwirrend"
+
+					Me.labB1.reInit("Wie umständlich ist " & Me.otherName & ", wenn Sie Rat brauchen?", Me.trackB1)
+					Me.labB2.reInit("Wie umständlich ist " & Me.otherName & ", wenn Sie Verständnis brauchen?", Me.trackB2)
+					Me.labB3.reInit("Wie umständlich ist " & Me.otherName & ", wenn Sie einen Gefallen brauchen?", Me.trackB3)
 
 				Case 2 ' Explicit positive, negative, and ambivalent
 
