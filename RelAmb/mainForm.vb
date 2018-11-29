@@ -132,7 +132,8 @@ Public Class mainForm
 				' For the Practice trials, get a set of X*2 othernames (removing othernames already suggested by the participant, then randomly choosing)
 
 
-				''Debug -> Check correct functioning "createPrimes" function
+				''Debug -> Check correct functioning "createPrimes" function AndAlso createTrials
+
 				'Dim otherPos = New List(Of String)({"Pos", "Pösitiv"})
 				'Dim otherNeg = New List(Of String)({"Negatiev", "Nega"})
 
@@ -152,10 +153,10 @@ Public Class mainForm
 					Console.WriteLine("")
 				Next
 
-				Dim posTargets = New List(Of String)({"targetPos1", "targetPos2", "targetPos3", "targetPos4"})
-				Dim negTargets = New List(Of String)({"targetNeg1", "targetNeg2", "targetNeg3", "targetNeg4"})
+				Dim posTargets = New List(Of String)(My.Resources.experimentTarget_Pos.Split(" "))
+				Dim negTargets = New List(Of String)(My.Resources.experimentTarget_Neg.Split(" "))
 				Dim targetsList = New List(Of List(Of String))({posTargets, negTargets})
-				Dim expPairs = createTrials(primesList, targetsList, 2)
+				Dim expPairs = createTrials(primesList, targetsList, 4)
 				Console.WriteLine("---------------------")
 				Dim amount As Integer
 				For Each c In expPairs
