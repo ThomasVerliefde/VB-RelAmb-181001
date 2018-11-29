@@ -88,30 +88,30 @@ Public Class explicitForm
 		Else
 
 			If Me.questionCount <> 0 Then 'Saving all the data (except the initial time); utilises the previous iterations of otherKey
-				Select Case (Me.questionCount Mod 4) - 1 'Because this triggers at the start of a new buttonpush, events are lagged by 1
+				Select Case (Me.questionCount - 1) Mod 4 'Because this triggers at the start of a new buttonpush, events are lagged by 1
 
 					Case 0 ' Positive SRI
 
-						Me.tempFrame(Me.otherKey & "_SRI_Pos_Adv") = Me.trackB1.Value.ToString
-						Me.tempFrame(Me.otherKey & "_SRI_Pos_Und") = Me.trackB2.Value.ToString
-						Me.tempFrame(Me.otherKey & "_SRI_Pos_Fav") = Me.trackB3.Value.ToString
+						Me.tempFrame(Me.otherKey & "_SRI_Pos1_Adv") = Me.trackB1.Value.ToString
+						Me.tempFrame(Me.otherKey & "_SRI_Pos2_Und") = Me.trackB2.Value.ToString
+						Me.tempFrame(Me.otherKey & "_SRI_Pos3_Fav") = Me.trackB3.Value.ToString
 
 					Case 1 ' Negative SRI		
 
-						Me.tempFrame(Me.otherKey & "_SRI_Neg_Adv") = Me.trackB1.Value.ToString
-						Me.tempFrame(Me.otherKey & "_SRI_Neg_Und") = Me.trackB2.Value.ToString
-						Me.tempFrame(Me.otherKey & "_SRI_Neg_Fav") = Me.trackB3.Value.ToString
+						Me.tempFrame(Me.otherKey & "_SRI_Neg1_Adv") = Me.trackB1.Value.ToString
+						Me.tempFrame(Me.otherKey & "_SRI_Neg2_Und") = Me.trackB2.Value.ToString
+						Me.tempFrame(Me.otherKey & "_SRI_Neg3_Fav") = Me.trackB3.Value.ToString
 
 					Case 2
 						' Other
 
-						Me.tempFrame(Me.otherKey & "_Pos") = Me.trackB1.Value.ToString
-						Me.tempFrame(Me.otherKey & "_Neg") = Me.trackB2.Value.ToString
-						Me.tempFrame(Me.otherKey & "_Amb") = Me.trackB3.Value.ToString
+						Me.tempFrame(Me.otherKey & "_Dir_Pos") = Me.trackB1.Value.ToString
+						Me.tempFrame(Me.otherKey & "_Dir_Neg") = Me.trackB2.Value.ToString
+						Me.tempFrame(Me.otherKey & "_Dir_Amb") = Me.trackB3.Value.ToString
 
 					Case 3
 						' How many?
-						Me.tempFrame(Me.otherKey & "_num") = Me.numText.Text
+						Me.tempFrame(Me.otherKey & "_Num") = Me.numText.Text
 
 				End Select
 
@@ -195,9 +195,9 @@ Public Class explicitForm
 
 	Private Sub enableTrack(sender As Object, e As EventArgs) Handles trackB1.MouseDown, trackB2.MouseDown, trackB3.MouseDown
 
-		Console.WriteLine(sender)
+		'Console.WriteLine(sender)
 
-		Console.WriteLine(DirectCast(sender, TrackBar).Name)
+		'Console.WriteLine(DirectCast(sender, TrackBar).Name)
 
 		Select Case DirectCast(sender, TrackBar).Name
 			Case "B1"

@@ -78,13 +78,15 @@ Public Class otherForm
 					mainForm.otherNeg = Me.otherNeg
 			End Select
 
-			For Each item In mainForm.otherPos
-				Console.WriteLine(item & " Pos")
-			Next
+			' Debug
+			'For Each item In mainForm.otherPos
+			'	Console.WriteLine(item & " Pos")
+			'Next
 
-			For Each item In mainForm.otherNeg
-				Console.WriteLine(item & " Neg")
-			Next
+			'For Each item In mainForm.otherNeg
+			'	Console.WriteLine(item & " Neg")
+			'Next
+			' End Debug
 
 			dataFrame("otherPos1") = mainForm.otherPos(0).ToString
 			dataFrame("otherPos2") = mainForm.otherPos(1).ToString
