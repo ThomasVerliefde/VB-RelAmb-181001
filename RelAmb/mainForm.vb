@@ -1,36 +1,36 @@
 ﻿Imports NodaTime
 
 Public Class mainForm
-    Inherits Form
+	Inherits Form
 
 	Public instructionCount As New Integer 'main counter, to control the flow of the experiment; increases after each continuebutton press in this form
 
-    Friend WithEvents contButton As New continueButton 'main button, to advance the flow of the experiment
-    Private ReadOnly instrText As New instructionBox 'main method of displaying the instructions to participants; disabled & readonly
+	Friend WithEvents contButton As New continueButton 'main button, to advance the flow of the experiment
+	Private ReadOnly instrText As New instructionBox 'main method of displaying the instructions to participants; disabled & readonly
 
 	'All NodaTime.Instant variables, to check starting points of each part
 	Private startT As Instant
-    Private otherT As Instant
-    Private practiceT As Instant
-    Private experimentT As Instant
-    Private explicitT As Instant
-    Private demographicsT As Instant
-    Private endT As Instant
+	Private otherT As Instant
+	Private practiceT As Instant
+	Private experimentT As Instant
+	Private explicitT As Instant
+	Private demographicsT As Instant
+	Private endT As Instant
 
-    'All NodaTime.Duration variables, to check the actual duration (difference in sequential starting points) of each part
-    Private timeOther As Duration
-    Private timePractice As Duration
-    Private timeExperiment As Duration
-    Private timeExplicit As Duration
-    Private timeDemographics As Duration
-    Private timeTotal As Duration
+	'All NodaTime.Duration variables, to check the actual duration (difference in sequential starting points) of each part
+	Private timeOther As Duration
+	Private timePractice As Duration
+	Private timeExperiment As Duration
+	Private timeExplicit As Duration
+	Private timeDemographics As Duration
+	Private timeTotal As Duration
 
-    'Variable necessary for grabbing the correct instruction sheet, depending on whether the 'A' key is used to categorize positive adjectives, or for negative adjectives
-    Friend keyAss As String
-    Friend firstOthers As String
+	'Variable necessary for grabbing the correct instruction sheet, depending on whether the 'A' key is used to categorize positive adjectives, or for negative adjectives
+	Friend keyAss As String
+	Friend firstOthers As String
 
-    Friend otherPos As New List(Of String)
-    Friend otherNeg As New List(Of String)
+	Friend otherPos As New List(Of String)
+	Friend otherNeg As New List(Of String)
 
 
 
@@ -130,6 +130,57 @@ Public Class mainForm
 
 				' Create All Practice & Experiment Trials
 				' For the Practice trials, get a set of X*2 othernames (removing othernames already suggested by the participant, then randomly choosing)
+
+				' Practice Trials
+
+				' NOT FINISHED !!!! -> WE NEED ^^
+
+				Dim practicePrimes = createPrimes(
+					Me.otherPos, 'CHANGE
+					Me.otherNeg, 'CHANGE
+					New List(Of String)(My.Resources.practicePrime_Pos.Split(" ")),
+					New List(Of String)(My.Resources.practicePrime_Neg.Split(" ")),
+					New List(Of String)(My.Resources.practicePrime_Str.Split(" "))
+					)
+
+				Dim practiceTrials = createTrials(
+										practicePrimes,
+										New List(Of List(Of String))({
+											 New List(Of String)(My.Resources.practiceTarget_Pos.Split(" ")),
+											 New List(Of String)(My.Resources.practiceTarget_Neg.Split(" "))
+											 }),
+										timesPrimes:=1 'How often each prime is paired with a target from each category
+										)
+				' Results in XX Trials
+
+
+
+
+
+
+				' Experiment Trials
+
+				Dim experimentPrimes = createPrimes(
+					Me.otherPos,
+					Me.otherNeg,
+					New List(Of String)(My.Resources.experimentPrime_Pos.Split(" ")),
+					New List(Of String)(My.Resources.experimentPrime_Neg.Split(" ")),
+					New List(Of String)(My.Resources.experimentPrime_Str.Split(" "))
+					)
+
+				Dim experimentTrials = createTrials(
+										experimentPrimes,
+										New List(Of List(Of String))({
+											 New List(Of String)(My.Resources.experimentTarget_Pos.Split(" ")),
+											 New List(Of String)(My.Resources.experimentTarget_Neg.Split(" "))
+											 }),
+										timesPrimes:=4 'How often each prime is paired with a target from each category
+										)
+				' Results in 96 Trials
+
+
+
+
 
 
 				''Debug -> Check correct functioning "createPrimes" function AndAlso createTrials
