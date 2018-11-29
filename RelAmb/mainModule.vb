@@ -340,18 +340,15 @@ Module mainModule
 		Dim Trials = New List(Of List(Of String))
 		Dim j As Integer
 
-		For i = 0 To Primes.Count - 1
-			For Each targetList In Target
-				'shuffleList(targetList)
+		For Each targetList In Target
+			shuffleList(targetList)
+			For i = 0 To Primes.Count - 1
 				For Each itemP In Primes(i)
 					For x = 0 To timesPrimes - 1
 						Trials.Add(New List(Of String)({itemP, targetList(j), i.ToString, Target.IndexOf(targetList)}))
 						j += 1
 						If j >= targetList.Count Then
-							'shuffleList(targetList)
-							Console.WriteLine("-----")
-							Console.WriteLine(targetList.Count)
-							Console.WriteLine("-----")
+							shuffleList(targetList)
 							j = 0
 						End If
 					Next

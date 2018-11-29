@@ -155,7 +155,7 @@ Public Class mainForm
 				Dim posTargets = New List(Of String)({"targetPos1", "targetPos2", "targetPos3", "targetPos4"})
 				Dim negTargets = New List(Of String)({"targetNeg1", "targetNeg2", "targetNeg3", "targetNeg4"})
 				Dim targetsList = New List(Of List(Of String))({posTargets, negTargets})
-				Dim expPairs = createTrials(primesList, targetsList, 1)
+				Dim expPairs = createTrials(primesList, targetsList, 2)
 				Console.WriteLine("---------------------")
 				Dim amount As Integer
 				For Each c In expPairs
