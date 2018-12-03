@@ -7,10 +7,15 @@ Module mainModule
 	Friend dataFrame As New Dictionary(Of String, String) 'main dataframe to save all our data, gets written out at the end of the experiment
 	Friend time As IClock = SystemClock.Instance 'NodaTime clock instance, which keeps time, at the start of every part, gets saved in a variable (see under)
 
+	Friend sansSerif72 = New Font("Microsoft Sans Serif", 72)
+	Friend sansSerif60 = New Font("Microsoft Sans Serif", 60)
 	Friend sansSerif25B = New Font("Microsoft Sans Serif", 25, FontStyle.Bold)
 	Friend sansSerif22 = New Font("Microsoft Sans Serif", 22)
 	Friend sansSerif20 = New Font("Microsoft Sans Serif", 20)
 	Friend sansSerif14 = New Font("Microsoft Sans Serif", 14)
+
+	Public practiceTrials As List(Of List(Of String))
+	Public experimentTrials As List(Of List(Of String))
 
 	Public Class labelledTrackbar
 		Inherits Panel
@@ -58,7 +63,7 @@ Module mainModule
 
 			trackbar.Minimum = minInt
 			trackbar.Maximum = maxInt
-			trackbar.Value = defaultVal
+			trackbar.Value = Me.defaultVal
 			trackbar.Size = New Size(Me.barWidth, Me.barHeight)
 			trackbar.LargeChange = 1
 			trackbar.SmallChange = 1
@@ -99,7 +104,7 @@ Module mainModule
 			End With
 
 			Try
-				trackBar.Value = defaultVal
+				trackBar.Value = Me.defaultVal
 			Catch ex As Exception
 			End Try
 
@@ -357,7 +362,8 @@ Module mainModule
 			Next
 		Next
 
-		Return Trials 'Trials is a List of Lists of Strings -> 
+		Return Trials 'Trials is a List of Lists of Strings -> Each List of Strings is a Trial
+		'-> Each Trial contains 4 items: Prime, Target, PrimeCategory [0 = PositiveNoun, 1 = NegativeNoun, 2 = PositiveOther, 3 = NegativeOther, 4 = LetterString], TargetCategory [0 = Positive, 1 = Negative]
 	End Function
 
 	Public Sub saveCSV(ByVal dataFrame As Dictionary(Of String, String), Optional ByVal path As String = "rawData.csv")

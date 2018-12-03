@@ -32,7 +32,11 @@ Public Class mainForm
 	Friend otherPos As New List(Of String)
 	Friend otherNeg As New List(Of String)
 
+	Public practicePrimes As List(Of List(Of String))
+	'Public practiceTrials As List(Of List(Of String))
 
+	Public experimentPrimes As List(Of List(Of String))
+	'Public experimentTrials As List(Of List(Of String))
 
 	'   '####################################'
 	'   'Imported CODE - Not Yet Consolidated'
@@ -120,22 +124,14 @@ Public Class mainForm
 				Me.startT = time.GetCurrentInstant()
 				Me.instrText.Text = My.Resources.ResourceManager.GetString("_1_otherInstr")
 
-
-
-
 			Case 1 'Collecting Names of 'Significant Others'
 				Me.otherT = time.GetCurrentInstant()
 				otherForm.ShowDialog()
 				otherForm.Dispose()
 
-				' Create All Practice & Experiment Trials
-				' For the Practice trials, get a set of X*2 othernames (removing othernames already suggested by the participant, then randomly choosing)
+				' Creating All Practice & Experiment Trials
 
 				' Practice Trials
-
-				' NOT FINISHED !!!! -> WE NEED ^^
-
-
 
 				Dim otherPractice As New List(Of String)(My.Resources.practiceOthers.Split(" "))
 				otherPractice = compareList(Me.otherNeg, otherPractice)
@@ -149,16 +145,16 @@ Public Class mainForm
 				shuffleList(practicePrime_Str)
 
 				'practicePrimes is a List of List of String with 5 lists: PositiveNounPrimes, NegativeNounPrimes, PositiveOthers, NegativeOthers, MatchingLetterStrings
-				Dim practicePrimes As New List(Of List(Of String))({
-								New List(Of String)({otherPractice(0)}),
-								New List(Of String)({otherPractice(1)}),
+				Me.practicePrimes = New List(Of List(Of String))({
 								New List(Of String)({practicePrime_Pos(0)}),
 								New List(Of String)({practicePrime_Neg(0)}),
+								New List(Of String)({otherPractice(0)}),
+								New List(Of String)({otherPractice(1)}),
 								New List(Of String)({practicePrime_Str(0)})
 								})
 
-				Dim practiceTrials = createTrials(
-										practicePrimes,
+				practiceTrials = createTrials(
+										Me.practicePrimes,
 										New List(Of List(Of String))({
 											 New List(Of String)(My.Resources.practiceTarget_Pos.Split(" ")),
 											 New List(Of String)(My.Resources.practiceTarget_Neg.Split(" "))
@@ -166,6 +162,8 @@ Public Class mainForm
 										timesPrimes:=2 'How often each prime is paired with a target from each category
 										)
 				' Results in 20 Trials (Can shorten to 10 by setting timesPrimes to 1)
+
+				shuffleList(practiceTrials)
 
 				''Debug
 				'For Each list In practiceTrials
@@ -178,7 +176,7 @@ Public Class mainForm
 
 				' Experiment Trials
 
-				Dim experimentPrimes = createPrimes(
+				Me.experimentPrimes = createPrimes(
 					Me.otherPos,
 					Me.otherNeg,
 					New List(Of String)(My.Resources.experimentPrime_Pos.Split(" ")),
@@ -186,52 +184,51 @@ Public Class mainForm
 					New List(Of String)(My.Resources.experimentPrime_Str.Split(" "))
 					)
 
-				Dim experimentTrials = createTrials(
-										experimentPrimes,
+				experimentTrials = createTrials(
+										Me.experimentPrimes,
 										New List(Of List(Of String))({
 											 New List(Of String)(My.Resources.experimentTarget_Pos.Split(" ")),
 											 New List(Of String)(My.Resources.experimentTarget_Neg.Split(" "))
 											 }),
 										timesPrimes:=4 'How often each prime is paired with a target from each category
 										)
-				' Results in 96 Trials
+				' Results in (12 [Primes] x 2 [Targets] x 4) 96 Trials
 
-				'Debug
-				Console.WriteLine("---------------------")
-				Dim amount As Integer
-				For Each c In experimentTrials
-					For Each d In c
-						Console.Write(" * " + d)
-					Next
-					amount += c.Count
-					Console.WriteLine("")
-				Next
-				Console.WriteLine("")
-				'End Debug
+				shuffleList(experimentTrials)
+
+				''Debug
+				'Console.WriteLine("---------------------")
+				'Dim amount As Integer
+				'For Each c In experimentTrials
+				'	For Each d In c
+				'		Console.Write(" * " + d)
+				'	Next
+				'	amount += c.Count
+				'	Console.WriteLine("")
+				'Next
+				'Console.WriteLine("")
+				''End Debug
 
 				Me.instrText.Text = My.Resources.ResourceManager.GetString("_2_practice" & Me.keyAss)
 			Case 2 'Practice Trials
-
-
-
-
-
 				Me.practiceT = time.GetCurrentInstant()
-				'practiceForm.ShowDialog()
+				practiceForm.ShowDialog()
+				practiceForm.Dispose()
 
 				Me.instrText.Text = My.Resources.ResourceManager.GetString("_3_experiment" & Me.keyAss)
 			Case 3 'Experiment Proper
 				Me.experimentT = time.GetCurrentInstant()
 				'expForm.ShowDialog()
+				'expForm.Dispose()
 
 				Me.instrText.Text = My.Resources.ResourceManager.GetString("_4_explicitInstr")
 			Case 4 'Explicit Measurements of Ambivalence
 				Me.explicitT = time.GetCurrentInstant()
 				explicitForm.ShowDialog()
+				explicitForm.Dispose()
 
 				Me.instrText.Text = My.Resources.ResourceManager.GetString("_5_demoInstr")
 			Case 5 'Demographic Information
-				explicitForm.Dispose()
 				Me.demographicsT = time.GetCurrentInstant()
 				demographicsForm.ShowDialog()
 

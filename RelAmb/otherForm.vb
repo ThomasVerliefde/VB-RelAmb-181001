@@ -29,7 +29,6 @@ Public Class otherForm
 		Me.Controls.Add(Me.otherPanel2)
 		xCenter(Me.otherPanel2, 0.6, 0.45)
 
-
 		Me.otherBox1.MaxLength = 14
 		Me.otherBox2.MaxLength = 14
 
