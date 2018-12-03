@@ -103,7 +103,7 @@ Public Class explicitForm
 
 					Case 0 ' Relation towards SO
 
-						Me.tempFrame(Me.otherKey & "_Rel") = Me.relBox.Text.ToString
+						Me.tempFrame(Me.otherKey & "_Rel") = Me.relText.Text.ToString
 
 					Case 1 ' Positive SRI
 
@@ -160,7 +160,7 @@ Public Class explicitForm
 					Me.relText.Select()
 
 					If debugMode Then
-						relText.Text = "DEBUG"
+						Me.relText.Text = "DEBUG"
 					End If
 
 				Case 1
@@ -214,7 +214,7 @@ Public Class explicitForm
 					Me.numText.Focus()
 
 					If debugMode Then
-						numText.Text = 1
+						Me.numText.Text = 1
 					End If
 
 					Me.otherCount += 1

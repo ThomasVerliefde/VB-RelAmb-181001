@@ -96,7 +96,9 @@ Public Class practiceForm
 	Private Sub timerFix_Tick(sender As Object, e As EventArgs) Handles timerFix.Tick
 		Me.timerFix.Stop()
 		Me.timerPrime.Start()
-		Me.primeLab.Text = practiceTrials(Me.trialCounter)(0)
+		If Me.trialCounter < practiceTrials.Count Then
+			Me.primeLab.Text = practiceTrials(Me.trialCounter)(0)
+		End If
 		Me.fixLab.Visible = False
 		Me.fixLab.Visible = False
 		Me.primeLab.Visible = True
@@ -105,7 +107,9 @@ Public Class practiceForm
 	Private Sub timerPrime_Tick(sender As Object, e As EventArgs) Handles timerPrime.Tick
 		Me.timerPrime.Stop()
 		Me.stopwatchTarget.Start()
-		Me.targetLab.Text = practiceTrials(Me.trialCounter)(1)
+		If Me.trialCounter < practiceTrials.Count Then
+			Me.targetLab.Text = practiceTrials(Me.trialCounter)(1)
+		End If
 		Me.primeLab.Visible = False
 		Me.targetLab.Visible = True
 		Me.ignoreKeys = False

@@ -36,6 +36,15 @@ Public Class demographicsForm
 		Me.Controls.Add(Me.instrLabel)
 		objCenter(Me.instrLabel, verticalDist:=0.13)
 
+		If debugMode Then
+			Me.ageText.Text = "23"
+			Me.genderBox.optionBox.Text = "weiblich"
+			Me.languageBox.optionBox.Text = "Deutsch"
+			Me.handBox.optionBox.Text = "rechts"
+			Me.studyText.Text = "DEBUG"
+			Me.contButton.Select()
+		End If
+
 	End Sub
 
 	Private Sub contButton_Click(sender As Object, e As EventArgs) Handles contButton.Click
