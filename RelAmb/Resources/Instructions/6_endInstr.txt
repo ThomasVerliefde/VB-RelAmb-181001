@@ -1,7 +1,7 @@
+{\rtf1\ansi \par \qc
+Das Experiment ist nun beendet. \par \par
 
-
-Das Experiment ist nun beendet.
-
-Nochmals vielen Dank für Ihre Teilnahme!
+Nochmals vielen Dank für Ihre Teilnahme! \par \par
 
 Wenden Sie sich bitte an die Versuchsleitung.
+}

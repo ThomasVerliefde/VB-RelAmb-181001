@@ -1,7 +1,7 @@
 {\rtf1\ansi \par \qc
-Please provide the name of a {\b disliked} person. \par \par
+Bitte gib die Namen von zwei {\b unbeliebten} Personen ein. \par \par
 
-Think of one "significant person" that you like {\b least}. \par
-A person in your life you {\b do not feel very good about}, \par
-and hold {\b negative} feelings towards.
+Denken Sie an zwei "signifikante Personen", die Ihnen {\b am wenigsten} gefallen. \par
+Menschen in Ihrem Leben, bei denen Sie sich {\b nicht sehr gut fühlen}, \par
+und {\b negative} Gefühle zu halten.
 }

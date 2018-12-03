@@ -1,12 +1,11 @@
-﻿Sie haben die Klassifizierungsphase nun beendet.
+﻿{\rtf1\ansi \par \qc
+Sie haben die Klassifizierungsphase nun beendet. \par \par
 
-Als nächstes möchten wir Ihnen noch einige Fragen zu den Wörtern stellen, die Sie während der letzten Phase gesehen haben.
+Wir möchten, dass Sie einige Fragen zu den signifikanten anderen beantworten, die Sie uns zu Beginn des Experiments zur Verfügung gestellt haben. \par \par
 
+Bitte beantworten Sie jede Frage bezüglich der spezifischen signifikanten anderen, die auf dem Bildschirm angezeigt werden. \par \par
 
-We would like you to answer some questions concerning the significant others you have provided us with at the beginning of the experiment.
-Please answer each question regarding the specific significant other indicated on the screen
-
-Important: click on the arrow to slide it towards the wished point on the scale, do this for each trackbar
-
+Wichtig: Klicken Sie auf den Pfeil, um ihn in Richtung des gewünschten Punktes auf der Skala zu bewegen, tun Sie dies für jeden Trackbar. \par \par
 
 Drücken Sie den "Weiter"-Button um fortzufahren.
+}

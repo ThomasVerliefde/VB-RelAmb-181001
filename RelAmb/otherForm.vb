@@ -61,10 +61,10 @@ Public Class otherForm
 		ElseIf Me.otherPos.Count = 0 AndAlso Me.otherNeg.Count = 0 Then
 			Select Case mainForm.firstOthers
 				Case "Pos"
-					Me.otherPos.AddRange({Me.otherBox1.Text, Me.otherBox2.Text})
+					Me.otherPos.AddRange({StrConv(Me.otherBox1.Text, vbProperCase), StrConv(Me.otherBox2.Text, vbProperCase)})
 					Me.otherInstr.Rtf = My.Resources.ResourceManager.GetString("_1_otherNeg")
 				Case "Neg"
-					Me.otherNeg.AddRange({Me.otherBox1.Text, Me.otherBox2.Text})
+					Me.otherNeg.AddRange({StrConv(Me.otherBox1.Text, vbProperCase), StrConv(Me.otherBox2.Text, vbProperCase)})
 					Me.otherInstr.Rtf = My.Resources.ResourceManager.GetString("_1_otherPos")
 			End Select
 
@@ -81,10 +81,10 @@ Public Class otherForm
 		ElseIf Me.otherPos.Count = 2 OrElse Me.otherNeg.Count = 2 Then
 			Select Case mainForm.firstOthers
 				Case "Pos"
-					mainForm.otherNeg.AddRange({Me.otherBox1.Text, Me.otherBox2.Text})
+					mainForm.otherNeg.AddRange({StrConv(Me.otherBox1.Text, vbProperCase), StrConv(Me.otherBox2.Text, vbProperCase)})
 					mainForm.otherPos = Me.otherPos
 				Case "Neg"
-					mainForm.otherPos.AddRange({Me.otherBox1.Text, Me.otherBox2.Text})
+					mainForm.otherPos.AddRange({StrConv(Me.otherBox1.Text, vbProperCase), StrConv(Me.otherBox2.Text, vbProperCase)})
 					mainForm.otherNeg = Me.otherNeg
 			End Select
 

@@ -1,2 +1,6 @@
-Please provide us with the following personal information about yourself.
-Note that this information will be used anonymously, ...
+{\rtf1\ansi \par \qc
+Als letzten Teil dieses Experiments möchten wir einige zusätzliche Informationen über Sie erhalten. \par \par
+Wir versichern Ihnen, dass diese Informationen vertraulich und anonym behandelt werden. \par \par
+
+Drücken Sie den "Weiter"-Button um fortzufahren.
+}

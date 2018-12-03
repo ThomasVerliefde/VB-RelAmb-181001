@@ -1,6 +1,8 @@
-In this part, we ask you to think about "significant others" in your life.
-These could be a (ex-)partner, a sibling, a parent, a friend, or an acquaintance.
+{\rtf1\ansi \par \qc
+In diesem Teil bitten wir Sie, über "signifikante andere" in Ihrem Leben nachzudenken. \par
+Dies können ein (Ex-)Partner, ein Geschwisterkind, ein Elternteil, ein Freund oder ein Bekannter sein. \par \par
 
-You will be asked to provide the (first) names of 4 of these kind of significant others.
-Note that we want you to provide us with 4 unique, different names.
-Please read the instructions carefully!
+Sie werden gebeten, die Vornamen von 4 dieser Art von signifikanten anderen anzugeben. \par
+Beachten Sie, dass wir möchten, dass Sie uns 4 eindeutige, unterschiedliche Namen nennen. \par
+Bitte lesen Sie die Anleitung immer aufmerksam durch!
+}

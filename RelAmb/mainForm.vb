@@ -45,7 +45,8 @@ Public Class mainForm
 
 		Me.Controls.Add(Me.instrText)
 		objCenter(Me.instrText, 0.4)
-		Me.instrText.Text = My.Resources.ResourceManager.GetString("_0_mainInstr")
+		Me.instrText.Rtf = My.Resources.ResourceManager.GetString("_0_mainInstr")
+
 
 		Me.Controls.Add(Me.contButton)
 		objCenter(Me.contButton)
@@ -55,14 +56,14 @@ Public Class mainForm
 	Public Sub loadNext(sender As Object, e As EventArgs) Handles contButton.Click
 		Select Case Me.instructionCount
 			Case 0 'Start of Experiment
-				Me.instrText.Text = My.Resources.ResourceManager.GetString("_1_otherInstr")
+				Me.instrText.Rtf = My.Resources.ResourceManager.GetString("_1_otherInstr")
 				subjectForm.Dispose()
 				Me.startT = time.GetCurrentInstant()
 
 			Case 1 'Collecting Names of 'Significant Others'
 				Me.otherT = time.GetCurrentInstant()
 				otherForm.ShowDialog()
-				Me.instrText.Text = My.Resources.ResourceManager.GetString("_2_practice" & Me.keyAss)
+				Me.instrText.Rtf = My.Resources.ResourceManager.GetString("_2_practice" & Me.keyAss)
 				otherForm.Dispose()
 
 				' Creating All Practice & Experiment Trials
@@ -175,29 +176,28 @@ Public Class mainForm
 			Case 2 'Practice Trials
 				Me.practiceT = time.GetCurrentInstant()
 				practiceForm.ShowDialog()
-				Me.instrText.Text = My.Resources.ResourceManager.GetString("_3_experiment" & Me.keyAss)
+				Me.instrText.Rtf = My.Resources.ResourceManager.GetString("_3_experiment" & Me.keyAss)
 				practiceForm.Dispose()
 
 			Case 3 'Experiment Proper
 				Me.experimentT = time.GetCurrentInstant()
-				experimentForm.ShowDialog()
-				Me.instrText.Text = My.Resources.ResourceManager.GetString("_4_explicitInstr")
-				experimentForm.Dispose()
+				'experimentForm.ShowDialog()
+				Me.instrText.Rtf = My.Resources.ResourceManager.GetString("_4_explicitInstr")
+				'experimentForm.Dispose()
 
 			Case 4 'Explicit/Direct Measurements of Ambivalence
 				Me.explicitT = time.GetCurrentInstant()
 				explicitForm.ShowDialog()
-				Me.instrText.Text = My.Resources.ResourceManager.GetString("_5_demoInstr")
+				Me.instrText.Rtf = My.Resources.ResourceManager.GetString("_5_demoInstr")
 				explicitForm.Dispose()
 
 			Case 5 'Demographic Information
 				Me.demographicsT = time.GetCurrentInstant()
 				demographicsForm.ShowDialog()
-				Me.instrText.Text = My.Resources.ResourceManager.GetString("_6_endInstr")
+				Me.instrText.Rtf = My.Resources.ResourceManager.GetString("_6_endInstr")
 				demographicsForm.Dispose()
 
 				Me.instrText.Font = New Font("Microsoft Sans Serif", 40)
-				'instrText.TextAlign = HorizontalAlignment.Center
 				Me.contButton.Text = "Abbrechen"
 				Me.endT = time.GetCurrentInstant()
 
@@ -215,18 +215,6 @@ Public Class mainForm
 				dataFrame("timeDemographics") = Me.timeDemographics.TotalMinutes.ToString
 				dataFrame("timeTotal") = Me.timeTotal.TotalMinutes.ToString
 				dataFrame("hostName") = Net.Dns.GetHostName()
-
-				'' Copy of "Ende.vb"
-
-				'' Stimulus-Listen der Primingphasen im Datenfile ablegen
-				'dataFrame("RF_practiceDL_primes") = rf1
-				'dataFrame("RF_practiceDL_targets") = rf2
-				'dataFrame("RF_practiceBH_primes") = rf3
-				'dataFrame("RF_practiceBH_targets") = rf4
-				'dataFrame("RF_targetsBH") = rf8
-				'dataFrame("RF_primesDL") = rf5
-				'dataFrame("RF_targetsDL") = rf6
-				'dataFrame("RF_primesBH") = rf7
 
 				saveCSV(dataFrame, "Data_RelAmb_" & dataFrame("Subject") & "_" & Net.Dns.GetHostName & ".csv")
 

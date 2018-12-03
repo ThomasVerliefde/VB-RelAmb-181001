@@ -234,7 +234,6 @@ Module mainModule
 			Me.Enabled = False
 
 		End Sub
-
 	End Class
 
 
