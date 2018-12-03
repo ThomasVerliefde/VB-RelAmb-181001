@@ -131,6 +131,8 @@ Public Class practiceForm
 			dataFrame("practice_" & Me.trialCounter & "_time") = Me.answeringTime.ToString
 			dataFrame("practice_" & Me.trialCounter & "_prime") = practiceTrials(Me.trialCounter)(0)
 			dataFrame("practice_" & Me.trialCounter & "_target") = practiceTrials(Me.trialCounter)(1)
+			dataFrame("practice_" & Me.trialCounter & "_primeCat") = practiceTrials(Me.trialCounter)(2)
+			dataFrame("practice_" & Me.trialCounter & "_targetCat") = practiceTrials(Me.trialCounter)(3)
 
 			Me.trialCounter += 1
 

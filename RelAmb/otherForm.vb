@@ -94,9 +94,7 @@ Public Class otherForm
 			dataFrame("otherNeg2") = mainForm.otherNeg(1).ToString
 
 			Me.Close()
-
 		End If
-
 	End Sub
 
 	Private Sub pressEnter(sender As Object, e As KeyEventArgs) Handles otherBox1.KeyDown, otherBox2.KeyDown

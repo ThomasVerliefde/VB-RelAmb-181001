@@ -136,6 +136,8 @@ Public Class experimentForm
 			dataFrame("experiment_" & Me.trialCounter & "_time") = Me.answeringTime.ToString
 			dataFrame("experiment_" & Me.trialCounter & "_prime") = experimentTrials(Me.trialCounter)(0)
 			dataFrame("experiment_" & Me.trialCounter & "_target") = experimentTrials(Me.trialCounter)(1)
+			dataFrame("experiment_" & Me.trialCounter & "_primeCat") = experimentTrials(Me.trialCounter)(2)
+			dataFrame("experiment_" & Me.trialCounter & "_targetCat") = experimentTrials(Me.trialCounter)(3)
 
 			Me.trialCounter += 1
 

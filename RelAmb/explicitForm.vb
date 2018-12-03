@@ -150,9 +150,6 @@ Public Class explicitForm
 
 				Case 0
 
-					'Me.labB1.Visible = False
-					'Me.labB2.Visible = False
-					'Me.labB3.Visible = False
 					Me.numBox.Visible = False
 					Me.relBox.Visible = True
 
@@ -168,7 +165,6 @@ Public Class explicitForm
 					Me.labB1.Visible = True
 					Me.labB2.Visible = True
 					Me.labB3.Visible = True
-					'Me.numBox.Visible = False
 					Me.relBox.Visible = False
 
 					' Positive SRI
@@ -208,7 +204,6 @@ Public Class explicitForm
 					Me.labB2.Visible = False
 					Me.labB3.Visible = False
 					Me.numBox.Visible = True
-					'Me.relBox.Visible = False
 
 					Me.numText.ResetText()
 					Me.numText.Focus()
