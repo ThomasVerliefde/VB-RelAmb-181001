@@ -271,7 +271,7 @@ Module mainModule
 	End Function
 
 
-	Public Sub shuffleList(Of T)(list As IList(Of T)) 'Simple shuffle sub, switching around items without constraints
+	Public Sub shuffleList(Of T)(list As List(Of T)) 'Simple shuffle sub, switching around items without constraints
 		Dim r As Random = New Random()
 		For i = 0 To list.Count - 1
 			Dim index As Integer = r.Next(i, list.Count)
@@ -283,6 +283,20 @@ Module mainModule
 			End If
 		Next
 	End Sub
+
+	Public Function compareList(compList As List(Of String), compTest As List(Of String))
+		Dim compReturn As New List(Of String)(compTest)
+		For Each refWord In compTest
+			For Each compWord In compList
+				If Regex.IsMatch(refWord.ToUpper()(0), compWord.ToUpper()(0)) Then
+					compReturn.Remove(refWord)
+					Exit For
+				End If
+			Next
+		Next
+		Return compReturn
+	End Function
+
 
 	Public Function createPrimes(otherPos As List(Of String), otherNeg As List(Of String), posList As List(Of String), negList As List(Of String), strList As List(Of String))
 
@@ -322,19 +336,6 @@ Module mainModule
 
 	End Function
 
-	'Public Function createTargets()
-
-	'	'Select 2
-
-	'	Return
-	'End Function
-
-	Public Function randomSelect(resource As Object)
-
-
-		Return "Hello World"
-	End Function
-
 	Public Function createTrials(Primes As List(Of List(Of String)), Target As List(Of List(Of String)), Optional timesPrimes As Integer = 2)
 
 		Dim Trials = New List(Of List(Of String))
@@ -356,7 +357,7 @@ Module mainModule
 			Next
 		Next
 
-		Return Trials
+		Return Trials 'Trials is a List of Lists of Strings -> 
 	End Function
 
 	Public Sub saveCSV(ByVal dataFrame As Dictionary(Of String, String), Optional ByVal path As String = "rawData.csv")

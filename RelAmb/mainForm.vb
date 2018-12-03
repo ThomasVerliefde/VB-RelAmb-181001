@@ -135,13 +135,27 @@ Public Class mainForm
 
 				' NOT FINISHED !!!! -> WE NEED ^^
 
-				Dim practicePrimes = createPrimes(
-					Me.otherPos, 'CHANGE
-					Me.otherNeg, 'CHANGE
-					New List(Of String)(My.Resources.practicePrime_Pos.Split(" ")),
-					New List(Of String)(My.Resources.practicePrime_Neg.Split(" ")),
-					New List(Of String)(My.Resources.practicePrime_Str.Split(" "))
-					)
+
+
+				Dim otherPractice As New List(Of String)(My.Resources.practiceOthers.Split(" "))
+				otherPractice = compareList(Me.otherNeg, otherPractice)
+				otherPractice = compareList(Me.otherPos, otherPractice)
+				shuffleList(otherPractice)
+				Dim practicePrime_Pos As New List(Of String)(My.Resources.practicePrime_Pos.Split(" "))
+				shuffleList(practicePrime_Pos)
+				Dim practicePrime_Neg As New List(Of String)(My.Resources.practicePrime_Neg.Split(" "))
+				shuffleList(practicePrime_Neg)
+				Dim practicePrime_Str As New List(Of String)(My.Resources.practicePrime_Str.Split(" "))
+				shuffleList(practicePrime_Str)
+
+				'practicePrimes is a List of List of String with 5 lists: PositiveNounPrimes, NegativeNounPrimes, PositiveOthers, NegativeOthers, MatchingLetterStrings
+				Dim practicePrimes As New List(Of List(Of String))({
+								New List(Of String)({otherPractice(0)}),
+								New List(Of String)({otherPractice(1)}),
+								New List(Of String)({practicePrime_Pos(0)}),
+								New List(Of String)({practicePrime_Neg(0)}),
+								New List(Of String)({practicePrime_Str(0)})
+								})
 
 				Dim practiceTrials = createTrials(
 										practicePrimes,
@@ -149,14 +163,18 @@ Public Class mainForm
 											 New List(Of String)(My.Resources.practiceTarget_Pos.Split(" ")),
 											 New List(Of String)(My.Resources.practiceTarget_Neg.Split(" "))
 											 }),
-										timesPrimes:=1 'How often each prime is paired with a target from each category
+										timesPrimes:=2 'How often each prime is paired with a target from each category
 										)
-				' Results in XX Trials
+				' Results in 20 Trials (Can shorten to 10 by setting timesPrimes to 1)
 
-
-
-
-
+				''Debug
+				'For Each list In practiceTrials
+				'	For Each item In list
+				'		Console.Write(item & (" "))
+				'	Next
+				'	Console.WriteLine("")
+				'Next
+				''End Debug
 
 				' Experiment Trials
 
@@ -178,39 +196,10 @@ Public Class mainForm
 										)
 				' Results in 96 Trials
 
-
-
-
-
-
-				''Debug -> Check correct functioning "createPrimes" function AndAlso createTrials
-
-				'Dim otherPos = New List(Of String)({"Pos", "Pösitiv"})
-				'Dim otherNeg = New List(Of String)({"Negatiev", "Nega"})
-
-				Dim posList = New List(Of String)(My.Resources.experimentPrime_Pos.Split(" "))
-				Dim negList = New List(Of String)(My.Resources.experimentPrime_Neg.Split(" "))
-				Dim strList = New List(Of String)(My.Resources.experimentPrime_Str.Split(" "))
-				Dim primesList = createPrimes(Me.otherPos, Me.otherNeg, posList, negList, strList)
-
-				Console.WriteLine("")
-
-				Console.WriteLine("---------------------")
-
-				For Each a In primesList
-					For Each b In a
-						Console.Write(" $ " + b)
-					Next
-					Console.WriteLine("")
-				Next
-
-				Dim posTargets = New List(Of String)(My.Resources.experimentTarget_Pos.Split(" "))
-				Dim negTargets = New List(Of String)(My.Resources.experimentTarget_Neg.Split(" "))
-				Dim targetsList = New List(Of List(Of String))({posTargets, negTargets})
-				Dim expPairs = createTrials(primesList, targetsList, 4)
+				'Debug
 				Console.WriteLine("---------------------")
 				Dim amount As Integer
-				For Each c In expPairs
+				For Each c In experimentTrials
 					For Each d In c
 						Console.Write(" * " + d)
 					Next
@@ -218,7 +207,6 @@ Public Class mainForm
 					Console.WriteLine("")
 				Next
 				Console.WriteLine("")
-
 				'End Debug
 
 				Me.instrText.Text = My.Resources.ResourceManager.GetString("_2_practice" & Me.keyAss)
