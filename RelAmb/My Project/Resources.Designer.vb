@@ -61,7 +61,8 @@ Namespace My.Resources
         End Property
         
         '''<summary>
-        '''  Looks up a localized string similar to Liebe Versuchsperson,
+        '''  Looks up a localized string similar to 
+        '''Liebe Versuchsperson,
         '''
         '''vielen Dank für Ihre Teilnahme an dieser Studie!
         '''
@@ -77,9 +78,12 @@ Namespace My.Resources
         End Property
         
         '''<summary>
-        '''  Looks up a localized string similar to TEST THIS IS A TEST
+        '''  Looks up a localized string similar to In this part, we aks you to think about &quot;significant others&quot; in your life.
+        '''These could be a (ex-)partner, a sibling, a parent, a friend, or an acquaintance.
         '''
-        '''TEST.
+        '''You will be asked to provide the (first) names of 4 of these kind of significant others.
+        '''Note that we want you to provide us with 4 unique, different names.
+        '''Please read the instructions carefully!.
         '''</summary>
         Friend ReadOnly Property _1_otherInstr() As String
             Get
@@ -88,9 +92,13 @@ Namespace My.Resources
         End Property
         
         '''<summary>
-        '''  Looks up a localized string similar to TEST THIS IS A TEST
+        '''  Looks up a localized string similar to {\rtf1\ansi  \par \qc
+        '''Please provide the name of a {\b disliked} person. \par \par
         '''
-        '''TEST.
+        '''Think of one &quot;significant person&quot; that you like {\b least}. \par
+        '''A person in your life you {\b do not feel very good about}, \par
+        '''and hold {\b negative} feelings towards.
+        '''}.
         '''</summary>
         Friend ReadOnly Property _1_otherNeg() As String
             Get
@@ -99,9 +107,13 @@ Namespace My.Resources
         End Property
         
         '''<summary>
-        '''  Looks up a localized string similar to TEST THIS IS A TEST
+        '''  Looks up a localized string similar to {\rtf1\ansi \par \qc
+        '''Please provide the name of a {\b liked} person. \par \par
         '''
-        '''TEST.
+        '''Think of one &quot;significant person&quot; that you like {\b most}. \par
+        '''A person in your life you {\b feel very good about}, \par
+        '''and hold {\b positive} feelings towards.
+        '''}.
         '''</summary>
         Friend ReadOnly Property _1_otherPos() As String
             Get
@@ -172,8 +184,11 @@ Namespace My.Resources
         '''
         '''Als nächstes möchten wir Ihnen noch einige Fragen zu den Wörtern stellen, die Sie während der letzten Phase gesehen haben.
         '''
+        '''We would like you to answer some questions concerning the significant others you have provided us with at the beginning of the experiment.
+        '''Please answer each question regarding the specific significant other indicated on the screen
         '''
-        '''Drücken Sie den &quot;Weiter&quot;-Button um fortzufahren..
+        '''
+        '''Important: click on the arrow to slide it towards the wished point on the scale, do this for eac [rest of string was truncated]&quot;;.
         '''</summary>
         Friend ReadOnly Property _4_explicitInstr() As String
             Get
@@ -182,7 +197,7 @@ Namespace My.Resources
         End Property
         
         '''<summary>
-        '''  Looks up a localized string similar to .
+        '''  Looks up a localized string similar to THis is the dmqeoirfjwsdlj.
         '''</summary>
         Friend ReadOnly Property _5_demoInstr() As String
             Get
@@ -206,7 +221,7 @@ Namespace My.Resources
         End Property
         
         '''<summary>
-        '''  Looks up a localized string similar to 1 0 0 1 1 0 1 0 0 1 1 0 1 0 1 0 0 1 0 1 1 0 1 0 1 1 0 0 0 0 1 1 0 0 1 1 0 1 1 0 1 0 1 0 1 0 0 1 0 0 1 1 1 0 0 1 0 1 0 1 1 0 0 1 1 0 1 0 1 0 1 0 1 0 1 0 0 0 1 1 0 1 1 0 1 0 1 0 0 1 0 1 1 0 0 1 1 0 0 1 1 0 1 0 1 1 0 0 1 0 0 1 0 1 0 1 0 1 0 1 1 1 0 0 0 0 1 1 1 0 0 1 1 0 1 0 0 0 1 1 1 1 0 0 0 1 0 1 0 1 0 1 0 1 1 0 1 0 1 0 1 1 0 0 1 1 0 0 1 0 0 1 0 1 1 0 0 1 1 0 0 1 0 1 0 1 0 1 1 0 1 0 0 1 1 0 0 0 1 1 1 0 0 1 0 1 1 0 0 1 0 1 1 0 1 0 0 1 1 0 1 0 1 0 1 1 0 0 1 1 0 0 0 1 0 1 1 0 0 1 1 1 0 0 0 1 0 1 1 1 0 0 1 0 1 0  [rest of string was truncated]&quot;;.
+        '''  Looks up a localized string similar to 2 3 0 1 2 1 3 0 1 2 0 3 2 3 1 0 0 3 2 1 2 3 1 0 1 0 3 2 0 1 2 3 0 1 3 2 1 2 3 0 2 1 0 3 2 0 1 3 3 0 1 2 3 2 0 1 0 2 1 3 2 0 3 1 2 1 0 3 2 3 1 0 2 1 0 3 3 0 1 2 1 3 2 0 2 1 3 0 3 0 2 1 2 0 3 1 2 3 0 1 2 1 3 0 3 1 0 2 3 2 0 1 0 2 1 3 0 2 1 3 1 0 3 2 0 1 3 2 2 0 3 1 2 3 1 0 3 0 1 2 3 1 0 2 0 3 2 1 0 3 2 1 1 2 0 3 2 3 1 0 1 0 2 3 1 0 3 2 2 3 0 1 1 2 0 3 3 1 2 0 0 2 1 3 0 3 2 1 3 2 1 0 1 2 3 0 0 1 3 2 2 0 3 1 1 3 2 0 0 3 2 1 3 2 1 0 1 2 3 0 3 2 1 0 1 0 2 3 1 0 2 3 0 2 1 3 2 0 1 3 1 3 0 2 0 3 2 1 1 3 0 2 2 1 0 3  [rest of string was truncated]&quot;;.
         '''</summary>
         Friend ReadOnly Property BlockRandomisation() As String
             Get
@@ -215,8 +230,7 @@ Namespace My.Resources
         End Property
         
         '''<summary>
-        '''  Looks up a localized string similar to not leid feind streit drohung abschied gefängnis verbrechen
-        '''.
+        '''  Looks up a localized string similar to not leid feind streit drohung abschied gefängnis verbrechen.
         '''</summary>
         Friend ReadOnly Property experimentPrime_Neg() As String
             Get
@@ -225,8 +239,7 @@ Namespace My.Resources
         End Property
         
         '''<summary>
-        '''  Looks up a localized string similar to mut lust glück freude frieden hoffnung vertrauen wochenende
-        '''.
+        '''  Looks up a localized string similar to mut lust glück freude frieden hoffnung vertrauen wochenende.
         '''</summary>
         Friend ReadOnly Property experimentPrime_Pos() As String
             Get
@@ -235,8 +248,7 @@ Namespace My.Resources
         End Property
         
         '''<summary>
-        '''  Looks up a localized string similar to BBB SSS GGG RRR BBBB SSSS GGGG RRRR BBBBB SSSSS GGGGG RRRRR BBBBBB SSSSSS GGGGGG RRRRRR BBBBBBB SSSSSSS GGGGGGG RRRRRRR BBBBBBBB SSSSSSSS GGGGGGGG RRRRRRRR BBBBBBBBB SSSSSSSSS GGGGGGGGG RRRRRRRRR BBBBBBBBBB SSSSSSSSSS GGGGGGGGGG RRRRRRRRRR
-        '''.
+        '''  Looks up a localized string similar to BBB SSS GGG RRR BBBB SSSS GGGG RRRR BBBBB SSSSS GGGGG RRRRR BBBBBB SSSSSS GGGGGG RRRRRR BBBBBBB SSSSSSS GGGGGGG RRRRRRR BBBBBBBB SSSSSSSS GGGGGGGG RRRRRRRR BBBBBBBBB SSSSSSSSS GGGGGGGGG RRRRRRRRR BBBBBBBBBB SSSSSSSSSS GGGGGGGGGG RRRRRRRRRR.
         '''</summary>
         Friend ReadOnly Property experimentPrime_Str() As String
             Get
@@ -245,8 +257,7 @@ Namespace My.Resources
         End Property
         
         '''<summary>
-        '''  Looks up a localized string similar to BRUTAL EINSAM ELEND GRAUSAM ILLEGAL KRANK TRAGISCH TRAURIG
-        '''.
+        '''  Looks up a localized string similar to BRUTAL EINSAM ELEND GRAUSAM ILLEGAL KRANK TRAGISCH TRAURIG.
         '''</summary>
         Friend ReadOnly Property experimentTarget_Neg() As String
             Get
@@ -255,8 +266,7 @@ Namespace My.Resources
         End Property
         
         '''<summary>
-        '''  Looks up a localized string similar to BELIEBT GENIAL GESUND LEBENDIG OPTIMAL PERFEKT SONNIG SUPER
-        '''.
+        '''  Looks up a localized string similar to BELIEBT GENIAL GESUND LEBENDIG OPTIMAL PERFEKT SONNIG SUPER.
         '''</summary>
         Friend ReadOnly Property experimentTarget_Pos() As String
             Get
@@ -265,8 +275,16 @@ Namespace My.Resources
         End Property
         
         '''<summary>
-        '''  Looks up a localized string similar to mord angst sklave
-        '''.
+        '''  Looks up a localized string similar to Abel Dana Hannelore Kaspar Nicolaus Valerie.
+        '''</summary>
+        Friend ReadOnly Property practiceOthers() As String
+            Get
+                Return ResourceManager.GetString("practiceOthers", resourceCulture)
+            End Get
+        End Property
+        
+        '''<summary>
+        '''  Looks up a localized string similar to mord angst sklave.
         '''</summary>
         Friend ReadOnly Property practicePrime_Neg() As String
             Get
@@ -275,8 +293,7 @@ Namespace My.Resources
         End Property
         
         '''<summary>
-        '''  Looks up a localized string similar to kuss idee chance
-        '''.
+        '''  Looks up a localized string similar to kuss idee chance.
         '''</summary>
         Friend ReadOnly Property practicePrime_Pos() As String
             Get
@@ -285,8 +302,7 @@ Namespace My.Resources
         End Property
         
         '''<summary>
-        '''  Looks up a localized string similar to QQQQQQQ CCCC
-        '''.
+        '''  Looks up a localized string similar to QQQQQQQ CCCC.
         '''</summary>
         Friend ReadOnly Property practicePrime_Str() As String
             Get
@@ -295,8 +311,7 @@ Namespace My.Resources
         End Property
         
         '''<summary>
-        '''  Looks up a localized string similar to boshaft korrupt ungerecht gehässig
-        '''.
+        '''  Looks up a localized string similar to boshaft korrupt ungerecht gehässig.
         '''</summary>
         Friend ReadOnly Property practiceTarget_Neg() As String
             Get
@@ -305,8 +320,7 @@ Namespace My.Resources
         End Property
         
         '''<summary>
-        '''  Looks up a localized string similar to geduldig zärtlich humorvoll fleissig
-        '''.
+        '''  Looks up a localized string similar to geduldig zärtlich humorvoll fleissig.
         '''</summary>
         Friend ReadOnly Property practiceTarget_Pos() As String
             Get
