@@ -29,6 +29,12 @@ Public Class experimentForm
 		Me.timerFix.Interval = 500
 		Me.timerPrime.Interval = 150
 
+		If debugMode Then
+			Me.timerITI.Interval = 50
+			Me.timerFix.Interval = 50
+			Me.timerPrime.Interval = 50
+		End If
+
 		Me.Controls.AddRange({Me.leftLab, Me.rightLab, Me.slowLab, Me.fixLab, Me.primeLab, Me.targetLab})
 
 		Select Case mainForm.keyAss
@@ -103,6 +109,11 @@ Public Class experimentForm
 		Me.primeLab.Visible = False
 		Me.targetLab.Visible = True
 		Me.ignoreKeys = False
+
+		If debugMode Then
+			SendKeys.SendWait("A")
+		End If
+
 	End Sub
 
 	Private Sub responseAL(sender As Object, e As KeyEventArgs) Handles Me.KeyDown

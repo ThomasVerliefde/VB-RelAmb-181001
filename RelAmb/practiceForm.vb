@@ -29,6 +29,12 @@ Public Class practiceForm
 		Me.timerFix.Interval = 500
 		Me.timerPrime.Interval = 150
 
+		If debugMode Then
+			Me.timerITI.Interval = 150
+			Me.timerFix.Interval = 150
+			Me.timerPrime.Interval = 150
+		End If
+
 		Me.Controls.AddRange({Me.leftLab, Me.rightLab, Me.slowLab, Me.fixLab, Me.primeLab, Me.targetLab})
 
 		Select Case mainForm.keyAss

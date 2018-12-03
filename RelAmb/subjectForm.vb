@@ -1,5 +1,5 @@
 ﻿Public Class subjectForm
-    Inherits Form
+	Inherits Form
 
 	Private WithEvents contButton As New continueButton(Txt:="Bestätigen")
 	Private WithEvents textBox As New TextBox
@@ -33,6 +33,11 @@
 
 	Private Sub contButton_Click(sender As Object, e As EventArgs) Handles contButton.Click
 
+		If Me.textBox.Text = 999 Then
+			debugMode = True
+			Me.textBox.Text = 499
+		End If
+
 		If Me.textBox.Text = "" OrElse Val(Me.textBox.Text) < 1 OrElse Val(Me.textBox.Text) > 500 Then
 			'Interestingly, Val("these are letters") returns 0, and results in error
 			MsgBox("Bitte geben Sie eine korrekte VPNr ein!", MsgBoxStyle.Critical, Title:="Fehler!")
@@ -44,7 +49,6 @@
 				Case 0
 					mainForm.keyAss = "Apos"
 					mainForm.firstOthers = "Pos"
-
 				Case 1
 					mainForm.keyAss = "Apos"
 					mainForm.firstOthers = "Neg"
@@ -55,9 +59,15 @@
 					mainForm.keyAss = "Aneg"
 					mainForm.firstOthers = "Neg"
 			End Select
+
 			dataFrame("Subject") = Me.subjN.ToString
 			dataFrame("Key") = mainForm.keyAss
 			dataFrame("FirstOthers") = mainForm.firstOthers
+
+			If debugMode Then
+				dataFrame("Subject") = "DEBUG"
+			End If
+
 			Me.Close()
 		End If
 	End Sub

@@ -34,6 +34,11 @@ Public Class otherForm
 
 		Me.otherBox1.Select()
 
+		If debugMode Then
+			Me.otherBox1.Text = "Adam"
+			Me.otherBox2.Text = "Chloe"
+		End If
+
 	End Sub
 
 	Private Sub contButton_Click(sender As Object, e As EventArgs) Handles contButton.Click
@@ -65,6 +70,12 @@ Public Class otherForm
 
 			Me.otherBox1.Text = ""
 			Me.otherBox2.Text = ""
+
+			If debugMode Then
+				Me.otherBox1.Text = "Xavier"
+				Me.otherBox2.Text = "Zoe"
+			End If
+
 			Me.otherBox1.Select()
 
 		ElseIf Me.otherPos.Count = 2 OrElse Me.otherNeg.Count = 2 Then
@@ -76,16 +87,6 @@ Public Class otherForm
 					mainForm.otherPos.AddRange({Me.otherBox1.Text, Me.otherBox2.Text})
 					mainForm.otherNeg = Me.otherNeg
 			End Select
-
-			' Debug
-			'For Each item In mainForm.otherPos
-			'	Console.WriteLine(item & " Pos")
-			'Next
-
-			'For Each item In mainForm.otherNeg
-			'	Console.WriteLine(item & " Neg")
-			'Next
-			' End Debug
 
 			dataFrame("otherPos1") = mainForm.otherPos(0).ToString
 			dataFrame("otherPos2") = mainForm.otherPos(1).ToString

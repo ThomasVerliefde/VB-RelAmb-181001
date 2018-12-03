@@ -154,6 +154,17 @@ Public Class mainForm
 								New List(Of String)({practicePrime_Str(0)})
 								})
 
+				If debugMode Then
+					Console.WriteLine("- practicePrimes -")
+					For Each c In Me.practicePrimes
+						For Each d In c
+							Console.Write(" * " + d)
+						Next
+						Console.WriteLine("")
+					Next
+					Console.WriteLine("")
+				End If
+
 				practiceTrials = createTrials(
 										Me.practicePrimes,
 										New List(Of List(Of String))({
@@ -164,16 +175,20 @@ Public Class mainForm
 										)
 				' Results in 20 Trials (Can shorten to 10 by setting timesPrimes to 1)
 
-				shuffleList(practiceTrials)
+				If debugMode Then
+					Console.WriteLine("- practiceTrials -")
+					Dim amount As Integer
+					For Each c In practiceTrials
+						For Each d In c
+							Console.Write(" * " + d)
+						Next
+						amount += c.Count
+						Console.WriteLine("")
+					Next
+					Console.WriteLine("Amount of Trials: " & amount)
+				End If
 
-				''Debug
-				'For Each list In practiceTrials
-				'	For Each item In list
-				'		Console.Write(item & (" "))
-				'	Next
-				'	Console.WriteLine("")
-				'Next
-				''End Debug
+				shuffleList(practiceTrials)
 
 				' Experiment Trials
 
@@ -185,6 +200,18 @@ Public Class mainForm
 					New List(Of String)(My.Resources.experimentPrime_Str.Split(" "))
 				)
 
+				If debugMode Then
+					Console.WriteLine("- experimentPrimes -")
+					For Each c In Me.experimentPrimes
+						For Each d In c
+							Console.Write(" * " + d)
+						Next
+						Console.WriteLine("")
+					Next
+					Console.WriteLine("")
+				End If
+
+
 				experimentTrials = createTrials(
 					Me.experimentPrimes,
 					New List(Of List(Of String))({
@@ -195,20 +222,20 @@ Public Class mainForm
 				)
 				' Results in (12 [Primes] x 2 [Targets] x 4) 96 Trials
 
-				shuffleList(experimentTrials)
+				If debugMode Then
+					Console.WriteLine("- experimentTrials -")
+					Dim amount As Integer
+					For Each c In experimentTrials
+						For Each d In c
+							Console.Write(" * " + d)
+						Next
+						amount += c.Count
+						Console.WriteLine("")
+					Next
+					Console.WriteLine("Amount of Trials: " & amount)
+				End If
 
-				''Debug
-				'Console.WriteLine("---------------------")
-				'Dim amount As Integer
-				'For Each c In experimentTrials
-				'	For Each d In c
-				'		Console.Write(" * " + d)
-				'	Next
-				'	amount += c.Count
-				'	Console.WriteLine("")
-				'Next
-				'Console.WriteLine("")
-				''End Debug
+				shuffleList(experimentTrials)
 
 			Case 2 'Practice Trials
 				Me.practiceT = time.GetCurrentInstant()
@@ -267,6 +294,8 @@ Public Class mainForm
 				'dataFrame("RF_primesBH") = rf7
 
 				saveCSV(dataFrame, "Data_RelAmb_S" & dataFrame("Subject") & "_" & Net.Dns.GetHostName & ".csv")
+
+
 
 			Case Else
 				Me.Close()

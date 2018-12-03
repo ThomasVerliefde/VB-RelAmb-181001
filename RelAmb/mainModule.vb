@@ -4,6 +4,8 @@ Imports NodaTime
 
 Module mainModule
 
+	Public debugMode As Boolean
+
 	Friend dataFrame As New Dictionary(Of String, String) 'main dataframe to save all our data, gets written out at the end of the experiment
 	Friend time As IClock = SystemClock.Instance 'NodaTime clock instance, which keeps time, at the start of every part, gets saved in a variable (see under)
 
@@ -16,6 +18,8 @@ Module mainModule
 
 	Public practiceTrials As List(Of List(Of String))
 	Public experimentTrials As List(Of List(Of String))
+
+
 
 	Public Class labelledTrackbar
 		Inherits Panel

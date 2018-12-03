@@ -144,7 +144,7 @@ Public Class explicitForm
 			Me.B1 = False
 			Me.B2 = False
 			Me.B3 = False
-			Me.contButton.Enabled = False
+			Me.contButton.Enabled = debugMode 'False if debugMode is off, True if debugMode is on
 
 			Select Case Me.questionCount Mod 5
 
@@ -158,6 +158,10 @@ Public Class explicitForm
 
 					Me.relText.ResetText()
 					Me.relText.Select()
+
+					If debugMode Then
+						relText.Text = "DEBUG"
+					End If
 
 				Case 1
 
@@ -209,6 +213,10 @@ Public Class explicitForm
 					Me.numText.ResetText()
 					Me.numText.Focus()
 
+					If debugMode Then
+						numText.Text = 1
+					End If
+
 					Me.otherCount += 1
 
 			End Select
@@ -220,10 +228,6 @@ Public Class explicitForm
 	End Sub
 
 	Private Sub enableTrack(sender As Object, e As EventArgs) Handles trackB1.MouseDown, trackB2.MouseDown, trackB3.MouseDown
-
-		'Console.WriteLine(sender)
-
-		'Console.WriteLine(DirectCast(sender, TrackBar).Name)
 
 		Select Case DirectCast(sender, TrackBar).Name
 			Case "B1"
@@ -270,11 +274,5 @@ Public Class explicitForm
 			e.Handled = True
 		End If
 	End Sub
-
-	' It might be interesting to show a warning if they type a number that is too large, but this is not a priority
-	'Private Sub test(sender As Object, e As KeyPressEventArgs) Handles numText.TextChanged
-	'	If numText.Text > 25 Then	
-	'	End If
-	'End Sub
 
 End Class
