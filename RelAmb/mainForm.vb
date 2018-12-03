@@ -123,8 +123,6 @@ Public Class mainForm
 					Console.WriteLine("Amount of Trials: " & amount)
 				End If
 
-
-
 				shuffleList(practiceTrials)
 
 				' Experiment Trials

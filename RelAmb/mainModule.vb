@@ -19,8 +19,6 @@ Module mainModule
 	Public practiceTrials As List(Of List(Of String))
 	Public experimentTrials As List(Of List(Of String))
 
-
-
 	Public Class labelledTrackbar
 		Inherits Panel
 
