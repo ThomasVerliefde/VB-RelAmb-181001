@@ -109,24 +109,25 @@ Public Class mainForm
 		subjectForm.ShowDialog()
 
 		Me.Controls.Add(Me.instrText)
-		xCenter(Me.instrText, 0.4)
+		objCenter(Me.instrText, 0.4)
 		Me.instrText.Text = My.Resources.ResourceManager.GetString("_0_mainInstr")
 
 		Me.Controls.Add(Me.contButton)
-		xCenter(Me.contButton)
+		objCenter(Me.contButton)
 
 	End Sub
 
 	Public Sub loadNext(sender As Object, e As EventArgs) Handles contButton.Click
 		Select Case Me.instructionCount
 			Case 0 'Start of Experiment
+				Me.instrText.Text = My.Resources.ResourceManager.GetString("_1_otherInstr")
 				subjectForm.Dispose()
 				Me.startT = time.GetCurrentInstant()
-				Me.instrText.Text = My.Resources.ResourceManager.GetString("_1_otherInstr")
 
 			Case 1 'Collecting Names of 'Significant Others'
 				Me.otherT = time.GetCurrentInstant()
 				otherForm.ShowDialog()
+				Me.instrText.Text = My.Resources.ResourceManager.GetString("_2_practice" & Me.keyAss)
 				otherForm.Dispose()
 
 				' Creating All Practice & Experiment Trials
@@ -182,16 +183,16 @@ Public Class mainForm
 					New List(Of String)(My.Resources.experimentPrime_Pos.Split(" ")),
 					New List(Of String)(My.Resources.experimentPrime_Neg.Split(" ")),
 					New List(Of String)(My.Resources.experimentPrime_Str.Split(" "))
-					)
+				)
 
 				experimentTrials = createTrials(
-										Me.experimentPrimes,
-										New List(Of List(Of String))({
-											 New List(Of String)(My.Resources.experimentTarget_Pos.Split(" ")),
-											 New List(Of String)(My.Resources.experimentTarget_Neg.Split(" "))
-											 }),
-										timesPrimes:=4 'How often each prime is paired with a target from each category
-										)
+					Me.experimentPrimes,
+					New List(Of List(Of String))({
+						New List(Of String)(My.Resources.experimentTarget_Pos.Split(" ")),
+						New List(Of String)(My.Resources.experimentTarget_Neg.Split(" "))
+					}),
+					timesPrimes:=4 'How often each prime is paired with a target from each category
+				)
 				' Results in (12 [Primes] x 2 [Targets] x 4) 96 Trials
 
 				shuffleList(experimentTrials)
@@ -209,33 +210,30 @@ Public Class mainForm
 				'Console.WriteLine("")
 				''End Debug
 
-				Me.instrText.Text = My.Resources.ResourceManager.GetString("_2_practice" & Me.keyAss)
 			Case 2 'Practice Trials
 				Me.practiceT = time.GetCurrentInstant()
 				practiceForm.ShowDialog()
+				Me.instrText.Text = My.Resources.ResourceManager.GetString("_3_experiment" & Me.keyAss)
 				practiceForm.Dispose()
 
-				Me.instrText.Text = My.Resources.ResourceManager.GetString("_3_experiment" & Me.keyAss)
 			Case 3 'Experiment Proper
 				Me.experimentT = time.GetCurrentInstant()
-				'expForm.ShowDialog()
-				'expForm.Dispose()
-
+				experimentForm.ShowDialog()
 				Me.instrText.Text = My.Resources.ResourceManager.GetString("_4_explicitInstr")
-			Case 4 'Explicit Measurements of Ambivalence
+				experimentForm.Dispose()
+
+			Case 4 'Explicit/Direct Measurements of Ambivalence
 				Me.explicitT = time.GetCurrentInstant()
 				explicitForm.ShowDialog()
+				Me.instrText.Text = My.Resources.ResourceManager.GetString("_5_demoInstr")
 				explicitForm.Dispose()
 
-				Me.instrText.Text = My.Resources.ResourceManager.GetString("_5_demoInstr")
 			Case 5 'Demographic Information
 				Me.demographicsT = time.GetCurrentInstant()
 				demographicsForm.ShowDialog()
-
-			Case 6 'End of Experiment
+				Me.instrText.Text = My.Resources.ResourceManager.GetString("_6_endInstr")
 				demographicsForm.Dispose()
 
-				Me.instrText.Text = My.Resources.ResourceManager.GetString("_6_endInstr")
 				Me.instrText.Font = New Font("Microsoft Sans Serif", 40)
 				'instrText.TextAlign = HorizontalAlignment.Center
 				Me.contButton.Text = "Abbrechen"
@@ -268,7 +266,7 @@ Public Class mainForm
 				'dataFrame("RF_targetsDL") = rf6
 				'dataFrame("RF_primesBH") = rf7
 
-				saveCSV(dataFrame, "Data_RelAmb_" & Net.Dns.GetHostName & ".csv")
+				saveCSV(dataFrame, "Data_RelAmb_S" & dataFrame("Subject") & "_" & Net.Dns.GetHostName & ".csv")
 
 			Case Else
 				Me.Close()

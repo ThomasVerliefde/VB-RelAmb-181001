@@ -55,24 +55,24 @@ Public Class explicitForm
 		End With
 
 		Me.Controls.Add(Me.labIntro)
-		xCenter(Me.labIntro, verticalDist:=0.1, setLeft:=50)
+		objCenter(Me.labIntro, verticalDist:=0.1, setLeft:=50)
 
 		Me.Controls.Add(Me.labName)
-		xCenter(Me.labName, verticalDist:=0.095)
+		objCenter(Me.labName, verticalDist:=0.095)
 
 		Me.Controls.Add(Me.labB1)
 		Me.Controls.Add(Me.labB2)
 		Me.Controls.Add(Me.labB3)
 		Me.Controls.Add(Me.numBox)
 		Me.Controls.Add(Me.relBox)
-		xCenter(Me.labB1, verticalDist:=0.3)
-		xCenter(Me.labB2, verticalDist:=0.5)
-		xCenter(Me.labB3, verticalDist:=0.7)
-		xCenter(Me.numBox, 0.45, 0.4)
-		xCenter(Me.relBox, 0.5, setLeft:=100)
+		objCenter(Me.labB1, verticalDist:=0.3)
+		objCenter(Me.labB2, verticalDist:=0.5)
+		objCenter(Me.labB3, verticalDist:=0.7)
+		objCenter(Me.numBox, 0.45, 0.4)
+		objCenter(Me.relBox, 0.5, setLeft:=100)
 
 		Me.Controls.Add(Me.contButton)
-		xCenter(Me.contButton)
+		objCenter(Me.contButton)
 
 		Me.labB1.Visible = False
 		Me.labB2.Visible = False

@@ -3,7 +3,7 @@
 
 	Private WithEvents contButton As New continueButton(Txt:="Bestätigen")
 	Private WithEvents textBox As New TextBox
-	Private subjPanel As New labelledBox(Me.textBox, "VPNr:")
+	Private ReadOnly subjPanel As New labelledBox(Me.textBox, "VPNr:")
 	Private condN As Integer
 	Private subjN As Integer
 
@@ -21,10 +21,10 @@
 		Me.Left = (screenWidth / 2) - (Me.Width / 2)
 
 		Me.Controls.Add(Me.contButton)
-		xCenter(Me.contButton)
+		objCenter(Me.contButton)
 
 		Me.Controls.Add(Me.subjPanel)
-		xCenter(Me.subjPanel, 0.4)
+		objCenter(Me.subjPanel, 0.4)
 
 		Me.textBox.MaxLength = 3
 		Me.textBox.Select()

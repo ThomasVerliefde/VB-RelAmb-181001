@@ -236,7 +236,7 @@ Module mainModule
 	End Class
 
 
-	Public Sub xCenter(any As Object, Optional verticalDist As Double = 0.85, Optional horizontalDist As Double = 0.5, Optional setLeft As Integer = 0, Optional setTop As Integer = 0)
+	Public Sub objCenter(any As Object, Optional verticalDist As Double = 0.85, Optional horizontalDist As Double = 0.5, Optional setLeft As Integer = 0, Optional setTop As Integer = 0)
 
 		Dim formWidth As Integer = Form.ActiveForm.DesktopBounds.Width
 		Dim formHeight As Integer = Form.ActiveForm.DesktopBounds.Height

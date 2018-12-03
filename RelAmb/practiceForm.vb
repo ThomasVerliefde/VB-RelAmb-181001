@@ -29,6 +29,8 @@ Public Class practiceForm
 		Me.timerFix.Interval = 500
 		Me.timerPrime.Interval = 150
 
+		Me.Controls.AddRange({Me.leftLab, Me.rightLab, Me.slowLab, Me.fixLab, Me.primeLab, Me.targetLab})
+
 		Select Case mainForm.keyAss
 			Case "Apos"
 				Me.leftLab.Text = "A = positiv"
@@ -38,62 +40,41 @@ Public Class practiceForm
 				Me.rightLab.Text = "L = positiv"
 		End Select
 
-		With Me.leftLab
-			.Left = 100
-			.Top = 100
-			.Font = sansSerif20
-			.TextAlign = ContentAlignment.TopLeft
-			.AutoSize = True
-		End With
+		For Each label In New List(Of Label)({Me.leftLab, Me.rightLab})
+			With label
+				.Left = 100
+				.Top = 100
+				.Font = sansSerif20
+				.TextAlign = ContentAlignment.TopLeft
+				.AutoSize = True
+			End With
+		Next
 
-		With Me.rightLab
-			'.Anchor = AnchorStyles.Top Or AnchorStyles.Right
-			.Left = Me.Width - TextRenderer.MeasureText(Me.rightLab.Text, sansSerif20).Width - 100
-			.Top = 100
-			.Font = sansSerif20
-			.TextAlign = ContentAlignment.TopRight
-			.AutoSize = True
-		End With
+		Me.rightLab.TextAlign = ContentAlignment.TopRight
+		Me.rightLab.Left = Me.Width - TextRenderer.MeasureText(Me.rightLab.Text, sansSerif20).Width - 100
+
+		For Each label In New List(Of Label)({Me.slowLab, Me.fixLab, Me.primeLab, Me.targetLab})
+			With label
+				.Visible = False
+				.Text = ""
+				.Font = sansSerif60
+				.TextAlign = ContentAlignment.MiddleCenter
+				.Width = Screen.PrimaryScreen.Bounds.Width / 1.5
+				.Height = 100
+			End With
+			objCenter(label, 0.5)
+		Next
 
 		With Me.slowLab
-			.Visible = False
 			.Text = "Schneller!"
-			.AutoSize = True
 			.Font = sansSerif25B
 			.ForeColor = Color.Red
-			.TextAlign = ContentAlignment.TopCenter
-			.AutoSize = True
 		End With
-		xCenter(Me.slowLab, 0.5)
 
 		With Me.fixLab
-			.Visible = False
 			.Text = "+"
 			.Font = sansSerif72
-			.TextAlign = ContentAlignment.TopCenter
-			.AutoSize = True
 		End With
-		xCenter(Me.fixLab, 0.5)
-
-		With Me.primeLab
-			.Visible = False
-			.Text = ""
-			.Font = sansSerif60
-			.TextAlign = ContentAlignment.TopCenter
-			.AutoSize = True
-		End With
-		xCenter(Me.primeLab, 0.5)
-
-		With Me.targetLab
-			.Visible = False
-			.Text = ""
-			.Font = sansSerif60
-			.TextAlign = ContentAlignment.TopCenter
-			.AutoSize = True
-		End With
-		xCenter(Me.targetLab, 0.5)
-
-		Me.Controls.AddRange({Me.leftLab, Me.rightLab, Me.slowLab, Me.fixLab, Me.primeLab, Me.targetLab})
 
 		Me.timerITI.Enabled = True
 
@@ -109,7 +90,7 @@ Public Class practiceForm
 	Private Sub timerFix_Tick(sender As Object, e As EventArgs) Handles timerFix.Tick
 		Me.timerFix.Stop()
 		Me.timerPrime.Start()
-		Me.primeLab.Text = practiceTrials(trialCounter)(0)
+		Me.primeLab.Text = practiceTrials(Me.trialCounter)(0)
 		Me.fixLab.Visible = False
 		Me.fixLab.Visible = False
 		Me.primeLab.Visible = True
@@ -118,7 +99,7 @@ Public Class practiceForm
 	Private Sub timerPrime_Tick(sender As Object, e As EventArgs) Handles timerPrime.Tick
 		Me.timerPrime.Stop()
 		Me.stopwatchTarget.Start()
-		Me.targetLab.Text = practiceTrials(trialCounter)(0)
+		Me.targetLab.Text = practiceTrials(Me.trialCounter)(1)
 		Me.primeLab.Visible = False
 		Me.targetLab.Visible = True
 		Me.ignoreKeys = False
@@ -136,16 +117,18 @@ Public Class practiceForm
 			Me.slowLab.Visible = Me.answeringTime > 1500
 			Me.ignoreKeys = True
 
-			dataFrame("practice_" & trialCounter & "_answer") = e.KeyCode.ToString
-			dataFrame("practice_" & trialCounter & "_time") = answeringTime.ToString
-			dataFrame("practice_" & trialCounter & "_prime") = practiceTrials(trialCounter)(0)
-			dataFrame("practice_" & trialCounter & "_target") = practiceTrials(trialCounter)(1)
+			dataFrame("practice_" & Me.trialCounter & "_answer") = e.KeyCode.ToString
+			dataFrame("practice_" & Me.trialCounter & "_time") = Me.answeringTime.ToString
+			dataFrame("practice_" & Me.trialCounter & "_prime") = practiceTrials(Me.trialCounter)(0)
+			dataFrame("practice_" & Me.trialCounter & "_target") = practiceTrials(Me.trialCounter)(1)
 
 			Me.trialCounter += 1
 
 			If Me.trialCounter = practiceTrials.Count Then
+				Me.timerITI.Stop()
 				Me.Close()
 			End If
+
 		End If
 
 	End Sub

@@ -18,16 +18,16 @@ Public Class otherForm
 		Me.BackColor = Color.White
 
 		Me.Controls.Add(Me.otherInstr)
-		xCenter(Me.otherInstr, 0.25)
+		objCenter(Me.otherInstr, 0.25)
 		Me.otherInstr.Rtf = My.Resources.ResourceManager.GetString("_1_other" & mainForm.firstOthers)
 
 		Me.Controls.Add(Me.contButton)
-		xCenter(Me.contButton, 0.8)
+		objCenter(Me.contButton, 0.8)
 
 		Me.Controls.Add(Me.otherPanel1)
-		xCenter(Me.otherPanel1, 0.5, 0.45)
+		objCenter(Me.otherPanel1, 0.5, 0.45)
 		Me.Controls.Add(Me.otherPanel2)
-		xCenter(Me.otherPanel2, 0.6, 0.45)
+		objCenter(Me.otherPanel2, 0.6, 0.45)
 
 		Me.otherBox1.MaxLength = 14
 		Me.otherBox2.MaxLength = 14

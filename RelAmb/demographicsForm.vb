@@ -22,19 +22,19 @@ Public Class demographicsForm
 		Dim i As Double = 0.25
 		For Each item In {Me.ageBox, Me.genderBox, Me.languageBox, Me.handBox, Me.studyBox}
 			Me.Controls.Add(item)
-			xCenter(item, verticalDist:=i, horizontalDist:=0, setLeft:=300)
+			objCenter(item, verticalDist:=i, horizontalDist:=0, setLeft:=300)
 			i += 0.1
 		Next
 
 		Me.Controls.Add(Me.contButton)
-		xCenter(Me.contButton)
+		objCenter(Me.contButton)
 
 		Me.instrLabel.Text = "Bitte machen Sie zum Abschluss noch die folgenden Angaben"
 		Me.instrLabel.Size = New Size(1000, 40)
 		Me.instrLabel.TextAlign = ContentAlignment.MiddleCenter
 		Me.instrLabel.Font = mainModule.sansSerif22
 		Me.Controls.Add(Me.instrLabel)
-		xCenter(Me.instrLabel, verticalDist:=0.13)
+		objCenter(Me.instrLabel, verticalDist:=0.13)
 
 	End Sub
 
@@ -62,8 +62,6 @@ Public Class demographicsForm
 			dataFrame("Handedness") = Me.handBox.optionBox.Text.ToString
 			dataFrame("Study") = Me.studyText.Text.ToString
 
-			mainForm.instructionCount += 1
-			mainForm.contButton.PerformClick()
 			Me.Close()
 		End If
 
