@@ -2,7 +2,7 @@
 Public Class otherForm
 	Inherits Form
 
-	Private otherInstr As New instructionBox(horizontalDist:=0.5, verticalDist:=0.25)
+	Private otherInstr As New instructionBox(horizontalDist:=0.65, verticalDist:=0.25)
 	Private WithEvents otherBox1 As New TextBox
 	Private WithEvents otherBox2 As New TextBox
 	Private otherPanel1 As New labelledBox(Me.otherBox1, "Name des 1. signifikanten anderen :", boxWidth:=180)

@@ -1,4 +1,4 @@
-﻿{\rtf1\ansi \par \qc
+﻿{\rtf1\ansi \par \par \par \par \qc
 Sie haben die Übungsphase nun beendet. \par \par
 
 Als nächstes folgt die Testphase, welche identisch zur Übungsphase ist, aber länger dauert. \par \par

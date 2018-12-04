@@ -221,7 +221,7 @@ Module mainModule
 	Public Class instructionBox
 		Inherits RichTextBox
 
-		Public Sub New(Optional Txt As String = "", Optional horizontalDist As Double = 0.75, Optional verticalDist As Double = 0.67)
+		Public Sub New(Optional Txt As String = "", Optional horizontalDist As Double = 0.8, Optional verticalDist As Double = 0.75)
 
 			Dim screenWidth As Integer = Screen.PrimaryScreen.Bounds.Width
 			Dim screenHeight As Integer = Screen.PrimaryScreen.Bounds.Height

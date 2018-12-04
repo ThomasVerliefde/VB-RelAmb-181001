@@ -1,4 +1,4 @@
-{\rtf1\ansi \par \qc
+﻿{\rtf1\ansi \par \par \qc
 Bitte geben Sie die Namen von zwei {\b beliebten} Personen ein. \par \par
 
 Denken Sie an zwei "signifikante Personen", die Sie {\b am meisten} mögen. \par

@@ -44,7 +44,7 @@ Public Class mainForm
 		subjectForm.ShowDialog()
 
 		Me.Controls.Add(Me.instrText)
-		objCenter(Me.instrText, 0.4)
+		objCenter(Me.instrText, 0.42)
 		Me.instrText.Rtf = My.Resources.ResourceManager.GetString("_0_mainInstr")
 
 
