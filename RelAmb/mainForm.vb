@@ -126,6 +126,14 @@ Public Class mainForm
 
 				shuffleList(practiceTrials)
 
+				Dim savePrimes As New List(Of String)
+				Me.practicePrimes.ForEach(Sub(x) savePrimes.Add(String.Join(" ", x)))
+				dataFrame("practicePrimes") = String.Join(" ", savePrimes)
+
+				Dim saveTrials As New List(Of String)
+				practiceTrials.ForEach(Sub(x) saveTrials.Add(String.Join(" ", x)))
+				dataFrame("practiceTrials") = String.Join("-", saveTrials)
+
 				' Experiment Trials
 
 				Me.experimentPrimes = createPrimes(
@@ -146,7 +154,6 @@ Public Class mainForm
 					Next
 					Console.WriteLine("")
 				End If
-
 
 				experimentTrials = createTrials(
 					Me.experimentPrimes,
@@ -172,6 +179,14 @@ Public Class mainForm
 				End If
 
 				shuffleList(experimentTrials)
+
+				savePrimes.Clear()
+				Me.experimentPrimes.ForEach(Sub(x) savePrimes.Add(String.Join(" ", x)))
+				dataFrame("experimentPrimes") = String.Join(" ", savePrimes)
+
+				saveTrials.Clear()
+				experimentTrials.ForEach(Sub(x) saveTrials.Add(String.Join(" ", x)))
+				dataFrame("experimentTrials") = String.Join("-", saveTrials)
 
 			Case 2 'Practice Trials
 				Me.practiceT = time.GetCurrentInstant()
