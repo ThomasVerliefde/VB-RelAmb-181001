@@ -25,6 +25,8 @@ Public Class practiceForm
 		Me.FormBorderStyle = FormBorderStyle.None
 		Me.BackColor = Color.White
 
+		Cursor.Hide()
+
 		Me.timerITI.Interval = 1500
 		Me.timerFix.Interval = 500
 		Me.timerPrime.Interval = 150
@@ -138,6 +140,7 @@ Public Class practiceForm
 
 			If Me.trialCounter = practiceTrials.Count Then
 				Me.timerITI.Stop()
+				Cursor.Show()
 				Me.Close()
 			End If
 

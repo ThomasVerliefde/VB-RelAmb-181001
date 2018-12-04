@@ -231,7 +231,8 @@ Public Class mainForm
 				dataFrame("timeTotal") = Me.timeTotal.TotalMinutes.ToString
 				dataFrame("hostName") = Net.Dns.GetHostName()
 
-				saveCSV(dataFrame, "Data_RelAmb_" & dataFrame("Subject") & "_" & Net.Dns.GetHostName & ".csv")
+				IO.Directory.CreateDirectory("Data")
+				saveCSV(dataFrame, "Data\RelAmb_" & dataFrame("Subject") & "_" & Net.Dns.GetHostName & ".csv")
 
 			Case Else
 				Me.Close()
