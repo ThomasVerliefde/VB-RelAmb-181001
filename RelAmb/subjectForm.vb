@@ -1,78 +1,87 @@
 ﻿Public Class subjectForm
-    Inherits Form
+	Inherits Form
 
-    Private WithEvents contButton As New continueButton(Txt:="Bestätigen")
-    Private WithEvents subjBox As New TextBox
-    Private ReadOnly subjPanel As New labelledBox(subjBox)
+	Private WithEvents contButton As New continueButton(Txt:="Bestätigen")
+	Private WithEvents textBox As New TextBox
+	Private ReadOnly subjPanel As New labelledBox(Me.textBox, "VPNr:")
+	Private condN As Integer
+	Private subjN As Integer
 
-    Private Sub formLoad(sender As Object, e As EventArgs) Handles MyBase.Load
+	Private Sub formLoad(sender As Object, e As EventArgs) Handles MyBase.Load
 
-        Dim screenWidth As Integer = Screen.PrimaryScreen.Bounds.Width
-        Dim screenHeight As Integer = Screen.PrimaryScreen.Bounds.Height
+		Dim screenWidth As Integer = Screen.PrimaryScreen.Bounds.Width
+		Dim screenHeight As Integer = Screen.PrimaryScreen.Bounds.Height
 
-        WindowState = FormWindowState.Normal
-        FormBorderStyle = FormBorderStyle.None
+		Me.WindowState = FormWindowState.Normal
+		Me.FormBorderStyle = FormBorderStyle.None
 
-        Size = New Point(250, 200)
-        BackColor = Color.Gray
-        Top = (3 * screenHeight / 4) - (Height / 2)
-        Left = (screenWidth / 2) - (Width / 2)
+		Me.Size = New Point(250, 200)
+		Me.BackColor = Color.Gray
+		Me.Top = (3 * screenHeight / 4) - (Me.Height / 2)
+		Me.Left = (screenWidth / 2) - (Me.Width / 2)
 
-        Controls.Add(contButton)
-        xCenter(contButton)
+		Me.Controls.Add(Me.contButton)
+		objCenter(Me.contButton)
 
-        Controls.Add(subjPanel)
-        xCenter(subjPanel, 0.4)
+		Me.Controls.Add(Me.subjPanel)
+		objCenter(Me.subjPanel, 0.4)
 
-        subjBox.Select()
+		Me.textBox.MaxLength = 3
+		Me.textBox.Select()
 
-    End Sub
+	End Sub
 
-    Private condN As Integer
-    Private subjN As Integer
+	Private Sub contButton_Click(sender As Object, e As EventArgs) Handles contButton.Click
 
-    Private Sub contButton_Click(sender As Object, e As EventArgs) Handles contButton.Click
+		If Me.textBox.Text = 999 Then
+			debugMode = True
+			Me.textBox.Text = 499
+		End If
 
-        If subjBox.Text = "" OrElse Val(subjBox.Text) < 1 OrElse Val(subjBox.Text) > 500 Then 'Interestingly, Val("these are letters") returns 0, and results in error
-            MsgBox("Bitte geben Sie eine korrekte VPNr ein!", MsgBoxStyle.Critical, Title:="Fehler!")
-            Exit Sub
-        Else
-            subjN = CInt(subjBox.Text)
-            condN = setCond(subjN)
-            Select Case condN
-                Case 0
-                    mainForm.keyAss = "Apos"
-                    mainForm.firstNames = "Pos"
+		If Me.textBox.Text = "" OrElse Val(Me.textBox.Text) < 1 OrElse Val(Me.textBox.Text) > 500 Then
+			'Interestingly, Val("these are letters") returns 0, and results in error
+			MsgBox("Bitte geben Sie eine korrekte VPNr ein!", MsgBoxStyle.Critical, Title:="Fehler!")
+			Exit Sub
+		Else
+			Me.subjN = CInt(Me.textBox.Text)
+			Me.condN = setCond(Me.subjN)
+			Select Case Me.condN
+				Case 0
+					mainForm.keyAss = "Apos"
+					mainForm.firstOthers = "Pos"
+				Case 1
+					mainForm.keyAss = "Apos"
+					mainForm.firstOthers = "Neg"
+				Case 2
+					mainForm.keyAss = "Aneg"
+					mainForm.firstOthers = "Pos"
+				Case 3
+					mainForm.keyAss = "Aneg"
+					mainForm.firstOthers = "Neg"
+			End Select
 
-                Case 1
-                    mainForm.keyAss = "Apos"
-                    mainForm.firstNames = "Neg"
-                Case 2
-                    mainForm.keyAss = "Aneg"
-                    mainForm.firstNames = "Pos"
-                Case 3
-                    mainForm.keyAss = "Aneg"
-                    mainForm.firstNames = "Neg"
-            End Select
-            mainForm.dataFrame("Subject") = subjN.ToString
-            mainForm.dataFrame("Key") = mainForm.keyAss
-            mainForm.dataFrame("FirstNames") = mainForm.firstNames
-        End If
+			dataFrame("Subject") = Me.subjN.ToString
+			dataFrame("Key") = mainForm.keyAss
+			dataFrame("FirstOthers") = mainForm.firstOthers
 
-        'mainForm.contButton.PerformClick()
-        Close()
-    End Sub
+			If debugMode Then
+				dataFrame("Subject") = "DEBUG"
+			End If
 
-    Private Sub confirmEnter(sender As Object, e As KeyEventArgs) Handles subjBox.KeyDown
-        If e.KeyCode = Keys.Enter Then
-            contButton.PerformClick()
-        End If
-    End Sub
+			Me.Close()
+		End If
+	End Sub
 
-    Private Sub suppressNonNumeric(sender As Object, e As KeyPressEventArgs) Handles subjBox.KeyPress
-        If e.KeyChar <> ControlChars.Back AndAlso Not IsNumeric(e.KeyChar) Then
-            e.Handled = True
-        End If
-    End Sub
+	Private Sub confirmEnter(sender As Object, e As KeyEventArgs) Handles textBox.KeyDown
+		If e.KeyCode = Keys.Enter Then
+			Me.contButton.PerformClick()
+		End If
+	End Sub
+
+	Private Sub suppressNonNumeric(sender As Object, e As KeyPressEventArgs) Handles textBox.KeyPress
+		If e.KeyChar <> ControlChars.Back AndAlso Not IsNumeric(e.KeyChar) Then
+			e.Handled = True
+		End If
+	End Sub
 
 End Class

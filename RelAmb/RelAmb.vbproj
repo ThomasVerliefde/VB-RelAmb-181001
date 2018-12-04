@@ -183,11 +183,12 @@
       <LastGenOutput>Settings.Designer.vb</LastGenOutput>
     </None>
     <None Include="App.config" />
-    <None Include="packages.config" />
     <AdditionalFiles Include="Resources\BlockRandomisation.R" />
+    <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="My Project\BlockRandomisation.txt" />
+    <EmbeddedResource Include="Resources\Stimuli\practiceOthers.txt" />
     <EmbeddedResource Include="Resources\Instructions\1_otherNeg.txt" />
     <EmbeddedResource Include="Resources\Instructions\1_otherPos.txt" />
     <EmbeddedResource Include="Resources\Stimuli\practiceTarget_Pos.txt" />

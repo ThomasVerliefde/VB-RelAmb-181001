@@ -1,7 +1,7 @@
-{\rtf1\ansi \par \qc
-Please provide the name of a {\b liked} person. \par \par
+﻿{\rtf1\ansi \par \par \qc
+Bitte geben Sie die Namen von zwei {\b beliebten} Personen ein. \par \par
 
-Think of one "significant person" that you like {\b most}. \par
-A person in your life you {\b feel very good about}, \par
-and hold {\b positive} feelings towards.
+Denken Sie an zwei "signifikante Personen", die Sie {\b am meisten} mögen. \par
+Menschen in Ihrem Leben, bei denen Sie sich {\b sehr gut fühlen}, \par
+und denen gegenüber Sie {\b positive} Gefühle hegen.
 }
