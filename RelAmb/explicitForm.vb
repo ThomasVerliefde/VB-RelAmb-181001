@@ -192,11 +192,11 @@ Public Class explicitForm
 
 					Me.labB1.reInit("Wie positiv finden Sie " & Me.otherName & "?" & vbCrLf &
 									" Konzentrieren Sie sich für Ihr Urteil bitte nur auf die positiven Aspekte" & vbCrLf &
-									"und ignorieren Sie mögliche negative Aspekte.", Me.trackB1, 0.5, "neutral", "sehr positiv")
+									"und ignorieren Sie mögliche negative Aspekte.", Me.trackB1, 0.5, "neutral", "sehr positiv", minVal:=0, maxVal:=100, freqVal:=50, defVal:=0)
 					Me.labB2.reInit("Wie negativ finden Sie " & Me.otherName & "?" & vbCrLf &
 									" Konzentrieren Sie sich für Ihr Urteil bitte nur auf die negativen Aspekte" & vbCrLf &
-									"und ignorieren Sie mögliche positive Aspekte.", Me.trackB2, 0.5, "neutral", "sehr negativ")
-					Me.labB3.reInit("Wie hin- und hergerissen fühlen Sie sich angesichts " & Me.otherName, Me.trackB3,, "überhaupt nicht", "sehr")
+									"und ignorieren Sie mögliche positive Aspekte.", Me.trackB2, 0.5, "neutral", "sehr negativ", minVal:=0, maxVal:=100, freqVal:=50, defVal:=0)
+					Me.labB3.reInit("Wie hin- und hergerissen fühlen Sie sich angesichts " & Me.otherName, Me.trackB3,, "überhaupt nicht", "sehr", minVal:=0, maxVal:=100, freqVal:=50, defVal:=0)
 
 				Case 4 ' What is your relation towards this significant other, & How many do you know?
 

@@ -54,7 +54,7 @@ Public Class otherForm
 
 			MsgBox("Bitte geben Sie gültige Namen ein!" & vbCrLf &
 					"[Namen sollten zwischen 2 und 14 Buchstaben lang sein," & vbCrLf &
-					"nur Buchstaben enthalten (Umlaute und Bindestriche sind erlaubt), und unverwechselbar sein.]", MsgBoxStyle.Critical, Title:="Fehler!")
+					"nur Buchstaben enthalten (Umlaute und Bindestriche sind erlaubt)," & vbCrLf & "und sollten nicht mit einem der anderen 3 Namen identisch sein.]", MsgBoxStyle.Critical, Title:="Fehler!")
 			Exit Sub
 
 

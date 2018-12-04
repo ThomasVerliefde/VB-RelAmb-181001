@@ -83,7 +83,8 @@ Module mainModule
 
 		End Sub
 
-		Public Sub reInit(newLabel As String, Optional trackBar As TrackBar = Nothing, Optional labelTop As Integer = 1, Optional minLab As String = "überhaupt nicht", Optional maxLab As String = "sehr")
+		Public Sub reInit(newLabel As String, Optional trackBar As TrackBar = Nothing, Optional labelTop As Integer = 1, Optional minLab As String = "überhaupt nicht", Optional maxLab As String = "sehr",
+						  Optional minVal As Integer = 1, Optional maxVal As Integer = 6, Optional freqVal As Integer = 1, Optional defVal As Integer = 3)
 
 			With Me.barLabel
 				.Text = newLabel
@@ -105,10 +106,12 @@ Module mainModule
 				.Left = Me.setLeft + Me.barWidth - .Width / 2
 			End With
 
-			Try
-				trackBar.Value = Me.defaultVal
-			Catch ex As Exception
-			End Try
+			With trackBar
+				.Minimum = minVal
+				.Maximum = maxVal
+				.TickFrequency = freqVal
+				.Value = defVal
+			End With
 
 		End Sub
 

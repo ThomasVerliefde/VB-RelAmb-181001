@@ -181,9 +181,9 @@ Public Class mainForm
 
 			Case 3 'Experiment Proper
 				Me.experimentT = time.GetCurrentInstant()
-				'experimentForm.ShowDialog()
+				experimentForm.ShowDialog()
 				Me.instrText.Rtf = My.Resources.ResourceManager.GetString("_4_explicitInstr")
-				'experimentForm.Dispose()
+				experimentForm.Dispose()
 
 			Case 4 'Explicit/Direct Measurements of Ambivalence
 				Me.explicitT = time.GetCurrentInstant()
