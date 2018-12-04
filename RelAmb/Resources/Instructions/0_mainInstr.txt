@@ -4,7 +4,7 @@ Liebe Versuchsperson, \par \par
 vielen Dank für Ihre Teilnahme an dieser Studie! \par \par
 
 Die Studie wird aus mehreren Aufgaben bestehen, die Sie nacheinander bearbeiten. \par \par
-
+Bitte lesen Sie die Instruktionen immer aufmerksam durch! \par \par
 
 Starten Sie mit dem ersten Teil der Studie, indem Sie den "Weiter"-Button drücken.
 }

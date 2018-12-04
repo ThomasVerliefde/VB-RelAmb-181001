@@ -1,11 +1,9 @@
 ﻿{\rtf1\ansi \par \qc
 Sie haben die Klassifizierungsphase nun beendet. \par \par
 
-Wir möchten, dass Sie einige Fragen zu den signifikanten anderen beantworten, die Sie uns zu Beginn des Experiments zur Verfügung gestellt haben. \par \par
+Wir möchten, dass Sie einige Fragen zu Ihren "signifikanten Anderen" beantworten, die Sie uns zu Beginn des Experiments genannt haben. \par \par
 
-Bitte beantworten Sie jede Frage bezüglich der spezifischen signifikanten anderen, die auf dem Bildschirm angezeigt werden. \par \par
-
-Wichtig: Klicken Sie auf den Pfeil, um ihn in Richtung des gewünschten Punktes auf der Skala zu bewegen, tun Sie dies für jeden Trackbar. \par \par
+Wichtig: Ziehen Sie den Schieber einfach mit der Maus zur gewünschten Position auf der Skala. \par \par
 
 Drücken Sie den "Weiter"-Button um fortzufahren.
 }
