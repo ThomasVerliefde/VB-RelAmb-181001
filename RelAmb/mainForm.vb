@@ -190,15 +190,15 @@ Public Class mainForm
 
 			Case 2 'Practice Trials
 				Me.practiceT = time.GetCurrentInstant()
-				'practiceForm.ShowDialog()
+				practiceForm.ShowDialog()
 				Me.instrText.Rtf = My.Resources.ResourceManager.GetString("_3_experiment" & Me.keyAss)
-				'practiceForm.Dispose()
+				practiceForm.Dispose()
 
 			Case 3 'Experiment Proper
 				Me.experimentT = time.GetCurrentInstant()
-				'experimentForm.ShowDialog()
+				experimentForm.ShowDialog()
 				Me.instrText.Rtf = My.Resources.ResourceManager.GetString("_4_explicitInstr")
-				'experimentForm.Dispose()
+				experimentForm.Dispose()
 
 			Case 4 'Explicit/Direct Measurements of Ambivalence
 				Me.explicitT = time.GetCurrentInstant()
