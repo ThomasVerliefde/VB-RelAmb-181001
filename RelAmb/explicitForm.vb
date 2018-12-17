@@ -117,105 +117,108 @@ Public Class explicitForm
 
 			End Select
 
-			If Me.otherCount >= Me.otherKeys.Count Then
 
-				For Each item In Me.tempFrame
-					dataFrame.Add(item.Key, item.Value)
-				Next
-
-				Me.Close()
-
-			End If
 		End If
 
-		Me.otherKey = Me.otherKeys(Me.otherCount)
-		Me.otherName = dataFrame(Me.otherKey)
+		If Me.otherCount >= Me.otherKeys.Count Then
 
-		With Me.labName
-			.Text = Me.otherName
-			.Font = sansSerif25B
-			.Width = TextRenderer.MeasureText(.Text, sansSerif25B).Width
-			.Height = TextRenderer.MeasureText(.Text, sansSerif25B).Height
-		End With
+			For Each item In Me.tempFrame
+				dataFrame.Add(item.Key, item.Value)
+			Next
 
-		'Resetting the checks whether the trackbars have received attention
-		Me.B1 = False
-		Me.B2 = False
-		Me.B3 = False
-		Me.contButton.Enabled = debugMode 'False if debugMode is off, True if debugMode is on
+			Me.Close()
 
-		Select Case Me.questionCount Mod 5
+		Else
 
-			Case 0
+			Me.otherKey = Me.otherKeys(Me.otherCount)
+			Me.otherName = dataFrame(Me.otherKey)
 
-				Me.numBox.Visible = False
-				Me.relBox.Visible = True
+			With Me.labName
+				.Text = Me.otherName
+				.Font = sansSerif25B
+				.Width = TextRenderer.MeasureText(.Text, sansSerif25B).Width
+				.Height = TextRenderer.MeasureText(.Text, sansSerif25B).Height
+			End With
 
-				Me.relText.ResetText()
-				Me.relText.Select()
+			'Resetting the checks whether the trackbars have received attention
+			Me.B1 = False
+			Me.B2 = False
+			Me.B3 = False
+			Me.contButton.Enabled = debugMode 'False if debugMode is off, True if debugMode is on
 
-				If debugMode Then
-					Me.relText.Text = "DEBUG"
-				End If
+			Select Case Me.questionCount Mod 5
 
-			Case 1
+				Case 0
 
-				Me.labB1.Visible = True
-				Me.labB2.Visible = True
-				Me.labB3.Visible = True
-				Me.relBox.Visible = False
+					Me.numBox.Visible = False
+					Me.relBox.Visible = True
 
-				' Positive SRI
-				' How helpful is XXX when you need advice/understanding/a favour? | willing to help, or useful
+					Me.relText.ResetText()
+					Me.relText.Select()
 
-				Me.labB1.reInit("Wie hilfreich ist " & Me.otherName & ", wenn Sie Rat brauchen?", Me.trackB1)
-				Me.labB2.reInit("Wie hilfreich ist " & Me.otherName & ", wenn Sie Verständnis brauchen?", Me.trackB2)
-				Me.labB3.reInit("Wie hilfreich ist " & Me.otherName & ", wenn Sie einen Gefallen brauchen?", Me.trackB3)
+					If debugMode Then
+						Me.relText.Text = "DEBUG"
+					End If
 
-			Case 2
+				Case 1
 
-				' Negative SRI
-				' How upsetting is XXX when you need advice/understanding/a favour | upsetting: making someone feel worried, unhappy, or angry (cambridge dictionary)
-				' Should come up with a better word still
-				' Kathis suggestion: "in Aufregung versetzen"
-				' Max' suggestion: "erschütternd"
-				' Other interesting ideas: "ärgerlich", "umständlich", "beunruhigend", "erschwerend", "vesrchlimmernd", "agitierend", "verwirrend"
-				' Currently a big fan of "umständlich", although "schwierig" could also be pretty nice
+					Me.labB1.Visible = True
+					Me.labB2.Visible = True
+					Me.labB3.Visible = True
+					Me.relBox.Visible = False
 
-				Me.labB1.reInit("Wie umständlich ist " & Me.otherName & ", wenn Sie Rat brauchen?", Me.trackB1)
-				Me.labB2.reInit("Wie umständlich ist " & Me.otherName & ", wenn Sie Verständnis brauchen?", Me.trackB2)
-				Me.labB3.reInit("Wie umständlich ist " & Me.otherName & ", wenn Sie einen Gefallen brauchen?", Me.trackB3)
+					' Positive SRI
+					' How helpful is XXX when you need advice/understanding/a favour? | willing to help, or useful
 
-			Case 3 ' Explicit positive, negative, and ambivalent
+					Me.labB1.reInit("Wie hilfreich ist " & Me.otherName & ", wenn Sie Rat brauchen?", Me.trackB1)
+					Me.labB2.reInit("Wie hilfreich ist " & Me.otherName & ", wenn Sie Verständnis brauchen?", Me.trackB2)
+					Me.labB3.reInit("Wie hilfreich ist " & Me.otherName & ", wenn Sie einen Gefallen brauchen?", Me.trackB3)
 
-				Me.labB1.reInit("Wie positiv finden Sie " & Me.otherName & "?" & vbCrLf &
-								" Konzentrieren Sie sich für Ihr Urteil bitte nur auf die positiven Aspekte" & vbCrLf &
-								"und ignorieren Sie mögliche negative Aspekte.", Me.trackB1, 0.5, "neutral", "sehr positiv", minVal:=0, maxVal:=100, freqVal:=50, defVal:=0)
-				Me.labB2.reInit("Wie negativ finden Sie " & Me.otherName & "?" & vbCrLf &
-								" Konzentrieren Sie sich für Ihr Urteil bitte nur auf die negativen Aspekte" & vbCrLf &
-								"und ignorieren Sie mögliche positive Aspekte.", Me.trackB2, 0.5, "neutral", "sehr negativ", minVal:=0, maxVal:=100, freqVal:=50, defVal:=0)
-				Me.labB3.reInit("Wie hin- und hergerissen fühlen Sie sich angesichts " & Me.otherName, Me.trackB3,, "überhaupt nicht", "sehr", minVal:=0, maxVal:=100, freqVal:=50, defVal:=0)
+				Case 2
 
-			Case 4 ' What is your relation towards this significant other, & How many do you know?
+					' Negative SRI
+					' How upsetting is XXX when you need advice/understanding/a favour | upsetting: making someone feel worried, unhappy, or angry (cambridge dictionary)
+					' Should come up with a better word still
+					' Kathis suggestion: "in Aufregung versetzen"
+					' Max' suggestion: "erschütternd"
+					' Other interesting ideas: "ärgerlich", "umständlich", "beunruhigend", "erschwerend", "vesrchlimmernd", "agitierend", "verwirrend"
+					' Currently a big fan of "umständlich", although "schwierig" could also be pretty nice
 
-				Me.labB1.Visible = False
-				Me.labB2.Visible = False
-				Me.labB3.Visible = False
-				Me.numBox.Visible = True
+					Me.labB1.reInit("Wie umständlich ist " & Me.otherName & ", wenn Sie Rat brauchen?", Me.trackB1)
+					Me.labB2.reInit("Wie umständlich ist " & Me.otherName & ", wenn Sie Verständnis brauchen?", Me.trackB2)
+					Me.labB3.reInit("Wie umständlich ist " & Me.otherName & ", wenn Sie einen Gefallen brauchen?", Me.trackB3)
 
-				Me.numText.ResetText()
-				Me.numText.Focus()
+				Case 3 ' Explicit positive, negative, and ambivalent
 
-				If debugMode Then
-					Me.numText.Text = 1
-				End If
+					Me.labB1.reInit("Wie positiv finden Sie " & Me.otherName & "?" & vbCrLf &
+									" Konzentrieren Sie sich für Ihr Urteil bitte nur auf die positiven Aspekte" & vbCrLf &
+									"und ignorieren Sie mögliche negative Aspekte.", Me.trackB1, 0.5, "neutral", "sehr positiv", minVal:=0, maxVal:=100, freqVal:=50, defVal:=0)
+					Me.labB2.reInit("Wie negativ finden Sie " & Me.otherName & "?" & vbCrLf &
+									" Konzentrieren Sie sich für Ihr Urteil bitte nur auf die negativen Aspekte" & vbCrLf &
+									"und ignorieren Sie mögliche positive Aspekte.", Me.trackB2, 0.5, "neutral", "sehr negativ", minVal:=0, maxVal:=100, freqVal:=50, defVal:=0)
+					Me.labB3.reInit("Wie hin- und hergerissen fühlen Sie sich angesichts " & Me.otherName, Me.trackB3,, "überhaupt nicht", "sehr", minVal:=0, maxVal:=100, freqVal:=50, defVal:=0)
 
-				Me.otherCount += 1
+				Case 4 ' What is your relation towards this significant other, & How many do you know?
 
-		End Select
+					Me.labB1.Visible = False
+					Me.labB2.Visible = False
+					Me.labB3.Visible = False
+					Me.numBox.Visible = True
 
-		Me.questionCount += 1
+					Me.numText.ResetText()
+					Me.numText.Focus()
 
+					If debugMode Then
+						Me.numText.Text = 1
+					End If
+
+					Me.otherCount += 1
+
+			End Select
+
+			Me.questionCount += 1
+
+		End If
 
 	End Sub
 
